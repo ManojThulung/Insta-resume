@@ -12,8 +12,11 @@ module.exports = {
         primary: {
           DEFAULT: "#015048",
           dark: "#023535",
+          light: "#D9FFDA",
         },
-        secondary: {},
+        secondary: {
+          light: "#F6FFF2",
+        },
       },
       fontFamily: {
         "noto-sans": ["Noto Sans", "sans-serif"],

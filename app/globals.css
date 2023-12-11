@@ -17,10 +17,44 @@
   }
 }
 
+ul,
+ol {
+  @apply px-[25px] py-[2px];
+}
+
 body {
-  @apply dark:bg-primary-dark dark:text-secondary-light;
+  @apply bg-primary-light dark:bg-primary-dark dark:text-secondary-light;
 }
 
 .maxWidth {
   @apply max-w-[1280px] mx-auto;
+}
+
+.form-input {
+  @apply w-full rounded border-primary border-[1px] shadow-sm py-1.5 px-2;
+}
+
+.form-container-sec {
+  @apply py-5 my-5;
+}
+
+/*--- SCROLLBAR THIN -------------------------------------------------*/
+* {
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  @apply bg-primary-light w-[6px];
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply bg-[rgba(0,0,0,0.2)] rounded-full;
+}
+
+.scrollbar-hidden::-webkit-scrollbar-thumb {
+  @apply bg-transparent;
+}
+
+.scrollbar-hidden:hover::-webkit-scrollbar-thumb {
+  @apply bg-[rgba(0,0,0,0.2)];
 }
