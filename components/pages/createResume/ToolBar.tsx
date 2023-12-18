@@ -15,7 +15,7 @@ const TOOLS = [
 const ToolBar = () => {
   return (
     <div className="bg-secondary-light dark:bg-primary p-2">
-      <ul className="flex justify-center items-center gap-1">
+      <ul className="flex flex-wrap justify-center items-center gap-1">
         {TOOLS.map((tool) => (
           <li key={tool}>
             <Button variant={"ghost"} size={"small"} className="text-sm">

@@ -38,6 +38,14 @@ body {
   @apply py-5 my-5;
 }
 
+.form-container-sec h2 {
+  @apply text-2xl font-semibold;
+}
+
+.form-card {
+  @apply border-primary-border border-[1px] rounded p-4 pt-3 my-2;
+}
+
 /*--- SCROLLBAR THIN -------------------------------------------------*/
 * {
   scrollbar-width: thin;

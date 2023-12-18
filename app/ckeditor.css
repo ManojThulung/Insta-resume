@@ -28,7 +28,7 @@ main .ck-editor[role='application'] .ck.ck-content,
   line-height: 1.3em;
   min-height: var(--ck-sample-editor-min-height);
   max-height: var(--ck-sample-editor-max-height);
-  padding: 0em 2em;
+  padding: 0em 1em;
   overflow-y: scroll;
   list-style: inside;
 }

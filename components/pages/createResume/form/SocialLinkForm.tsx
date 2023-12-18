@@ -1,26 +1,53 @@
-"use client";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { ChevronDown, PlusCircle, Trash2 } from "lucide-react";
 
-import { useState } from "react";
-import { PlusCircle, X } from "lucide-react";
 import Button from "@/components/common/Button";
+import CustomDropDown from "@/components/common/CustomDropDown";
+import { SocialLinksProps } from "@/types";
 
-// type fo social links
-type SocialLinksProps = {
-  socialPlatform: string;
-  link: string;
-};
+//social sites data
+const socialSiteList = [
+  "Facebook",
+  "Github",
+  "Portfolio",
+  "Twitter",
+  "LinkedIn",
+  "Instagram",
+  "Dribble",
+  "Behance",
+  "Medium",
+];
 
-const SocialLinkForm = () => {
-  const [socialLinks, setSocialLinks] = useState<SocialLinksProps[]>([
-    { socialPlatform: "", link: "" },
-  ]);
-
+const SocialLinkForm = ({
+  socialLinks,
+  setSocialLinks,
+}: {
+  socialLinks: SocialLinksProps[];
+  setSocialLinks: Dispatch<SetStateAction<SocialLinksProps[]>>;
+}) => {
+  // ADD new object in socialLinkData array when add button is clicked
   const addLinks = () => {
-    setSocialLinks((prev) => [...prev, { socialPlatform: "", link: "" }]);
+    setSocialLinks((prev) => [
+      ...prev,
+      { socialPlatform: socialSiteList[0], link: "" },
+    ]);
   };
 
   const removeSocialLinks = () => {
-    setSocialLinks((prev) => prev.slice(1));
+    if (socialLinks.length >= 1) {
+      setSocialLinks((prev) => prev.slice(1));
+    }
+  };
+
+  const handleChange = (index: number, e: ChangeEvent<HTMLInputElement>) => {
+    setSocialLinks((prev) => {
+      const updateData = [...prev];
+
+      // Update the specific element at the given index
+      updateData[index] = { ...updateData[index], link: e.target.value };
+
+      return updateData;
+    });
   };
 
   return (
@@ -30,46 +57,51 @@ const SocialLinkForm = () => {
         <p>Select your social platform and add links</p>
       </div>
       <div>
-        {socialLinks.map((link, index) => (
-          <div key={index}>
-            <div className="flex items-center gap-0 mt-4">
-              <select className="form-input">
-                <option>Facebook</option>
-                <option>Twitter</option>
-                <option>LinkedIn</option>
-                <option>Dribble</option>
-                <option>Behance</option>
-                <option>Medium</option>
-              </select>
-              <button
-                type="button"
-                onClick={removeSocialLinks}
-                className="text-blue-400 py-1 border-[1px] border-primary flex items-center justify-center h-full w-[40px] rounded"
-              >
-                <X />
-              </button>
-            </div>
-            <div className="flex items-center gap-2 mt-1">
-              <input
-                type="text"
-                name="job_title"
-                id="job-title"
-                className="form-input"
-                placeholder="Links eg https://www.facebook.com/user"
-              />
-            </div>
-          </div>
-        ))}
+        {socialLinks.length >= 1 &&
+          socialLinks.map((link, index) => (
+            <div key={index} className="form-card">
+              <div className="flex items-center gap-2 -mb-2 justify-end text-primary-border">
+                <ChevronDown className="cursor-pointer" />
+                <Trash2
+                  onClick={removeSocialLinks}
+                  className="scale-75 cursor-pointer"
+                />
+              </div>
 
-        <Button
-          onClick={addLinks}
-          variant="blueGhost"
-          size="pLess"
-          className="mt-4"
-        >
-          <PlusCircle className="scale-75" />
-          Add More Social Link
-        </Button>
+              <div className="items-center gap-0 mt-4 w-full">
+                <CustomDropDown
+                  socialSiteList={socialSiteList}
+                  socialLinks={socialLinks}
+                  setSocialLinks={setSocialLinks}
+                  index={index}
+                />
+              </div>
+              <div className="flex items-center gap-2 mt-1">
+                <input
+                  type="text"
+                  name="job_title"
+                  id="job-title"
+                  className="form-input"
+                  placeholder="eg https://www.facebook.com/user"
+                  onChange={(e) => handleChange(index, e)}
+                />
+              </div>
+            </div>
+          ))}
+
+        <div className="flex justify-end">
+          {socialLinks.length <= socialSiteList.length && ( //to allow to add social links not more than available social sites
+            <Button
+              onClick={addLinks}
+              variant="blueGhost"
+              size="pLess"
+              className="mt-4"
+            >
+              <PlusCircle className="scale-75" />
+              Add {socialLinks.length === 0 ? "" : "more"} social link
+            </Button>
+          )}
+        </div>
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-import { PlusCircle } from "lucide-react";
+import { ChevronDown, PlusCircle, Trash2 } from "lucide-react";
 
 import ToggleBtn from "@/components/common/ToggleBtn";
 import Button from "@/components/common/Button";
@@ -13,7 +13,11 @@ const EducationForm = () => {
             Add your educational details, including your current enrollments.
           </p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div className="form-card grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div className="lg:col-span-2 flex items-center gap-2 -mb-2 justify-end text-primary-border">
+            <ChevronDown className="cursor-pointer" />
+            <Trash2 className="scale-75 cursor-pointer" />
+          </div>
           <div className="lg:col-span-2">
             <label htmlFor="school_name">School Name</label>
             <div>
@@ -74,10 +78,12 @@ const EducationForm = () => {
             </div>
           </div>
         </div>
-        <Button variant="blueGhost" size="pLess" className="mt-4">
-          <PlusCircle className="scale-75" />
-          Add More Education
-        </Button>
+        <div className="flex justify-end">
+          <Button variant="blueGhost" size="pLess" className="mt-4">
+            <PlusCircle className="scale-75" />
+            Add More Education
+          </Button>
+        </div>
       </div>
     </section>
   );

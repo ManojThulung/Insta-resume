@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import { Dispatch, SetStateAction } from "react";
 import dynamic from "next/dynamic";
 
 const CustomEditor = dynamic(
@@ -10,10 +10,16 @@ const CustomEditor = dynamic(
   { ssr: false }
 );
 
-const TextEditorField = () => {
+const TextEditorField = ({
+  data,
+  setData,
+}: {
+  data: string;
+  setData: Dispatch<SetStateAction<string>>;
+}) => {
   return (
     <div>
-      <CustomEditor initialData="<h1>hello from manoj rai insta resume </h1>" />
+      <CustomEditor data={data} setData={setData} />
     </div>
   );
 };

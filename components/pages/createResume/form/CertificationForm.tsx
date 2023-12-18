@@ -1,7 +1,7 @@
 import React from "react";
 import TextEditorField from "../TextEditorField";
 import Button from "@/components/common/Button";
-import { PlusCircle } from "lucide-react";
+import { ChevronDown, PlusCircle, Trash2 } from "lucide-react";
 
 const CertificationForm = () => {
   return (
@@ -11,7 +11,11 @@ const CertificationForm = () => {
           <h2>Certification</h2>
           <p>Provide a concise overview of your tranining or certification.</p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div className="form-card grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div className="lg:col-span-2 flex items-center gap-2 -mb-2 justify-end text-primary-border">
+            <ChevronDown className="cursor-pointer" />
+            <Trash2 className="scale-75 cursor-pointer" />
+          </div>
           <div className="lg:col-span-2">
             <label htmlFor="certificate_title">Certificate Title *</label>
             <div>
@@ -65,10 +69,12 @@ const CertificationForm = () => {
             </div>
           </div>
         </div>
-        <Button variant="blueGhost" size="pLess" className="mt-4">
-          <PlusCircle className="scale-75" />
-          Add More Certificate
-        </Button>
+        <div className="flex justify-end">
+          <Button variant="blueGhost" size="pLess" className="mt-4">
+            <PlusCircle className="scale-75" />
+            Add More Certificate
+          </Button>
+        </div>
       </div>
     </section>
   );

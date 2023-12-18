@@ -1,4 +1,4 @@
-import React from "react";
+import { Dispatch, SetStateAction } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import Editor from "ckeditor5-custom-build";
 
@@ -21,17 +21,18 @@ const editorConfiguration = {
   language: "en",
 };
 
-function CustomEditor(props: { initialData: string }) {
-  //   const MyEditor = Editor;
-
+function CustomEditor(props: {
+  data: string;
+  setData: Dispatch<SetStateAction<string>>;
+}) {
   return (
     <CKEditor
       editor={Editor}
       config={editorConfiguration}
-      data={props.initialData}
+      data={props.data}
       onChange={(event, editor) => {
         const data = editor.getData();
-        console.log({ event, editor, data });
+        props.setData(data);
       }}
     />
   );
