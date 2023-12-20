@@ -1,4 +1,5 @@
 "use client";
+import dynamic from "next/dynamic";
 import { useState } from "react";
 
 import ToolBar from "@/components/pages/createResume/ToolBar";
@@ -13,8 +14,14 @@ import SocialLinkForm from "@/components/pages/createResume/form/SocialLinkForm"
 import CertificationForm from "@/components/pages/createResume/form/CertificationForm";
 import ReferenceForm from "@/components/pages/createResume/form/ReferenceForm";
 import Button from "@/components/common/Button";
+import ResumePdf from "@/components/pages/createResume/pdf/ResumePdf";
 
 import { BioFormProps, SocialLinksProps } from "@/types";
+
+const DynamicResumePdf = dynamic(
+  () => import("@/components/pages/createResume/pdf/ResumePdf"),
+  { ssr: false }
+);
 
 const CreateResume = () => {
   const [resumeData, setResumeData] = useState({});
@@ -63,9 +70,13 @@ const CreateResume = () => {
             <br />
           </form>
         </div>
-        <div className="col-span-12 sm:col-span-6 px-6 py-4">
+        <div className="col-span-12 sm:col-span-6 px-6 py-4 bg-[#525659]">
           <div className="flex items-center justify-end gap-5 flex-wrap">
             <Button onClick={handleDownload}>Download</Button>
+          </div>
+          <div className="flex items-center justify-center">
+            {/* <ResumePdf /> */}
+            <DynamicResumePdf bioData={bioData} />
           </div>
         </div>
       </div>
