@@ -107,7 +107,7 @@ const BioForm = ({
         <div className="lg:col-span-2">
           <label>
             Write a short summary telling more about yourself, your strengths
-            and experience. demo
+            and experience.
           </label>
           <div>
             <TextEditorField data={bioSummery} setData={setBioSummery} />
