@@ -1,8 +1,15 @@
-import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+"use client";
+
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import TextEditorField from "../TextEditorField";
 
 import { BioFormProps } from "@/types";
-import CustomDropDown from "@/components/common/CustomDropDown";
 
 const BioForm = ({
   setBioData,
@@ -10,13 +17,24 @@ const BioForm = ({
   setBioData: Dispatch<SetStateAction<BioFormProps>>;
 }) => {
   const [bioSummery, setBioSummery] = useState<string>("");
-  const handleBioChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setBioData((prev: BioFormProps) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-      bio_summery: bioSummery,
-    }));
+
+  const handleBioChange = (e: ChangeEvent<HTMLInputElement> | null) => {
+    if (e) {
+      setBioData((prev: BioFormProps) => ({
+        ...prev,
+        [e.target.name]: e.target.value,
+      }));
+    } else {
+      setBioData((prev: BioFormProps) => ({
+        ...prev,
+        bio_summery: bioSummery,
+      }));
+    }
   };
+
+  useEffect(() => {
+    handleBioChange(null);
+  }, [bioSummery]);
 
   return (
     <section id="bio-form" className="form-container-sec">

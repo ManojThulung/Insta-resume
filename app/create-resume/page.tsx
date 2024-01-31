@@ -1,6 +1,6 @@
 "use client";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import ToolBar from "@/components/pages/createResume/ToolBar";
 
@@ -40,7 +40,6 @@ const CreateResume = () => {
 
   const handleDownload = () => {
     console.log("resume bioData ", bioData);
-    console.log("resume social Links ", socialLinks);
   };
 
   return (
@@ -75,7 +74,7 @@ const CreateResume = () => {
             <Button onClick={handleDownload}>Download</Button>
           </div>
           <div className="flex items-center justify-center">
-            {/* <ResumePdf /> */}
+            {/* <ResumePdf bioData={bioData} /> */}
             <DynamicResumePdf bioData={bioData} />
           </div>
         </div>
