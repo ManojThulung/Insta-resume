@@ -1,4 +1,5 @@
 "use client";
+
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 
@@ -17,6 +18,7 @@ import Button from "@/components/common/Button";
 import ResumePdf from "@/components/pages/createResume/pdf/ResumePdf";
 
 import { BioFormProps, SocialLinksProps } from "@/types";
+import PreviewPdf from "@/components/pages/createResume/preview/PreviewPdf";
 
 const DynamicResumePdf = dynamic(
   () => import("@/components/pages/createResume/pdf/ResumePdf"),
@@ -75,7 +77,8 @@ const CreateResume = () => {
           </div>
           <div className="flex items-center justify-center">
             {/* <ResumePdf bioData={bioData} /> */}
-            <DynamicResumePdf bioData={bioData} />
+            {/* <DynamicResumePdf bioData={bioData} /> */}
+            <PreviewPdf />
           </div>
         </div>
       </div>

@@ -50,7 +50,7 @@ const BioForm = ({
               type="text"
               name="job_title"
               id="job-title"
-              placeholder="eg Front-end Developer"
+              placeholder="Front-end Developer"
               onChange={(e) => handleBioChange(e)}
               className="form-input"
             />
@@ -63,7 +63,7 @@ const BioForm = ({
               type="text"
               name="first_name"
               id="fist-name"
-              placeholder="eg Peter"
+              placeholder="Peter"
               onChange={(e) => handleBioChange(e)}
               className="form-input"
             />
@@ -76,7 +76,7 @@ const BioForm = ({
               type="text"
               name="last_name"
               id="last-name"
-              placeholder="eg Parker"
+              placeholder="Parker"
               onChange={(e) => handleBioChange(e)}
               className="form-input"
             />
@@ -89,7 +89,7 @@ const BioForm = ({
               type="email"
               name="email"
               id="email"
-              placeholder="eg peter33@gmail.com"
+              placeholder="peter33@gmail.com"
               onChange={(e) => handleBioChange(e)}
               className="form-input"
             />
@@ -116,7 +116,7 @@ const BioForm = ({
               type="text"
               name="address"
               id="address"
-              placeholder="eg St. State, bt street"
+              placeholder="St. State, bt street"
               onChange={(e) => handleBioChange(e)}
               className="form-input"
             />
