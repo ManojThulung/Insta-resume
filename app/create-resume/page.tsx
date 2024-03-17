@@ -72,13 +72,15 @@ const CreateResume = () => {
           </form>
         </div>
         <div className="col-span-12 sm:col-span-6 px-6 py-4 bg-[#525659]">
-          <div className="flex items-center justify-end gap-5 flex-wrap">
+          <div className="flex items-center justify-end gap-5 flex-wrap mb-2">
             <Button onClick={handleDownload}>Download</Button>
           </div>
-          <div className="flex items-center justify-center">
-            {/* <ResumePdf bioData={bioData} /> */}
-            {/* <DynamicResumePdf bioData={bioData} /> */}
-            <PreviewPdf />
+          <div className="relative">
+            <div className="pdf-preview-container">
+              {/* <ResumePdf bioData={bioData} /> */}
+              {/* <DynamicResumePdf bioData={bioData} /> */}
+              <PreviewPdf />
+            </div>
           </div>
         </div>
       </div>
