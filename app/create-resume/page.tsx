@@ -75,11 +75,11 @@ const CreateResume = () => {
           <div className="flex items-center justify-end gap-5 flex-wrap mb-2">
             <Button onClick={handleDownload}>Download</Button>
           </div>
-          <div className="relative">
+          <div className="relative bg-yellow-200">
             <div className="pdf-preview-container">
               {/* <ResumePdf bioData={bioData} /> */}
               {/* <DynamicResumePdf bioData={bioData} /> */}
-              <PreviewPdf />
+              <PreviewPdf bioData={bioData} />
             </div>
           </div>
         </div>

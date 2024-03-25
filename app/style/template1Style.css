@@ -1,0 +1,19 @@
+.header {
+  @apply flex justify-between items-start border-b-[1px] border-b-[rgba(0,0,0,0.2)] pb-2 mb-3;
+}
+
+.header h1 {
+  @apply text-xl uppercase text-black font-semibold leading-[18px] pb-1;
+}
+
+.header h2 {
+  @apply text-[13px] text-black;
+}
+
+.title {
+  @apply text-black uppercase font-bold text-[10.5px];
+}
+
+.link {
+  @apply text-[#215E9E] underline leading-[14px] cursor-pointer;
+}
