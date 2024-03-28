@@ -73,5 +73,5 @@ body {
 }
 
 .a4-container {
-  @apply bg-white h-full w-full p-[30px];
+  @apply bg-white h-full w-full p-[30px] overflow-y-auto;
 }

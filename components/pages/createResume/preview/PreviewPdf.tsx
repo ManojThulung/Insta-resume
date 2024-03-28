@@ -1,67 +1,65 @@
 "use client";
-import "@/app/style/template1Style.css";
+import { useState } from "react";
 import { BioFormProps } from "@/types";
-import html2pdf from "html2pdf.js";
+import jsPDF from "jspdf";
+import "svg2pdf.js";
+import "@/app/style/template1Style.css";
+import Link from "next/link";
 
 const PreviewPdf = ({ bioData }: { bioData: BioFormProps }) => {
-  const handleDownload = () => {
-    console.log("hello world ");
-    if (typeof window !== "undefined") {
-      const resumeCover = document.getElementById("a4-cover");
+  const [margin, setMargin] = useState(0);
+  const resumeDoc = new jsPDF({
+    unit: "px",
+    compress: true,
+  });
 
-      const opt = {
-        margin: 0,
-        filename: "MyResume.pdf",
-        // image: { type: "jpeg", quality: 1 },
-        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-        enableLinks: true,
-      };
+  const handleDownload = async () => {
+    const element = document.getElementById("a4-cover");
+    setMargin(7); //to adjust the margin style when HTML converting to PDF.
 
-      html2pdf(resumeCover, opt);
+    if (element) {
+      resumeDoc
+        .html(element, {
+          callback: async function (resumeDoc) {
+            // Save the PDF document
+            resumeDoc.save("Resume.pdf");
+          },
+          autoPaging: "text",
+          width: 385,
+          windowWidth: 480,
+          margin: [30, 30, 30, 30],
+        })
+        .then(() => setMargin(0)); //reset to original style.
     }
   };
 
-  // const styles = {
-  //   previewContainer: {
-  //     padding: "30px",
-  //     backgroundColor: "white",
-  //     lineHeight: "normal",
-  //     fontFamily: '"Times New Roman", Times, serif',
-  //     color: "rgba(0,0,0,0.7)",
-  //     fontSize: "9.5px",
-  //   },
-  //   header: {
-  //     display: "flex",
-  //     justifyContent: "space-between",
-  //     alignItems: "start",
-  //   },
-  // };
-
-  // console.log("data ", bioData);
-
   return (
-    <main
-      id="a4-cover"
-      className="a4-container bg-white leading-[12px] text-[rgba(0,0,0,0.7)] text-[9px]"
-      style={{
-        fontFamily: '"Times New Roman", Times, serif',
-      }}
-    >
-      <div className="">
+    <main className="a4-container leading-[12px] text-[rgb(82,86,89)]">
+      <div
+        id="a4-cover"
+        style={{
+          fontFamily: '"Times New Roman", Times, serif',
+          fontSize: "9px",
+        }}
+      >
         <div className="header">
           <div>
-            <h1 onClick={handleDownload}>Manoj rai</h1>
+            <h1 onClick={handleDownload} className="">
+              Manoj rai
+            </h1>
             <h2>Front-end developer</h2>
           </div>
           <div>
-            <p>manojthulung03@gmail.com</p>
-            <p>+977 9899009980</p>
-            <p>Lalitpur, Nepal</p>
+            <p className="text">manojthulung03@gmail.com</p>
+            <p className="text">+977 9899009980</p>
+            <p className="text">Lalitpur, Nepal</p>
           </div>
         </div>
+        <br />
+        <div className="h-line" style={{ marginTop: 0 + margin }} />
         <div>
           <h2 className="title">PROFILE & CAREER OBJECTIVE</h2>
-          <p className="py-1 px-[6px]">
+          <p className="text-content">
             With 1+ years of experience in developing user-friendly, responsive
             websites with optimized cross-browser compatibility and performance,
             I’m on a relentless journey to master web design and development.
@@ -76,41 +74,53 @@ const PreviewPdf = ({ bioData }: { bioData: BioFormProps }) => {
             <div>
               <h2 className="title">CONTACT</h2>
               <div className="py-1 px-[6px]">
-                <a href="https://www.manojrai.info.np" target="__blank">
-                  <p className="link">Manoj Rai</p>
-                </a>
-                <p className="link">Manoj Thulung</p>
-                <p className="link">manojrai.info.np</p>
-                <p className="link">manojthulung03@gmail.com</p>
-                <p className="link">@manojrai0</p>
-                <p className="link">Lalitpur, Nepal</p>
+                <Link href={"https://www.facebook.com/"} target="__blank">
+                  <p className="link">https://www.facebook.com/</p>
+                </Link>
+                <Link href={""} target="__blank">
+                  <p className="link">https://www.facebook.com/</p>
+                </Link>
+                <Link href={""} target="__blank">
+                  <p className="link">https://manojrai.info.np</p>
+                </Link>
+                <Link href={"mailto:manojthulung03@gmail.com"} target="__blank">
+                  <p className="link">manojthulung03@gmail.com</p>
+                </Link>
+                <Link href={""} target="__blank">
+                  <p className="link">@manojrai0</p>
+                </Link>
+                <Link href={""} target="__blank">
+                  <p className="link">Lalitpur, Nepal</p>
+                </Link>
               </div>
             </div>
 
             <div className="pt-3 pb-2">
               <h2 className="title">EDUCATION</h2>
-              <div className="py-1 px-[6px]">
+              <div className="py-1 px-[6px] text-[10px]">
                 <div className="pb-2">
                   <h3 className="font-bold text-black">BSc (Hons) Computing</h3>
-                  <p>Itahari International College</p>
-                  <p>Morang, Nepal</p>
-                  <p className="italic">2019 - 2022</p>
+                  <p className="text">Itahari International College</p>
+                  <p className="text">Morang, Nepal</p>
+                  <p className="italic text">2019 - 2022</p>
                 </div>
                 <div className="pb-2">
                   <h3 className="font-bold text-black">
                     High School (Science)
                   </h3>
-                  <p>Shree Janasahayog High School asdf asdf asdf</p>
-                  <p>Sunsari, Nepal</p>
-                  <p className="italic">2019 - 2022</p>
+                  <p className="text">
+                    Shree Janasahayog High School asdf asdf asdf
+                  </p>
+                  <p className="text">Sunsari, Nepal</p>
+                  <p className="italic text">2019 - 2022</p>
                 </div>
                 <div className="pb">
                   <h3 className="font-bold text-black">
                     Purwanchal Higher Seconday School asdf asdf sdfsdad
                   </h3>
-                  <p>Itahari International College</p>
-                  <p>Sunsari, Nepal</p>
-                  <p className="italic">2016</p>
+                  <p className="text">Itahari International College</p>
+                  <p className="text">Sunsari, Nepal</p>
+                  <p className="italic text">2016</p>
                 </div>
               </div>
             </div>
@@ -120,9 +130,9 @@ const PreviewPdf = ({ bioData }: { bioData: BioFormProps }) => {
               <div className="py-1 px-[6px]">
                 <div className="pb-2">
                   <h3 className="font-bold text-black">Graphic Design</h3>
-                  <p>International Computer Institue</p>
-                  <p>Ithhari, Nepal</p>
-                  <p className="italic">2018</p>
+                  <p className="text">International Computer Institue</p>
+                  <p className="text">Ithhari, Nepal</p>
+                  <p className="italic text">2018</p>
                 </div>
               </div>
             </div>
@@ -162,15 +172,18 @@ const PreviewPdf = ({ bioData }: { bioData: BioFormProps }) => {
                   <h3 className="italic text-black font-semibold">
                     Unicorn Consults Pvt. Ltd. | Kwun Tong, Hong Kong
                   </h3>
-                  <ul className="pl-[13px] pr-0 list-disc">
-                    <li>
-                      Development and deployment of features on web and mobile
-                      applications with NextJs, ReactJs, VueJs, & React Native
-                    </li>
-                    <li>Debugging and troubleshooting software issues.</li>
-                    <li>
-                      Collaboration with cross-functional teams to implement
-                      innovative solutions.
+                  <ul className="pl-[4px] pr-0 text-justify">
+                    <li className="flex justify-start gap-1 text-[9px]">
+                      <p
+                        className={`h-[3px] w-[3px] rounded-[3px] shrink-0 bg-[rgb(82,86,89)]`}
+                        style={{
+                          marginTop: 4 + margin,
+                        }}
+                      />
+                      <p className="text">
+                        Development and deployment of features on web and mobile
+                        applications with NextJs, ReactJs, VueJs, & React Native
+                      </p>
                     </li>
                   </ul>
                 </div>

@@ -1,19 +1,31 @@
 .header {
-  @apply flex justify-between items-start border-b-[1px] border-b-[rgba(0,0,0,0.2)] pb-2 mb-3;
+  @apply flex justify-between items-start;
 }
 
 .header h1 {
-  @apply text-xl uppercase text-black font-semibold leading-[18px] pb-1;
+  @apply text-[22px] uppercase text-black font-bold leading-[18px] pb-1;
 }
 
 .header h2 {
-  @apply text-[13px] text-black;
+  @apply text-[15px] text-black;
+}
+
+.h-line {
+  @apply h-[1px] bg-[rgb(178,179,178)] mb-3 rounded-[2px];
 }
 
 .title {
   @apply text-black uppercase font-bold text-[10.5px];
 }
 
+.text-content {
+  @apply py-1 px-[6px] text-[9px] text-justify text-[rgb(82,86,89)];
+}
+
 .link {
-  @apply text-[#215E9E] underline leading-[14px] cursor-pointer;
+  @apply text-[rgb(33,94,158)] leading-[14px] cursor-pointer text-[9px] underline pb-1;
+}
+
+.text {
+  @apply text-[9px] text-[rgb(82,86,89)];
 }
