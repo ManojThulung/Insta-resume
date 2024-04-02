@@ -13,10 +13,21 @@ export interface SocialLinksProps {
   url: string;
 }
 
+// experiencedata props
+export interface ExperienceFormProps {
+  job_title: string;
+  organization_name: string;
+  location: string;
+  start_date: string;
+  end_date: string;
+  currently_employed: boolean;
+  work_description: string;
+}
+
 // type fo resume data props
 export interface ResumeDataProps {
   socialLinks: SocialLinksProps[];
-  experiences: never[];
+  experiences: ExperienceFormProps[];
   education: never[];
   projects: never[];
   Skills: never[];

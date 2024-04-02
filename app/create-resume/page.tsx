@@ -21,7 +21,17 @@ const CreateResume = () => {
   const [dwnTrigger, setDwnTrigger] = useState<boolean>(false);
   const [resumeData, setResumeData] = useState({
     socialLinks: [{ url: "" }],
-    experiences: [],
+    experiences: [
+      {
+        job_title: "",
+        organization_name: "",
+        location: "",
+        start_date: "",
+        end_date: "",
+        currently_employed: false,
+        work_description: "",
+      },
+    ],
     education: [],
     projects: [],
     Skills: [],
@@ -56,7 +66,10 @@ const CreateResume = () => {
               setResumeData={setResumeData}
             />
             <br />
-            <ExperienceForm />
+            <ExperienceForm
+              experiences={resumeData.experiences}
+              setResumeData={setResumeData}
+            />
             <br />
             <EducationForm />
             <br />

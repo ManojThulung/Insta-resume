@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import Editor from "ckeditor5-custom-build";
+import { ResumeDataProps } from "@/types";
 
 const editorConfiguration = {
   toolbar: {
@@ -20,21 +21,35 @@ const editorConfiguration = {
   language: "en",
 };
 
-function CustomEditor(props: {
+function CustomEditors({
+  index,
+  targetName,
+  data,
+  setData,
+}: {
+  index: number;
+  targetName: string;
   data: string;
-  setData: Dispatch<SetStateAction<string>>;
+  setData: Dispatch<SetStateAction<ResumeDataProps>>;
 }) {
   return (
     <CKEditor
       editor={Editor}
       config={editorConfiguration}
-      data={props.data}
+      data={data}
       onChange={(_, editor) => {
         const data = editor.getData();
-        props.setData(data);
+        setData((prev) => {
+          let updateData = { ...prev };
+
+          //   targetName === 'experiences' &&
+          updateData.experiences[index].work_description = data;
+
+          return updateData;
+        });
       }}
     />
   );
 }
 
-export default CustomEditor;
+export default CustomEditors;

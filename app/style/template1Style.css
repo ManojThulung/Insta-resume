@@ -31,3 +31,19 @@
 .text {
   @apply text-[9px] text-[rgb(82,86,89)];
 }
+
+.work-desc_container {
+  @apply pl-[4px] pr-0 text-justify;
+}
+
+.work-desc_container ul {
+  @apply pl-[4px] pr-0 text-justify list-disc;
+}
+
+.work-desc_container p {
+  @apply text-[9px] text-[rgb(82,86,89)];
+}
+
+.work-desc_container li {
+  @apply flex justify-start gap-1 text-[9px] text-[rgb(82,86,89)];
+}

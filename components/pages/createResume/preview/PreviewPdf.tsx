@@ -197,10 +197,46 @@ const PreviewPdf = ({
               </div>
             </div> */}
           </div>
-          {/* <div className="col-span-3">
-            <div>
-              <h2 className="title">EXPERIENCE</h2>
-              <div className="py-1 px-[6px]">
+          <div className="col-span-3">
+            {resumeData.experiences[0].job_title ||
+            resumeData.experiences[0].organization_name ? (
+              <div>
+                <h2 className="title">EXPERIENCE</h2>
+                <div className="py-1 px-[6px]">
+                  {resumeData.experiences.map((exp, index) => (
+                    <div key={index} className="pb-2">
+                      <h3 className="italic">
+                        {exp?.start_date}{" "}
+                        {!exp?.currently_employed
+                          ? exp?.end_date && "- " + exp?.end_date
+                          : "- Present"}
+                      </h3>
+                      <h3 className="font-bold text-black">{exp?.job_title}</h3>
+                      <h3 className="italic text-black font-semibold">
+                        {exp?.organization_name}{" "}
+                        {exp?.location && "  | " + exp?.location}
+                      </h3>
+                      {/* <ul className="pl-[4px] pr-0 text-justify">
+                      <li className="flex justify-start gap-1 text-[9px]">
+                        <p
+                          className={`h-[3px] w-[3px] rounded-[3px] shrink-0 bg-[rgb(82,86,89)]`}
+                          style={{
+                            marginTop: 4 + margin,
+                          }}
+                        />
+                        <p className="text">{exp?.work_description}</p>
+                      </li>
+                    </ul> */}
+                      <div
+                        className="work-desc_container"
+                        dangerouslySetInnerHTML={{
+                          __html: exp?.work_description,
+                        }}
+                      ></div>
+                    </div>
+                  ))}
+                </div>
+                {/* <div className="py-1 px-[6px]">
                 <div className="pb-2">
                   <h3 className="italic">2023 March - Present</h3>
                   <h3 className="font-bold text-black">Front-end Developer</h3>
@@ -285,9 +321,12 @@ const PreviewPdf = ({
                     </li>
                   </ul>
                 </div>
+              </div> */}
               </div>
-            </div>
-          </div> */}
+            ) : (
+              ""
+            )}
+          </div>
         </div>
       </div>
     </div>
