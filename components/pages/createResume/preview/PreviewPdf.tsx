@@ -1,19 +1,38 @@
 "use client";
-import { useState } from "react";
-import { BioFormProps } from "@/types";
+import { useEffect, useState, Dispatch, SetStateAction } from "react";
+import { BioFormProps, ResumeDataProps } from "@/types";
 import jsPDF from "jspdf";
 import "svg2pdf.js";
 import "@/app/style/template1Style.css";
 import Link from "next/link";
 
-const PreviewPdf = ({ bioData }: { bioData: BioFormProps }) => {
-  const [margin, setMargin] = useState(0);
+const PreviewPdf = ({
+  bioData,
+  dwnTrigger,
+  setDwnTrigger,
+  resumeData,
+}: {
+  bioData: BioFormProps;
+  dwnTrigger: boolean;
+  setDwnTrigger: Dispatch<SetStateAction<boolean>>;
+  resumeData: ResumeDataProps;
+}) => {
+  const [margin, setMargin] = useState<number>(0);
+
   const resumeDoc = new jsPDF({
     unit: "px",
     compress: true,
   });
 
-  const handleDownload = async () => {
+  // trigger generate function when its triggered from iis parent component
+  useEffect(() => {
+    if (dwnTrigger) {
+      generatePDF();
+    }
+  }, [dwnTrigger]);
+
+  // to convert html to pdf file
+  const generatePDF = () => {
     const element = document.getElementById("a4-cover");
     setMargin(7); //to adjust the margin style when HTML converting to PDF.
 
@@ -29,12 +48,15 @@ const PreviewPdf = ({ bioData }: { bioData: BioFormProps }) => {
           windowWidth: 480,
           margin: [30, 30, 30, 30],
         })
-        .then(() => setMargin(0)); //reset to original style.
+        .then(() => {
+          setMargin(0);
+          setDwnTrigger(false);
+        }); //reset to original style.
     }
   };
 
   return (
-    <main className="a4-container leading-[12px] text-[rgb(82,86,89)]">
+    <div className="a4-container leading-[12px] text-[rgb(82,86,89)]">
       <div
         id="a4-cover"
         style={{
@@ -44,34 +66,33 @@ const PreviewPdf = ({ bioData }: { bioData: BioFormProps }) => {
       >
         <div className="header">
           <div>
-            <h1 onClick={handleDownload} className="">
-              Manoj rai
+            <h1>
+              {bioData.first_name} {bioData.last_name}
             </h1>
-            <h2>Front-end developer</h2>
+            <h2>{bioData.job_title}</h2>
           </div>
           <div>
-            <p className="text">manojthulung03@gmail.com</p>
-            <p className="text">+977 9899009980</p>
-            <p className="text">Lalitpur, Nepal</p>
+            {bioData.email && <p className="text">{bioData.email}</p>}
+            {bioData.phone && <p className="text">{bioData.phone}</p>}
+            {bioData.address && <p className="text">{bioData.address}</p>}
           </div>
         </div>
         <br />
-        <div className="h-line" style={{ marginTop: 0 + margin }} />
-        <div>
-          <h2 className="title">PROFILE & CAREER OBJECTIVE</h2>
-          <p className="text-content">
-            With 1+ years of experience in developing user-friendly, responsive
-            websites with optimized cross-browser compatibility and performance,
-            I’m on a relentless journey to master web design and development.
-            I’ve contributed to projects that enhance brand identity through
-            captivating web layouts. <br /> I’m seeking exciting projects that
-            push my creative and technical skills, allowing me to create
-            user-friendly front-end solutions and shape the web.
-          </p>
-        </div>
+        {bioData.bio_summery && (
+          <>
+            <div className="h-line" style={{ marginTop: 0 + margin }} />
+            <div>
+              <h2 className="title">PROFILE & CAREER OBJECTIVE</h2>
+              <p
+                className="text-content"
+                dangerouslySetInnerHTML={{ __html: bioData.bio_summery }}
+              />
+            </div>
+          </>
+        )}
         <div className="grid grid-cols-5 gap-3 py-2">
           <div className="col-span-2">
-            <div>
+            {/* <div>
               <h2 className="title">CONTACT</h2>
               <div className="py-1 px-[6px]">
                 <Link href={"https://www.facebook.com/"} target="__blank">
@@ -93,9 +114,23 @@ const PreviewPdf = ({ bioData }: { bioData: BioFormProps }) => {
                   <p className="link">Lalitpur, Nepal</p>
                 </Link>
               </div>
-            </div>
+            </div> */}
 
-            <div className="pt-3 pb-2">
+            {resumeData?.socialLinks.length > 0 &&
+              resumeData?.socialLinks[0].url.trim() !== "" && (
+                <div>
+                  <h2 className="title">CONTACT</h2>
+                  <div className="py-1 px-[6px]">
+                    {resumeData?.socialLinks.map((link, index) => (
+                      <Link key={index} href={link.url} target="__blank">
+                        <p className="link">{link.url}</p>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+            {/* <div className="pt-3 pb-2">
               <h2 className="title">EDUCATION</h2>
               <div className="py-1 px-[6px] text-[10px]">
                 <div className="pb-2">
@@ -123,9 +158,9 @@ const PreviewPdf = ({ bioData }: { bioData: BioFormProps }) => {
                   <p className="italic text">2016</p>
                 </div>
               </div>
-            </div>
+            </div> */}
 
-            <div className="py-2">
+            {/* <div className="py-2">
               <h2 className="title">TRAINING</h2>
               <div className="py-1 px-[6px]">
                 <div className="pb-2">
@@ -135,9 +170,9 @@ const PreviewPdf = ({ bioData }: { bioData: BioFormProps }) => {
                   <p className="italic text">2018</p>
                 </div>
               </div>
-            </div>
+            </div> */}
 
-            <div className="py-2">
+            {/* <div className="py-2">
               <h2 className="title pb-1">PROGRAMMING SKILLS</h2>
               <div className="px-[6px]">
                 <div className="pb-2">
@@ -160,9 +195,9 @@ const PreviewPdf = ({ bioData }: { bioData: BioFormProps }) => {
                   <p>NodeJs, JAVA, Python, SQL, MySQL, C# (ASP.NET)</p>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
-          <div className="col-span-3">
+          {/* <div className="col-span-3">
             <div>
               <h2 className="title">EXPERIENCE</h2>
               <div className="py-1 px-[6px]">
@@ -252,10 +287,10 @@ const PreviewPdf = ({ bioData }: { bioData: BioFormProps }) => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 

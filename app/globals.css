@@ -27,7 +27,7 @@ body {
 }
 
 .maxWidth {
-  @apply max-w-[1280px] mx-auto;
+  @apply max-w-[1280px] mx-auto px-2;
 }
 
 .form-input {

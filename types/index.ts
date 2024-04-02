@@ -8,8 +8,18 @@ export interface BioFormProps {
   bio_summery: string;
 }
 
-// type fo social links
+// social links props
 export interface SocialLinksProps {
-  socialPlatform: string;
-  link: string;
+  url: string;
+}
+
+// type fo resume data props
+export interface ResumeDataProps {
+  socialLinks: SocialLinksProps[];
+  experiences: never[];
+  education: never[];
+  projects: never[];
+  Skills: never[];
+  certifications: never[];
+  references: never[];
 }

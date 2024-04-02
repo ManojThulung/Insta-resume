@@ -1,9 +1,9 @@
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
-import { ChevronDown, PlusCircle, Trash2 } from "lucide-react";
+import { PlusCircle, Trash2 } from "lucide-react";
 
 import Button from "@/components/common/Button";
 import CustomDropDown from "@/components/common/CustomDropDown";
-import { SocialLinksProps } from "@/types";
+import { ResumeDataProps, SocialLinksProps } from "@/types";
 
 //social sites data
 const socialSiteList = [
@@ -20,31 +20,33 @@ const socialSiteList = [
 
 const SocialLinkForm = ({
   socialLinks,
-  setSocialLinks,
+  setResumeData,
 }: {
   socialLinks: SocialLinksProps[];
-  setSocialLinks: Dispatch<SetStateAction<SocialLinksProps[]>>;
+  setResumeData: Dispatch<SetStateAction<ResumeDataProps>>;
 }) => {
   // ADD new object in socialLinkData array when add button is clicked
   const addLinks = () => {
-    setSocialLinks((prev) => [
+    setResumeData((prev) => ({
       ...prev,
-      { socialPlatform: socialSiteList[0], link: "" },
-    ]);
+      socialLinks: [...prev.socialLinks, { url: "" }],
+    }));
   };
 
-  const removeSocialLinks = () => {
+  const removeSocialLinks = (index: number) => {
     if (socialLinks.length >= 1) {
-      setSocialLinks((prev) => prev.slice(1));
+      setResumeData((prev) => ({
+        ...prev,
+        socialLinks: prev.socialLinks.filter((_, i) => i !== index),
+      }));
     }
   };
 
   const handleChange = (index: number, e: ChangeEvent<HTMLInputElement>) => {
-    setSocialLinks((prev) => {
-      const updateData = [...prev];
-
+    setResumeData((prev) => {
+      const updateData = { ...prev };
       // Update the specific element at the given index
-      updateData[index] = { ...updateData[index], link: e.target.value };
+      updateData.socialLinks[index] = { url: e.target.value };
 
       return updateData;
     });
@@ -60,28 +62,27 @@ const SocialLinkForm = ({
         {socialLinks.length >= 1 &&
           socialLinks.map((link, index) => (
             <div key={index} className="form-card">
-              <div className="flex items-center gap-2 -mb-2 justify-end text-primary-border">
-                <ChevronDown className="cursor-pointer" />
+              <div className="flex items-center mb-1 justify-end text-primary-border">
                 <Trash2
-                  onClick={removeSocialLinks}
+                  onClick={() => removeSocialLinks(index)}
                   className="scale-75 cursor-pointer"
                 />
               </div>
-
-              <div className="items-center gap-0 mt-4 w-full">
+              {/* <div className="items-center gap-0 mt-4 w-full">
                 <CustomDropDown
                   socialSiteList={socialSiteList}
                   socialLinks={socialLinks}
                   setSocialLinks={setSocialLinks}
                   index={index}
                 />
-              </div>
-              <div className="flex items-center gap-2 mt-1">
+              </div> */}
+              <div className="flex items-center gap-2 ">
                 <input
                   type="text"
-                  name="job_title"
-                  id="job-title"
+                  name="url"
+                  id="url"
                   className="form-input"
+                  value={link?.url ? link?.url : ""}
                   placeholder="eg https://www.facebook.com/user"
                   onChange={(e) => handleChange(index, e)}
                 />

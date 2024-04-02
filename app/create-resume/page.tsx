@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { useState, useEffect } from "react";
-
+import { useState } from "react";
 import ToolBar from "@/components/pages/createResume/ToolBar";
+import PreviewPdf from "@/components/pages/createResume/preview/PreviewPdf";
 
 // FORMS
 import BioForm from "@/components/pages/createResume/form/BioForm";
@@ -15,18 +14,20 @@ import SocialLinkForm from "@/components/pages/createResume/form/SocialLinkForm"
 import CertificationForm from "@/components/pages/createResume/form/CertificationForm";
 import ReferenceForm from "@/components/pages/createResume/form/ReferenceForm";
 import Button from "@/components/common/Button";
-import ResumePdf from "@/components/pages/createResume/pdf/ResumePdf";
 
 import { BioFormProps, SocialLinksProps } from "@/types";
-import PreviewPdf from "@/components/pages/createResume/preview/PreviewPdf";
-
-const DynamicResumePdf = dynamic(
-  () => import("@/components/pages/createResume/pdf/ResumePdf"),
-  { ssr: false }
-);
 
 const CreateResume = () => {
-  const [resumeData, setResumeData] = useState({});
+  const [dwnTrigger, setDwnTrigger] = useState<boolean>(false);
+  const [resumeData, setResumeData] = useState({
+    socialLinks: [{ url: "" }],
+    experiences: [],
+    education: [],
+    projects: [],
+    Skills: [],
+    certifications: [],
+    references: [],
+  });
 
   const [bioData, setBioData] = useState<BioFormProps>({
     job_title: "",
@@ -38,10 +39,8 @@ const CreateResume = () => {
     bio_summery: "",
   });
 
-  const [socialLinks, setSocialLinks] = useState<SocialLinksProps[]>([]);
-
   const handleDownload = () => {
-    console.log("resume bioData ", bioData);
+    setDwnTrigger(true); //trigger the generatePDF function of child component.
   };
 
   return (
@@ -53,8 +52,8 @@ const CreateResume = () => {
             <BioForm setBioData={setBioData} />
             <br />
             <SocialLinkForm
-              socialLinks={socialLinks}
-              setSocialLinks={setSocialLinks}
+              socialLinks={resumeData.socialLinks}
+              setResumeData={setResumeData}
             />
             <br />
             <ExperienceForm />
@@ -77,9 +76,12 @@ const CreateResume = () => {
           </div>
           <div className="relative bg-yellow-200">
             <div className="pdf-preview-container">
-              {/* <ResumePdf bioData={bioData} /> */}
-              {/* <DynamicResumePdf bioData={bioData} /> */}
-              <PreviewPdf bioData={bioData} />
+              <PreviewPdf
+                bioData={bioData}
+                dwnTrigger={dwnTrigger}
+                setDwnTrigger={setDwnTrigger}
+                resumeData={resumeData}
+              />
             </div>
           </div>
         </div>

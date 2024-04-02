@@ -3,7 +3,7 @@
 }
 
 .header h1 {
-  @apply text-[22px] uppercase text-black font-bold leading-[18px] pb-1;
+  @apply text-[20px] uppercase text-black font-bold leading-[18px] pb-1;
 }
 
 .header h2 {
@@ -18,7 +18,9 @@
   @apply text-black uppercase font-bold text-[10.5px];
 }
 
-.text-content {
+.text-content,
+.text-content p,
+.text-content li {
   @apply py-1 px-[6px] text-[9px] text-justify text-[rgb(82,86,89)];
 }
 
