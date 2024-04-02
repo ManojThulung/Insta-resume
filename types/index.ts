@@ -24,11 +24,21 @@ export interface ExperienceFormProps {
   work_description: string;
 }
 
+// Educations Props
+export interface EducationFormProps {
+  school_name: string;
+  location: string;
+  course: string;
+  start_date: string;
+  end_date: string;
+  currently_study: boolean;
+}
+
 // type fo resume data props
 export interface ResumeDataProps {
   socialLinks: SocialLinksProps[];
   experiences: ExperienceFormProps[];
-  education: never[];
+  educations: EducationFormProps[];
   projects: never[];
   Skills: never[];
   certifications: never[];

@@ -160,6 +160,28 @@ const PreviewPdf = ({
               </div>
             </div> */}
 
+            {resumeData.educations.length >= 1 &&
+              resumeData.educations[0].school_name && (
+                <div className="pt-3 pb-2">
+                  <h2 className="title">EDUCATION</h2>
+                  {resumeData.educations.map((edu, index) => (
+                    <div className="py-1 px-[6px] text-[10px]">
+                      <div className="pb-2">
+                        <h3 className="font-bold text-black">{edu.course}</h3>
+                        <p className="text">{edu.school_name}</p>
+                        <p className="text">{edu.location}</p>
+                        <p className="italic text">
+                          {edu.start_date}{" "}
+                          {edu.currently_study
+                            ? " - Present"
+                            : edu.end_date && " - " + edu.end_date}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
             {/* <div className="py-2">
               <h2 className="title">TRAINING</h2>
               <div className="py-1 px-[6px]">

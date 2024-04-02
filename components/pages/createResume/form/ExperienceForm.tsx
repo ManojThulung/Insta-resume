@@ -1,12 +1,4 @@
-"use client";
-
-import {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import dynamic from "next/dynamic";
 import { ChevronDown, PlusCircle, Trash2 } from "lucide-react";
 import Button from "@/components/common/Button";
@@ -27,8 +19,6 @@ const ExperienceForm = ({
   experiences: ExperienceFormProps[];
   setResumeData: Dispatch<SetStateAction<ResumeDataProps>>;
 }) => {
-  const [expDesc, setExpDesc] = useState<string>("");
-
   //ADD new experience object
   const addExperience = () => {
     setResumeData((prev) => ({
@@ -165,6 +155,7 @@ const ExperienceForm = ({
                 <div className="mt-2 flex items-center gap-2 flex-wrap justify-start">
                   <ToggleBtn
                     index={index}
+                    targetName="experiences"
                     state={exp.currently_employed}
                     setResumeData={setResumeData}
                   />

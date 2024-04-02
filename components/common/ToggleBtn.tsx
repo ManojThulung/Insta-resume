@@ -3,13 +3,16 @@
 import { Dispatch, SetStateAction } from "react";
 import { Switch } from "@headlessui/react";
 import { ResumeDataProps } from "@/types";
+import { start } from "repl";
 
 export default function ToggleBtn({
   state,
+  targetName,
   index,
   setResumeData,
 }: {
   state: boolean;
+  targetName: string;
   index: number;
   setResumeData: Dispatch<SetStateAction<ResumeDataProps>>;
 }) {
@@ -17,7 +20,11 @@ export default function ToggleBtn({
     setResumeData((prev) => {
       const updateData = { ...prev };
 
-      updateData.experiences[index].currently_employed = !state;
+      if (targetName === "experiences") {
+        updateData.experiences[index].currently_employed = !state;
+      } else if (targetName === "educations") {
+        updateData.educations[index].currently_study = !state;
+      }
 
       return updateData;
     });

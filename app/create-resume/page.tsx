@@ -32,7 +32,16 @@ const CreateResume = () => {
         work_description: "",
       },
     ],
-    education: [],
+    educations: [
+      {
+        school_name: "",
+        location: "",
+        course: "",
+        start_date: "",
+        end_date: "",
+        currently_study: false,
+      },
+    ],
     projects: [],
     Skills: [],
     certifications: [],
@@ -71,7 +80,10 @@ const CreateResume = () => {
               setResumeData={setResumeData}
             />
             <br />
-            <EducationForm />
+            <EducationForm
+              educations={resumeData.educations}
+              setResumeData={setResumeData}
+            />
             <br />
             <ProjectForm />
             <br />
