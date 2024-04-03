@@ -42,7 +42,13 @@ const CreateResume = () => {
         currently_study: false,
       },
     ],
-    projects: [],
+    projects: [
+      {
+        project_title: "",
+        summery: "",
+        project_link: "",
+      },
+    ],
     Skills: [],
     certifications: [],
     references: [],
@@ -85,7 +91,10 @@ const CreateResume = () => {
               setResumeData={setResumeData}
             />
             <br />
-            <ProjectForm />
+            <ProjectForm
+              projects={resumeData.projects}
+              setResumeData={setResumeData}
+            />
             <br />
             <SkillForm />
             <br />

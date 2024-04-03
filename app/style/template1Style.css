@@ -33,7 +33,7 @@
 }
 
 .work-desc_container {
-  @apply pl-[4px] pr-0 text-justify;
+  @apply pr-0 text-justify;
 }
 
 .work-desc_container ul {

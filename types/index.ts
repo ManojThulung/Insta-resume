@@ -34,12 +34,19 @@ export interface EducationFormProps {
   currently_study: boolean;
 }
 
+// Project Props
+export interface ProjectFormProps {
+  project_title: string;
+  summery: string;
+  project_link: string;
+}
+
 // type fo resume data props
 export interface ResumeDataProps {
   socialLinks: SocialLinksProps[];
   experiences: ExperienceFormProps[];
   educations: EducationFormProps[];
-  projects: never[];
+  projects: ProjectFormProps[];
   Skills: never[];
   certifications: never[];
   references: never[];

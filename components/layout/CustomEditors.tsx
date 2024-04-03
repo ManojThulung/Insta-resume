@@ -32,6 +32,7 @@ function CustomEditors({
   data: string;
   setData: Dispatch<SetStateAction<ResumeDataProps>>;
 }) {
+  console;
   return (
     <CKEditor
       editor={Editor}
@@ -42,8 +43,11 @@ function CustomEditors({
         setData((prev) => {
           let updateData = { ...prev };
 
-          //   targetName === 'experiences' &&
-          updateData.experiences[index].work_description = data;
+          if (targetName === "experiences") {
+            updateData.experiences[index].work_description = data;
+          } else if (targetName === "projects") {
+            updateData.projects[index].summery = data;
+          }
 
           return updateData;
         });

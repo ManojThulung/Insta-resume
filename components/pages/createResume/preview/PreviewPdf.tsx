@@ -279,75 +279,34 @@ const PreviewPdf = ({
                       </p>
                     </li>
                   </ul>
-                </div>
-
-                <div className="pb-2">
-                  <h3 className="italic">2021 July - 2021 October</h3>
-                  <h3 className="font-bold text-black">
-                    Front-end Developer Intern
-                  </h3>
-                  <h3 className="italic text-black font-semibold">
-                    Turtle Innovation Pvt. Ltd. | Kanchanpur, Nepal
-                  </h3>
-                  <ul className="pl-[13px] pr-0 list-disc">
-                    <li>Worked with the OnlineBasket team using JavaScript.</li>
-                    <li>
-                      Worked on multiple small front-end projects using SASS,
-                      JavaScript, and ReactJs.
-                    </li>
-                    <li>
-                      Designed UIs for News portals, school forms, and
-                      passwordgeneration web pages.
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="pb-2">
-                  <h3 className="italic">2021 July - 2021 October</h3>
-                  <h3 className="font-bold text-black">
-                    Front-end Developer Intern
-                  </h3>
-                  <h3 className="italic text-black font-semibold">
-                    Turtle Innovation Pvt. Ltd. | Kanchanpur, Nepal
-                  </h3>
-                  <ul className="pl-[13px] pr-0 list-disc">
-                    <li>Worked with the OnlineBasket team using JavaScript.</li>
-                    <li>
-                      Worked on multiple small front-end projects using SASS,
-                      JavaScript, and ReactJs.
-                    </li>
-                    <li>
-                      Designed UIs for News portals, school forms, and
-                      passwordgeneration web pages.
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="pb-2">
-                  <h3 className="italic">2021 July - 2021 October</h3>
-                  <h3 className="font-bold text-black">
-                    Front-end Developer Intern
-                  </h3>
-                  <h3 className="italic text-black font-semibold">
-                    Turtle Innovation Pvt. Ltd. | Kanchanpur, Nepal
-                  </h3>
-                  <ul className="pl-[13px] pr-0 list-disc">
-                    <li>Worked with the OnlineBasket team using JavaScript.</li>
-                    <li>
-                      Worked on multiple small front-end projects using SASS,
-                      JavaScript, and ReactJs.
-                    </li>
-                    <li>
-                      Designed UIs for News portals, school forms, and
-                      passwordgeneration web pages.
-                    </li>
-                  </ul>
-                </div>
+                </div>            
               </div> */}
               </div>
             ) : (
               ""
             )}
+
+            {resumeData.projects.length >= 1 &&
+              resumeData.projects[0].project_title && (
+                <div>
+                  <h2 className="title">PROJECTS</h2>
+                  <div className="py-1 px-[6px]">
+                    {/* {resumeData.projects.map((project, index) => (<))} */}
+                    {resumeData.projects.map((project, index) => (
+                      <div key={index} className="mb-2">
+                        <h3 className="font-bold text-black">
+                          {project.project_title}
+                        </h3>
+                        <div
+                          className="work-desc_container text"
+                          dangerouslySetInnerHTML={{ __html: project.summery }}
+                        />
+                        <p className="link">{project.project_link}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
           </div>
         </div>
       </div>
