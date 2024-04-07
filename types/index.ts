@@ -41,13 +41,19 @@ export interface ProjectFormProps {
   project_link: string;
 }
 
+// Skills Props
+export interface SkillFormProps {
+  skill_title: string;
+  skills_list: string[];
+}
+
 // type fo resume data props
 export interface ResumeDataProps {
   socialLinks: SocialLinksProps[];
   experiences: ExperienceFormProps[];
   educations: EducationFormProps[];
   projects: ProjectFormProps[];
-  Skills: never[];
+  skills: SkillFormProps[];
   certifications: never[];
   references: never[];
 }

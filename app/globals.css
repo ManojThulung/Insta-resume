@@ -46,6 +46,18 @@ body {
   @apply border-primary-border border-[1px] rounded p-4 pt-3 my-2;
 }
 
+.skill-item {
+  @apply bg-orange-200 text-red-600 rounded-[4px] flex-shrink-0;
+}
+
+.skill-item__icon {
+  @apply cursor-pointer w-6 text-primary hover:text-red-600 duration-150 ease-in;
+}
+
+.skill-item__add-btn {
+  @apply absolute top-0 right-0 text-blue-600 bg-blue-100 h-full w-6 flex items-center justify-center rounded-r-[2px] border-primary border-l-0 border-[1px] cursor-pointer duration-150 hover:bg-blue-200 ease-in;
+}
+
 /*--- SCROLLBAR THIN -------------------------------------------------*/
 * {
   scrollbar-width: thin;

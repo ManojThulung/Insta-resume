@@ -165,7 +165,7 @@ const PreviewPdf = ({
                 <div className="pt-3 pb-2">
                   <h2 className="title">EDUCATION</h2>
                   {resumeData.educations.map((edu, index) => (
-                    <div className="py-1 px-[6px] text-[10px]">
+                    <div key={index} className="py-1 px-[6px] text-[10px]">
                       <div className="pb-2">
                         <h3 className="font-bold text-black">{edu.course}</h3>
                         <p className="text">{edu.school_name}</p>
@@ -194,6 +194,35 @@ const PreviewPdf = ({
               </div>
             </div> */}
 
+            {/* SKills section  */}
+            {resumeData.skills.length >= 1 &&
+              resumeData.skills[0].skill_title && (
+                <div className="py-2">
+                  {resumeData.skills.map((skill, index) => (
+                    <div key={index} className="mb-4">
+                      <h2 className="title mb-[3px]">{skill.skill_title}</h2>
+                      {skill.skill_title && (
+                        <ul className="px-[6px]">
+                          {skill.skills_list.map((skl, index) => (
+                            <li
+                              key={index}
+                              className="flex justify-start gap-1 text-[9px]"
+                            >
+                              {/* <p
+                              className={`h-[3px] w-[3px] rounded-[3px] shrink-0 bg-[rgb(82,86,89)]`}
+                              style={{
+                                marginTop: 4 + margin,
+                              }}
+                            /> */}
+                              <p className="text">{skl}</p>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
             {/* <div className="py-2">
               <h2 className="title pb-1">PROGRAMMING SKILLS</h2>
               <div className="px-[6px]">
