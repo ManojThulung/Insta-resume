@@ -55,7 +55,14 @@ const CreateResume = () => {
         skills_list: ["Hardware", "Software"],
       },
     ],
-    certifications: [],
+    certifications: [
+      {
+        certificate_title: "",
+        organization: "",
+        certificate_date: "",
+        certificate_link: "",
+      },
+    ],
     references: [],
   });
 
@@ -106,7 +113,10 @@ const CreateResume = () => {
               setResumeData={setResumeData}
             />
             <br />
-            <CertificationForm />
+            <CertificationForm
+              certifications={resumeData.certifications}
+              setResumeData={setResumeData}
+            />
             <br />
             <ReferenceForm />
             <br />

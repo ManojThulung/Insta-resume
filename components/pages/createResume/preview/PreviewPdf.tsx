@@ -223,30 +223,26 @@ const PreviewPdf = ({
                   ))}
                 </div>
               )}
-            {/* <div className="py-2">
-              <h2 className="title pb-1">PROGRAMMING SKILLS</h2>
-              <div className="px-[6px]">
-                <div className="pb-2">
-                  <h3 className="font-bold text-black">Over 5000 lines:</h3>
-                  <p>ReactJs, NextJs, JavaScript, CSS, HTML, Tailwind CSS</p>
+
+            {/* CERTIFICATIONS  */}
+            {resumeData.certifications.length >= 1 &&
+              resumeData.certifications[0].certificate_title && (
+                <div className="py-2">
+                  <h2 className="title pb-1">CERTIFICATION</h2>
+                  {resumeData.certifications.map((certificate, index) => (
+                    <div key={index} className="mb-2 px-[6px]">
+                      <p className="italic text">
+                        {certificate.certificate_date}
+                      </p>
+                      <h3 className="font-bold text-black">
+                        {certificate.certificate_title}
+                      </h3>
+                      <p className="text">{certificate.organization}</p>
+                      <p className="link">{certificate.certificate_link}</p>
+                    </div>
+                  ))}
                 </div>
-              </div>
-              <div className="px-[6px]">
-                <div className="pb-2">
-                  <h3 className="font-bold text-black">Over 2000 lines:</h3>
-                  <p>
-                    Redux, VueJs, React Native, SASS, Bootstrap, Firebase, Git &
-                    Github
-                  </p>
-                </div>
-              </div>
-              <div className="px-[6px]">
-                <div className="pb-2">
-                  <h3 className="font-bold text-black">Familiar with:</h3>
-                  <p>NodeJs, JAVA, Python, SQL, MySQL, C# (ASP.NET)</p>
-                </div>
-              </div>
-            </div> */}
+              )}
           </div>
           <div className="col-span-3">
             {resumeData.experiences[0].job_title ||

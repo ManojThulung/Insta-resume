@@ -13,7 +13,7 @@ export interface SocialLinksProps {
   url: string;
 }
 
-// experiencedata props
+//Experiencedata Type props
 export interface ExperienceFormProps {
   job_title: string;
   organization_name: string;
@@ -24,7 +24,7 @@ export interface ExperienceFormProps {
   work_description: string;
 }
 
-// Educations Props
+// Educations Type Props
 export interface EducationFormProps {
   school_name: string;
   location: string;
@@ -34,17 +34,25 @@ export interface EducationFormProps {
   currently_study: boolean;
 }
 
-// Project Props
+// Project Type Props
 export interface ProjectFormProps {
   project_title: string;
   summery: string;
   project_link: string;
 }
 
-// Skills Props
+// Skills Type Props
 export interface SkillFormProps {
   skill_title: string;
   skills_list: string[];
+}
+
+// Certificate Type Props
+export interface CertificationProps {
+  certificate_title: string;
+  organization: string;
+  certificate_date: string;
+  certificate_link: string;
 }
 
 // type fo resume data props
@@ -54,6 +62,6 @@ export interface ResumeDataProps {
   educations: EducationFormProps[];
   projects: ProjectFormProps[];
   skills: SkillFormProps[];
-  certifications: never[];
+  certifications: CertificationProps[];
   references: never[];
 }
