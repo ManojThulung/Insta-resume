@@ -55,6 +55,15 @@ export interface CertificationProps {
   certificate_link: string;
 }
 
+// Certificate Type Props
+export interface ReferenceProps {
+  full_name: string;
+  relationship: string;
+  organization: string;
+  email: string;
+  social_link: string;
+}
+
 // type fo resume data props
 export interface ResumeDataProps {
   socialLinks: SocialLinksProps[];
@@ -63,5 +72,5 @@ export interface ResumeDataProps {
   projects: ProjectFormProps[];
   skills: SkillFormProps[];
   certifications: CertificationProps[];
-  references: never[];
+  references: ReferenceProps[];
 }

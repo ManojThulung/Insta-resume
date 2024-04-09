@@ -63,7 +63,15 @@ const CreateResume = () => {
         certificate_link: "",
       },
     ],
-    references: [],
+    references: [
+      {
+        full_name: "",
+        relationship: "",
+        organization: "",
+        email: "",
+        social_link: "",
+      },
+    ],
   });
 
   const [bioData, setBioData] = useState<BioFormProps>({
@@ -118,7 +126,10 @@ const CreateResume = () => {
               setResumeData={setResumeData}
             />
             <br />
-            <ReferenceForm />
+            <ReferenceForm
+              references={resumeData.references}
+              setResumeData={setResumeData}
+            />
             <br />
           </form>
         </div>

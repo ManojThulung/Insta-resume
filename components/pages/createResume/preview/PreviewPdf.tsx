@@ -115,7 +115,6 @@ const PreviewPdf = ({
                 </Link>
               </div>
             </div> */}
-
             {resumeData?.socialLinks.length > 0 &&
               resumeData?.socialLinks[0].url.trim() !== "" && (
                 <div>
@@ -129,37 +128,7 @@ const PreviewPdf = ({
                   </div>
                 </div>
               )}
-
-            {/* <div className="pt-3 pb-2">
-              <h2 className="title">EDUCATION</h2>
-              <div className="py-1 px-[6px] text-[10px]">
-                <div className="pb-2">
-                  <h3 className="font-bold text-black">BSc (Hons) Computing</h3>
-                  <p className="text">Itahari International College</p>
-                  <p className="text">Morang, Nepal</p>
-                  <p className="italic text">2019 - 2022</p>
-                </div>
-                <div className="pb-2">
-                  <h3 className="font-bold text-black">
-                    High School (Science)
-                  </h3>
-                  <p className="text">
-                    Shree Janasahayog High School asdf asdf asdf
-                  </p>
-                  <p className="text">Sunsari, Nepal</p>
-                  <p className="italic text">2019 - 2022</p>
-                </div>
-                <div className="pb">
-                  <h3 className="font-bold text-black">
-                    Purwanchal Higher Seconday School asdf asdf sdfsdad
-                  </h3>
-                  <p className="text">Itahari International College</p>
-                  <p className="text">Sunsari, Nepal</p>
-                  <p className="italic text">2016</p>
-                </div>
-              </div>
-            </div> */}
-
+            {/* EDUCATION SECTION  ********/}
             {resumeData.educations.length >= 1 &&
               resumeData.educations[0].school_name && (
                 <div className="pt-3 pb-2">
@@ -182,19 +151,7 @@ const PreviewPdf = ({
                 </div>
               )}
 
-            {/* <div className="py-2">
-              <h2 className="title">TRAINING</h2>
-              <div className="py-1 px-[6px]">
-                <div className="pb-2">
-                  <h3 className="font-bold text-black">Graphic Design</h3>
-                  <p className="text">International Computer Institue</p>
-                  <p className="text">Ithhari, Nepal</p>
-                  <p className="italic text">2018</p>
-                </div>
-              </div>
-            </div> */}
-
-            {/* SKills section  */}
+            {/* SKILLS SECTION *************/}
             {resumeData.skills.length >= 1 &&
               resumeData.skills[0].skill_title && (
                 <div className="py-2">
@@ -224,7 +181,7 @@ const PreviewPdf = ({
                 </div>
               )}
 
-            {/* CERTIFICATIONS  */}
+            {/* CERTIFICATIONS  SECTION ************/}
             {resumeData.certifications.length >= 1 &&
               resumeData.certifications[0].certificate_title && (
                 <div className="py-2">
@@ -243,7 +200,28 @@ const PreviewPdf = ({
                   ))}
                 </div>
               )}
+
+            {/* REFERENCES SECTION ***************/}
+            {resumeData.references.length >= 1 &&
+              resumeData.references[0].full_name && (
+                <div className="py-2">
+                  <h2 className="title pb-1">REFERENCES</h2>
+                  {resumeData.references.map((reference, index) => (
+                    <div key={index} className="mb-2 px-[6px]">
+                      <h3 className="font-bold text-black">
+                        {reference.full_name}
+                      </h3>
+                      <p className="italic text">{reference.relationship}</p>
+                      <p className="text">{reference.organization}</p>
+                      <p className="text">{reference.email}</p>
+                      <p className="link">{reference.social_link}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
           </div>
+
+          {/* EXPERIENCE SECTION *************/}
           <div className="col-span-3">
             {resumeData.experiences[0].job_title ||
             resumeData.experiences[0].organization_name ? (
