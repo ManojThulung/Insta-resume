@@ -16,6 +16,7 @@ import ReferenceForm from "@/components/pages/createResume/form/ReferenceForm";
 import Button from "@/components/common/Button";
 
 import { BioFormProps, SocialLinksProps } from "@/types";
+import Language from "@/components/pages/createResume/form/Language";
 
 const CreateResume = () => {
   const [dwnTrigger, setDwnTrigger] = useState<boolean>(false);
@@ -63,6 +64,7 @@ const CreateResume = () => {
         certificate_link: "",
       },
     ],
+    languages: [""],
     references: [
       {
         full_name: "",
@@ -123,6 +125,11 @@ const CreateResume = () => {
             <br />
             <CertificationForm
               certifications={resumeData.certifications}
+              setResumeData={setResumeData}
+            />
+            <br />
+            <Language
+              languages={resumeData.languages}
               setResumeData={setResumeData}
             />
             <br />

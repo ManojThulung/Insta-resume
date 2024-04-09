@@ -33,8 +33,8 @@ const PreviewPdf = ({
 
   // to convert html to pdf file
   const generatePDF = () => {
+    // setMargin(7); //to adjust the margin style when HTML converting to PDF.
     const element = document.getElementById("a4-cover");
-    setMargin(7); //to adjust the margin style when HTML converting to PDF.
 
     if (element) {
       resumeDoc
@@ -49,7 +49,7 @@ const PreviewPdf = ({
           margin: [30, 30, 30, 30],
         })
         .then(() => {
-          setMargin(0);
+          // setMargin(0);
           setDwnTrigger(false);
         }); //reset to original style.
     }
@@ -219,6 +219,28 @@ const PreviewPdf = ({
                   ))}
                 </div>
               )}
+
+            {resumeData.languages.length >= 1 && resumeData.languages[0] && (
+              <div className="py-2">
+                <h2 className="title pb-1">LANGUAGES</h2>
+                {resumeData.languages.map((lang, index) => (
+                  <div
+                    key={index}
+                    className="flex justify-start px-[6px] gap-1"
+                  >
+                    {/* {lang && (
+                      <p
+                        className={`h-[3px] w-[3px] rounded-[3px] shrink-0 bg-[rgb(82,86,89)]`}
+                        style={{
+                          marginTop: 4 + margin,
+                        }}
+                      />
+                    )} */}
+                    <p className="text">{lang}</p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* EXPERIENCE SECTION *************/}

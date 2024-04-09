@@ -72,5 +72,6 @@ export interface ResumeDataProps {
   projects: ProjectFormProps[];
   skills: SkillFormProps[];
   certifications: CertificationProps[];
+  languages: string[];
   references: ReferenceProps[];
 }

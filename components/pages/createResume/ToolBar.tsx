@@ -9,6 +9,7 @@ const TOOLS = [
   "Projects",
   "Skills",
   "Certification",
+  "Language",
   "Reference",
 ];
 
