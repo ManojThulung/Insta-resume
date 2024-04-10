@@ -117,36 +117,56 @@ const EducationForm = ({
                 </div>
               </div>
               <div>
-                <label htmlFor="start_date">Start Date</label>
+                <label htmlFor="start_date">Start Year</label>
                 <div>
-                  <input
+                  {/* <input
                     type="month"
                     name="start_date"
                     id="start_date"
                     value={edu.start_date}
                     className="form-input"
                     onChange={(e) => handleEduChange(index, e)}
+                  /> */}
+                  <input
+                    type="number"
+                    id="start_date"
+                    name="start_date"
+                    value={edu.start_date}
+                    onChange={(e) => handleEduChange(index, e)}
+                    min="2000" // Change min and max according to your requirements
+                    max="2100"
+                    step="1"
+                    className="form-input"
                   />
                 </div>
               </div>
               <div>
-                <label htmlFor="end_date">End Date</label>
+                <label htmlFor="end_date">End Year</label>
                 <div>
                   {!edu.currently_study ? (
+                    // <input
+                    //   type="month"
+                    //   name="end_date"
+                    //   id="end_date"
+                    //   value={edu.end_date}
+                    //   className="form-input"
+                    //   onChange={(e) => handleEduChange(index, e)}
+                    // />
                     <input
-                      type="month"
-                      name="end_date"
+                      type="number"
                       id="end_date"
+                      name="end_date"
                       value={edu.end_date}
-                      className="form-input"
                       onChange={(e) => handleEduChange(index, e)}
+                      min="2000" // Change min and max according to your requirements
+                      max="2100"
+                      step="1"
+                      className="form-input"
                     />
                   ) : (
                     <input
                       type="string"
                       disabled
-                      name="end_date"
-                      id="end_date"
                       value="Present"
                       className="form-input"
                     />

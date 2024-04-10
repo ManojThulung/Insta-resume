@@ -4,7 +4,7 @@ import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import Button from "@/components/common/Button";
 import { ResumeDataProps } from "@/types";
 
-const Language = ({
+const LanguageForm = ({
   languages,
   setResumeData,
 }: {
@@ -49,7 +49,7 @@ const Language = ({
         </div>
         {languages.length >= 1 &&
           languages.map((lang, index) => (
-            <div className="form-card">
+            <div key={index} className="form-card">
               <div className="flex items-center justify-between gap-1">
                 <input
                   type="text"
@@ -85,4 +85,4 @@ const Language = ({
   );
 };
 
-export default Language;
+export default LanguageForm;

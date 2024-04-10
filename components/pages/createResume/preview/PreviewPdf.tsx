@@ -1,10 +1,12 @@
 "use client";
 import { useEffect, useState, Dispatch, SetStateAction } from "react";
-import { BioFormProps, ResumeDataProps } from "@/types";
 import jsPDF from "jspdf";
 import "svg2pdf.js";
-import "@/app/style/template1Style.css";
 import Link from "next/link";
+
+import "@/app/style/template1Style.css";
+import { BioFormProps, ResumeDataProps } from "@/types";
+import { convertToMonthName } from "@/utils/helper";
 
 const PreviewPdf = ({
   bioData,
@@ -21,7 +23,7 @@ const PreviewPdf = ({
 
   const resumeDoc = new jsPDF({
     unit: "px",
-    compress: true,
+    // compress: true,
   });
 
   // trigger generate function when its triggered from iis parent component
@@ -44,9 +46,9 @@ const PreviewPdf = ({
             resumeDoc.save("Resume.pdf");
           },
           autoPaging: "text",
-          width: 385,
+          width: 445,
           windowWidth: 480,
-          margin: [30, 30, 30, 30],
+          margin: [30, 0, 30, 0],
         })
         .then(() => {
           // setMargin(0);
@@ -59,6 +61,7 @@ const PreviewPdf = ({
     <div className="a4-container leading-[12px] text-[rgb(82,86,89)]">
       <div
         id="a4-cover"
+        className="text-[9px] px-[30px]"
         style={{
           fontFamily: '"Times New Roman", Times, serif',
           fontSize: "9px",
@@ -119,7 +122,7 @@ const PreviewPdf = ({
               resumeData?.socialLinks[0].url.trim() !== "" && (
                 <div>
                   <h2 className="title">CONTACT</h2>
-                  <div className="py-1 px-[6px]">
+                  <div className="py-[2px] px-[6px]">
                     {resumeData?.socialLinks.map((link, index) => (
                       <Link key={index} href={link.url} target="__blank">
                         <p className="link">{link.url}</p>
@@ -163,14 +166,9 @@ const PreviewPdf = ({
                           {skill.skills_list.map((skl, index) => (
                             <li
                               key={index}
-                              className="flex justify-start gap-1 text-[9px]"
+                              className="flex justify-start items-start gap-1"
                             >
-                              {/* <p
-                              className={`h-[3px] w-[3px] rounded-[3px] shrink-0 bg-[rgb(82,86,89)]`}
-                              style={{
-                                marginTop: 4 + margin,
-                              }}
-                            /> */}
+                              {skl && <p className="text">•</p>}
                               <p className="text">{skl}</p>
                             </li>
                           ))}
@@ -189,7 +187,9 @@ const PreviewPdf = ({
                   {resumeData.certifications.map((certificate, index) => (
                     <div key={index} className="mb-2 px-[6px]">
                       <p className="italic text">
-                        {certificate.certificate_date}
+                        {/* {certificate.certificate_date} */}
+                        {certificate.certificate_date &&
+                          convertToMonthName(certificate.certificate_date)}
                       </p>
                       <h3 className="font-bold text-black">
                         {certificate.certificate_title}
@@ -226,16 +226,9 @@ const PreviewPdf = ({
                 {resumeData.languages.map((lang, index) => (
                   <div
                     key={index}
-                    className="flex justify-start px-[6px] gap-1"
+                    className="flex justify-start items-start px-[6px] gap-1"
                   >
-                    {/* {lang && (
-                      <p
-                        className={`h-[3px] w-[3px] rounded-[3px] shrink-0 bg-[rgb(82,86,89)]`}
-                        style={{
-                          marginTop: 4 + margin,
-                        }}
-                      />
-                    )} */}
+                    {lang && <p className="text">•</p>}
                     <p className="text">{lang}</p>
                   </div>
                 ))}
@@ -253,9 +246,10 @@ const PreviewPdf = ({
                   {resumeData.experiences.map((exp, index) => (
                     <div key={index} className="pb-2">
                       <h3 className="italic">
-                        {exp?.start_date}{" "}
+                        {exp?.start_date && convertToMonthName(exp?.start_date)}{" "}
                         {!exp?.currently_employed
-                          ? exp?.end_date && "- " + exp?.end_date
+                          ? exp?.end_date &&
+                            "- " + convertToMonthName(exp?.end_date)
                           : "- Present"}
                       </h3>
                       <h3 className="font-bold text-black">{exp?.job_title}</h3>
@@ -313,10 +307,11 @@ const PreviewPdf = ({
 
             {resumeData.projects.length >= 1 &&
               resumeData.projects[0].project_title && (
-                <div>
+                <div className="pt-3">
                   <h2 className="title">PROJECTS</h2>
                   <div className="py-1 px-[6px]">
                     {/* {resumeData.projects.map((project, index) => (<))} */}
+                    npm{" "}
                     {resumeData.projects.map((project, index) => (
                       <div key={index} className="mb-2">
                         <h3 className="font-bold text-black">

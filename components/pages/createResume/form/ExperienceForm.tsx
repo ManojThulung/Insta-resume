@@ -141,15 +141,24 @@ const ExperienceForm = ({
               <div>
                 <label htmlFor="end_date">End Date</label>
                 <div>
-                  <input
-                    type="month"
-                    name="end_date"
-                    id="end_date"
-                    value={exp.currently_employed ? "" : exp.end_date}
-                    className="form-input"
-                    disabled={exp.currently_employed}
-                    onChange={(e) => handleChange(index, e)}
-                  />
+                  {!exp.currently_employed ? (
+                    <input
+                      type="month"
+                      name="end_date"
+                      id="end_date"
+                      value={exp.currently_employed ? "" : exp.end_date}
+                      className="form-input"
+                      disabled={exp.currently_employed}
+                      onChange={(e) => handleChange(index, e)}
+                    />
+                  ) : (
+                    <input
+                      type="string"
+                      disabled
+                      value="Present"
+                      className="form-input"
+                    />
+                  )}
                 </div>
 
                 <div className="mt-2 flex items-center gap-2 flex-wrap justify-start">

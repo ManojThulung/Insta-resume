@@ -62,12 +62,12 @@ const SocialLinkForm = ({
         {socialLinks.length >= 1 &&
           socialLinks.map((link, index) => (
             <div key={index} className="form-card">
-              <div className="flex items-center mb-1 justify-end text-primary-border">
+              {/* <div className="flex items-center mb-1 justify-end text-primary-border">
                 <Trash2
                   onClick={() => removeSocialLinks(index)}
                   className="scale-75 cursor-pointer"
                 />
-              </div>
+              </div> */}
               {/* <div className="items-center gap-0 mt-4 w-full">
                 <CustomDropDown
                   socialSiteList={socialSiteList}
@@ -76,7 +76,7 @@ const SocialLinkForm = ({
                   index={index}
                 />
               </div> */}
-              <div className="flex items-center gap-2 ">
+              <div className="flex items-center justify-between gap-1">
                 <input
                   type="text"
                   name="url"
@@ -85,6 +85,10 @@ const SocialLinkForm = ({
                   value={link?.url ? link?.url : ""}
                   placeholder="eg https://www.facebook.com/user"
                   onChange={(e) => handleChange(index, e)}
+                />
+                <Trash2
+                  onClick={() => removeSocialLinks(index)}
+                  className="scale-75 cursor-pointer text-primary-border"
                 />
               </div>
             </div>
