@@ -1,32 +1,36 @@
-import Button from "@/components/common/Button";
-import React from "react";
+"use client";
 
-const TOOLS = [
-  "Bio",
-  "Social Links",
-  "Experience",
-  "Education",
-  "Projects",
-  "Skills",
-  "Certification",
-  "Language",
-  "Reference",
+import Link from "next/link";
+import Button from "@/components/common/Button";
+
+const Categories = [
+  { name: "Bio", path: "bio-form" },
+  { name: "Social Links", path: "social-link-form" },
+  { name: "Experience", path: "experience-form" },
+  { name: "Education", path: "education-form" },
+  { name: "Projects", path: "project-form" },
+  { name: "Skills", path: "skill-form" },
+  { name: "Certification", path: "certification-form" },
+  { name: "Language", path: "language-form" },
+  { name: "Reference", path: "reference-form" },
 ];
 
-const ToolBar = () => {
+const categoryBar = () => {
   return (
-    <div className="bg-secondary-light dark:bg-primary p-2">
-      <ul className="flex flex-wrap justify-center items-center gap-1">
-        {TOOLS.map((tool) => (
-          <li key={tool}>
-            <Button variant={"ghost"} size={"small"} className="text-sm">
-              {tool}
-            </Button>
-          </li>
+    <div className="bg-secondary-light dark:bg-primary p-2 overflow-x-auto relative shadow">
+      <div className="flex whitespace-nowrap justify-start lg:justify-center items-center gap-1">
+        {Categories.map((category) => (
+          <div key={category.path}>
+            <Link href={`#${category.path}`}>
+              <Button variant={"ghost"} size={"small"} className="text-sm">
+                {category.name}
+              </Button>
+            </Link>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
 
-export default ToolBar;
+export default categoryBar;

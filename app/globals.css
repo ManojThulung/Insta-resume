@@ -17,6 +17,11 @@
   }
 }
 
+*,
+html {
+  scroll-behavior: smooth;
+}
+
 ul,
 ol {
   @apply px-[25px] py-[2px];
