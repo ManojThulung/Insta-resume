@@ -1,0 +1,61 @@
+.t2_header {
+  @apply text-center pb-2;
+}
+
+.t2_header h1 {
+  @apply text-[20px] uppercase text-black font-bold leading-[18px] pb-1;
+}
+
+.t2_header h2 {
+  @apply text-[14px] text-black pt-1 pb-4;
+}
+
+.t2_sub-header {
+  @apply flex items-center justify-center gap-2 text-[9px] py-1;
+}
+
+.t2_title {
+  @apply text-black uppercase font-bold text-[10.5px];
+}
+
+.t2_sub-title {
+  @apply text-[9px] text-[#000000] text-justify;
+}
+
+.t2_sec {
+  @apply py-2;
+}
+
+.text-content,
+.text-content p,
+.text-content li {
+  @apply py-1 px-[6px] text-[9px] text-justify text-[rgb(82,86,89)];
+}
+
+.link {
+  @apply text-[rgb(33,94,158)] leading-[14px] cursor-pointer text-[9px] underline pb-1;
+}
+
+.t2_text {
+  @apply text-[9px] text-[rgb(82,86,89)] text-justify;
+}
+
+.work-desc_container {
+  @apply pr-0 text-justify;
+}
+
+.work-desc_container ol {
+  @apply pl-4 pr-0 text-justify list-decimal;
+}
+
+.work-desc_container ul {
+  @apply pl-4 pr-0 text-justify list-disc;
+}
+
+.work-desc_container p {
+  @apply text-[9px] text-[rgb(82,86,89)];
+}
+
+.work-desc_container li {
+  @apply text-[9px] text-[rgb(82,86,89)];
+}

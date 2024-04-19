@@ -2,7 +2,7 @@ import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { PlusCircle, Trash2 } from "lucide-react";
 
 import Button from "@/components/common/Button";
-import CustomDropDown from "@/components/common/CustomDropDown";
+// import CustomDropDown from "@/components/common/CustomDropDown";
 import { ResumeDataProps, SocialLinksProps } from "@/types";
 
 //social sites data

@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
+import jsPDF from "jspdf";
+
 import ToolBar from "@/components/pages/createResume/ToolBar";
 import PreviewPdf from "@/components/pages/createResume/preview/PreviewPdf";
 
@@ -19,7 +21,6 @@ import { BioFormProps } from "@/types";
 import LanguageForm from "@/components/pages/createResume/form/LanguageForm";
 
 const CreateResume = () => {
-  const [dwnTrigger, setDwnTrigger] = useState<boolean>(false);
   const [resumeData, setResumeData] = useState({
     socialLinks: [{ url: "" }],
     experiences: [
@@ -86,8 +87,39 @@ const CreateResume = () => {
     bio_summery: "",
   });
 
+  const [selectedTemplate, setSelectedTemplate] = useState<number>(2);
+  const [margin, setMargin] = useState<number>(0);
+  const previewRef = useRef(null);
+
+  const resumeDoc = new jsPDF({
+    unit: "px",
+    // compress: true,
+  });
+
   const handleDownload = () => {
-    setDwnTrigger(true); //trigger the generatePDF function of child component.
+    setMargin(7); // to adjust the margin of resume when generating.
+    const element = previewRef.current;
+
+    if (element) {
+      resumeDoc
+        .html(element, {
+          callback: async function (resumeDoc) {
+            // Save the PDF document
+            await resumeDoc.save("Resume.pdf");
+          },
+          autoPaging: "text",
+          width: 445,
+          windowWidth: 480,
+          margin: [30, 0, 30, 0],
+        })
+        .then(() => {
+          setMargin(0); //reset to original style.
+        });
+    }
+  };
+
+  const handleSelectTemplate = (e: ChangeEvent<HTMLInputElement>) => {
+    setSelectedTemplate(Number(e.target.value));
   };
 
   return (
@@ -141,16 +173,27 @@ const CreateResume = () => {
           </form>
         </div>
         <div className="col-span-12 sm:col-span-6 px-6 py-4 bg-[#525659]">
-          <div className="flex items-center justify-end gap-5 flex-wrap mb-2">
+          <div className="flex items-center justify-between gap-5 flex-wrap mb-2">
+            <div>
+              <select
+                name="selectedTemplate"
+                value={selectedTemplate}
+                onChange={(e) => handleSelectTemplate(e)}
+              >
+                <option value={1}>Template 1</option>
+                <option value={2}>Template 2</option>
+              </select>
+            </div>
             <Button onClick={handleDownload}>Download</Button>
           </div>
           <div className="relative bg-yellow-200">
             <div className="pdf-preview-container">
               <PreviewPdf
                 bioData={bioData}
-                dwnTrigger={dwnTrigger}
-                setDwnTrigger={setDwnTrigger}
                 resumeData={resumeData}
+                selectedTemplate={selectedTemplate}
+                margin={margin}
+                ref={previewRef}
               />
             </div>
           </div>
