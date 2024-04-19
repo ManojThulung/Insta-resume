@@ -23,16 +23,16 @@
 }
 
 .t2_sec {
-  @apply py-2;
+  @apply py-[12px];
 }
 
-.text-content,
-.text-content p,
-.text-content li {
+.t2_text-content,
+.t2_text-content p,
+.t2_text-content li {
   @apply py-1 px-[6px] text-[9px] text-justify text-[rgb(82,86,89)];
 }
 
-.link {
+.t2_link {
   @apply text-[rgb(33,94,158)] leading-[14px] cursor-pointer text-[9px] underline pb-1;
 }
 
@@ -40,22 +40,22 @@
   @apply text-[9px] text-[rgb(82,86,89)] text-justify;
 }
 
-.work-desc_container {
+.t2_work-desc_container {
   @apply pr-0 text-justify;
 }
 
-.work-desc_container ol {
+.t2_work-desc_container ol {
   @apply pl-4 pr-0 text-justify list-decimal;
 }
 
-.work-desc_container ul {
+.t2_work-desc_container ul {
   @apply pl-4 pr-0 text-justify list-disc;
 }
 
-.work-desc_container p {
+.t2_work-desc_container p {
   @apply text-[9px] text-[rgb(82,86,89)];
 }
 
-.work-desc_container li {
+.t2_work-desc_container li {
   @apply text-[9px] text-[rgb(82,86,89)];
 }
