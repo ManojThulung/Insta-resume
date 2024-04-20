@@ -36,7 +36,7 @@ const Template1 = ({
           <div>
             <h2 className="title">PROFILE & CAREER OBJECTIVE</h2>
             <p
-              className="text-content"
+              className="work-desc_container"
               dangerouslySetInnerHTML={{ __html: bioData.bio_summery }}
             />
           </div>

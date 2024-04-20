@@ -37,11 +37,20 @@
 }
 
 .work-desc_container ol {
-  @apply pl-4 pr-0 text-justify list-decimal;
+  @apply pl-0 pr-0 text-justify list-decimal;
 }
 
 .work-desc_container ul {
-  @apply pl-4 pr-0 text-justify list-disc;
+  @apply pl-0 pr-0 text-justify;
+}
+
+.work-desc_container ul li {
+  @apply flex items-start gap-x-1 justify-start;
+}
+
+.work-desc_container ul > li::before {
+  content: "• ";
+  @apply text-[rgb(82,86,89)];
 }
 
 .work-desc_container p {
