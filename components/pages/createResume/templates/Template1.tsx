@@ -44,29 +44,6 @@ const Template1 = ({
       )}
       <div className="grid grid-cols-5 gap-3 py-2">
         <div className="col-span-2">
-          {/* <div>
-        <h2 className="title">CONTACT</h2>
-        <div className="py-1 px-[6px]">
-          <Link href={"https://www.facebook.com/"} target="__blank">
-            <p className="link">https://www.facebook.com/</p>
-          </Link>
-          <Link href={""} target="__blank">
-            <p className="link">https://www.facebook.com/</p>
-          </Link>
-          <Link href={""} target="__blank">
-            <p className="link">https://manojrai.info.np</p>
-          </Link>
-          <Link href={"mailto:manojthulung03@gmail.com"} target="__blank">
-            <p className="link">manojthulung03@gmail.com</p>
-          </Link>
-          <Link href={""} target="__blank">
-            <p className="link">@manojrai0</p>
-          </Link>
-          <Link href={""} target="__blank">
-            <p className="link">Lalitpur, Nepal</p>
-          </Link>
-        </div>
-      </div> */}
           {resumeData?.socialLinks.length > 0 &&
             resumeData?.socialLinks[0].url.trim() !== "" && (
               <div>

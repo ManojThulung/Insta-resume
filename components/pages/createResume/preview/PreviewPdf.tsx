@@ -31,7 +31,13 @@ const PreviewPdf = forwardRef<HTMLDivElement, PreviewPdfProps>(
               margin={margin}
             />
           )}
-          {selectedTemplate === 2 && <Template2 margin={margin} />}
+          {selectedTemplate === 2 && (
+            <Template2
+              bioData={bioData}
+              resumeData={resumeData}
+              margin={margin}
+            />
+          )}
         </div>
       </div>
     );

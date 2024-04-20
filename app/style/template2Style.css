@@ -11,7 +11,7 @@
 }
 
 .t2_sub-header {
-  @apply flex items-center justify-center gap-2 text-[9px] py-1;
+  @apply flex items-center justify-center gap-1 text-[9px] py-1;
 }
 
 .t2_title {
@@ -40,22 +40,31 @@
   @apply text-[9px] text-[rgb(82,86,89)] text-justify;
 }
 
-.t2_work-desc_container {
+.t2_description {
   @apply pr-0 text-justify;
 }
 
-.t2_work-desc_container ol {
-  @apply pl-4 pr-0 text-justify list-decimal;
+.t2_description ol {
+  @apply pl-0 pr-0 text-justify list-decimal;
 }
 
-.t2_work-desc_container ul {
-  @apply pl-4 pr-0 text-justify list-disc;
+.t2_description ul {
+  @apply pl-0 pr-0 text-justify list-disc;
 }
 
-.t2_work-desc_container p {
+.t2_description ul li {
+  @apply flex items-start gap-x-1 justify-start;
+}
+
+.t2_description ul > li::before {
+  content: "• ";
+  @apply text-[rgb(82,86,89)];
+}
+
+.t2_description p {
   @apply text-[9px] text-[rgb(82,86,89)];
 }
 
-.t2_work-desc_container li {
+.t2_description li {
   @apply text-[9px] text-[rgb(82,86,89)];
 }

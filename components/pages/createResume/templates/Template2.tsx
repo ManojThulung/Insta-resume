@@ -1,256 +1,240 @@
 import "@/app/style/template2Style.css";
+import { TemplateProps } from "@/types";
+import { convertToMonthName } from "@/utils/helper";
+import Link from "next/link";
+import { Fragment } from "react";
 
-interface Template2Props {
-  margin: number;
-}
-
-const Template2 = ({ margin }: Template2Props) => {
+const Template2 = ({ bioData, resumeData, margin }: TemplateProps) => {
   return (
     <>
       <div className="t2_header">
-        <h1>Manoj Rai</h1>
-        <h2>Front-end Developer</h2>
-        <hr style={{ marginBottom: -margin }} />
+        <h1>
+          {bioData.first_name} {bioData.last_name}
+        </h1>
+        <h2>{bioData.job_title}</h2>
+        {(bioData.email || bioData.phone || bioData.address) && (
+          <hr style={{ marginBottom: -margin }} />
+        )}
         <div className="t2_sub-header">
-          <p className="t2_text">manojthulung02@gmail.com</p> |
-          <p className="t2_text">www.manojrai.info.np</p> |
-          <p className="t2_text">lalitpur, Nepal</p>
+          {bioData.email && <p className="t2_text">{bioData.email}</p>}
+          {bioData.phone && <p className="t2_text">|</p>}
+          {bioData.phone && <p className="t2_text">{bioData.phone}</p>}
+          {bioData.address && <p className="t2_text">|</p>}
+          {bioData.address && <p className="t2_text">{bioData.address}</p>}
         </div>
-        <hr style={{ marginTop: margin }} />
+        {(bioData.email || bioData.phone || bioData.address) && (
+          <hr style={{ marginTop: margin }} />
+        )}
       </div>
+
       {/* PROFILE & CAREER OBJECTIVE ////////////////////////////////////// */}
-      <div className="t2_sec !pt-2" style={{ marginTop: -margin }}>
-        <h2 className="t2_title">PROFILE & CAREER OBJECTIVE</h2>
-        <p className="px-1 pt-[6px] t2_text">
-          With 1+ years of experience in developing user-friendly, responsive
-          websites with optimized cross-browser compatibility and performance,
-          I’m on a relentless journey to master web design and development. I’ve
-          contributed to projects that enhance brand identity through
-          captivating web layouts.
-        </p>
-        <p className="px-1 t2_text">
-          I’m seeking exciting projects that push my creative and technical
-          skills, allowing me to create user-friendly front-end solutions and
-          shape the web.
-        </p>
-      </div>
+      {bioData.bio_summery && (
+        <div className="t2_sec !pt-2" style={{ marginTop: -margin }}>
+          <h2 className="t2_title">PROFILE & CAREER OBJECTIVE</h2>
+          <div
+            className="px-1 pt-[6px] t2_description"
+            dangerouslySetInnerHTML={{ __html: bioData.bio_summery }}
+          />
+        </div>
+      )}
 
       {/* SOCIAL LINKS ///////////////////////////////////////////// */}
-      <hr style={{ marginTop: margin }} />
-      <div className="t2_sec" style={{ marginTop: -margin }}>
-        <h2 className="t2_title">CONTACT</h2>
-        <div className="pt-2 px-1">
-          <p className="t2_link">https://www.linkedin.com/in/manojrai1/</p>
-          <p className="t2_link">https://www.linkedin.com/in/manojrai1/</p>
-          <p className="t2_link">https://www.linkedin.com/in/manojrai1/</p>
-          <p className="t2_link">https://www.linkedin.com/in/manojrai1/</p>
-        </div>
-      </div>
+      {resumeData.socialLinks[0]?.url && (
+        <>
+          <hr style={{ marginTop: margin }} />
+          <div className="t2_sec" style={{ marginTop: -margin }}>
+            <h2 className="t2_title">CONTACT</h2>
+            <div className="pt-2 px-1">
+              {resumeData?.socialLinks.map((link, index) => (
+                <Link key={index} href={link.url} target="__blank">
+                  <p className="t2_link">{link.url}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
 
       {/* EXPERIENCE ///////////////////////////////////////////// */}
-      <hr style={{ marginTop: margin }} />
-      <div className="t2_sec" style={{ marginTop: -margin }}>
-        <h2 className="t2_title">EXPERIENCE</h2>
-        <div className="pt-2 px-1">
-          <h2 className="font-bold">Front-end Developer</h2>
-          <div className="flex items-center justify-between">
-            <p className="t2_sub-title">
-              Unicorn Technology Pvt Ltd | Putali Sadak, Nepal
-            </p>
-            <p className="t2_sub-title italic">March 2022 - Present</p>
+      {(resumeData.experiences[0]?.job_title ||
+        resumeData.experiences[0]?.organization_name) && (
+        <>
+          <hr style={{ marginTop: margin }} />
+          <div className="t2_sec" style={{ marginTop: -margin }}>
+            <h2 className="t2_title">EXPERIENCE</h2>
+            {resumeData.experiences.map((exp, index) => (
+              <div key={index} className="pt-2 px-1">
+                <h2 className="font-bold">{exp?.job_title}</h2>
+                <div className="flex items-center justify-between">
+                  <p className="t2_sub-title">
+                    {exp?.organization_name}
+                    {exp?.location && " | " + exp?.location}
+                  </p>
+                  <p className="t2_sub-title italic">
+                    {exp?.start_date && convertToMonthName(exp?.start_date)}
+                    {!exp?.currently_employed
+                      ? exp?.end_date &&
+                        " - " + convertToMonthName(exp?.end_date)
+                      : " - Present"}
+                  </p>
+                </div>
+                <div
+                  className="t2_description pt-[2px]"
+                  dangerouslySetInnerHTML={{
+                    __html: exp?.work_description,
+                  }}
+                />
+              </div>
+            ))}
           </div>
-          <ul className="list-disc px-3 t2_text pt-[1px]">
-            <li>
-              Development and deployment of features on web and mobile
-              applications with NextJs, ReactJs, VueJs, & React Native.
-            </li>
-            <li>Debugging and troubleshooting software issues. </li>
-            <li>
-              Collaboration with cross-functional teams to implement innovative
-              solutions.
-            </li>
-          </ul>
-        </div>
-        <div className="pt-2 px-1">
-          <h2 className="font-bold">Front-end Developer</h2>
-          <div className="flex items-center justify-between">
-            <p className="t2_sub-title">
-              Unicorn Technology Pvt Ltd | Putali Sadak, Nepal
-            </p>
-            <p className="t2_sub-title italic">March 2022 - Present</p>
-          </div>
-          <ul className="list-disc px-3 t2_text pt-[1px]">
-            <li>
-              Development and deployment of features on web and mobile
-              applications with NextJs, ReactJs, VueJs, & React Native.
-            </li>
-            <li>Debugging and troubleshooting software issues. </li>
-            <li>
-              Collaboration with cross-functional teams to implement innovative
-              solutions.
-            </li>
-          </ul>
-        </div>
-      </div>
+        </>
+      )}
 
       {/* EDUCATION ///////////////////////////////////////////// */}
-      <hr style={{ marginTop: margin }} />
-      <div className="t2_sec" style={{ marginTop: -margin }}>
-        <h2 className="t2_title">EDUCATION</h2>
-        <div className="pt-2 px-1">
-          <h2 className="font-bold">BSc (Hons) Computing</h2>
-          <div className="flex items-center justify-between">
-            <p className="t2_sub-title">
-              Itahari International College | Morang, Nepal
-            </p>
-            <p className="t2_sub-title italic">2022 - Present</p>
-          </div>
-        </div>
-        <div className="pt-2 px-1">
-          <h2 className="font-bold">BSc (Hons) Computing</h2>
-          <div className="flex items-center justify-between">
-            <p className="t2_sub-title">
-              Itahari International College | Morang, Nepal
-            </p>
-            <p className="t2_sub-title italic">2022 - Present</p>
-          </div>
-        </div>
-      </div>
+      {resumeData.educations.length >= 1 &&
+        resumeData.educations[0]?.school_name && (
+          <>
+            <hr style={{ marginTop: margin }} />
+            <div className="t2_sec" style={{ marginTop: -margin }}>
+              <h2 className="t2_title">EDUCATION</h2>
+              {resumeData.educations.map((edu, index) => (
+                <div key={index} className="pt-2 px-1">
+                  <h2 className="font-bold">{edu?.course}</h2>
+                  <div className="flex items-center justify-between">
+                    <p className="t2_sub-title">
+                      {edu?.school_name}{" "}
+                      {edu?.location && " | " + edu?.school_name}
+                    </p>
+                    <p className="t2_sub-title italic">
+                      {edu.start_date}{" "}
+                      {edu.currently_study
+                        ? " - Present"
+                        : edu.end_date && " - " + edu.end_date}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
 
       {/* SKILLS ///////////////////////////////////////////// */}
-      <hr style={{ marginTop: margin }} />
-      <div className="t2_sec" style={{ marginTop: -margin }}>
-        <h2 className="t2_title uppercase">Technical SKills</h2>
-        <div className="pt-2 px-1 flex items-center justify-start gap-x-2">
-          <p className="t2_text">Skill 1</p>|<p className="t2_text">Skill 1</p>|
-          <p className="t2_text">Skill 1</p>|<p className="t2_text">Skill 1</p>|
-          <p className="t2_text">Skill 1</p>|<p className="t2_text">Skill 1</p>|
-          <p className="t2_text">Skill 1</p>
-        </div>
-      </div>
+      {resumeData.skills.length >= 1 && resumeData.skills[0].skill_title && (
+        <>
+          <hr style={{ marginTop: margin }} />
+          <div className="t2_sec" style={{ marginTop: -margin }}>
+            {resumeData.skills.map((skl, index) => (
+              <div key={index} className={index > 0 ? "pt-3" : ""}>
+                <h2 className="t2_title uppercase">{skl.skill_title}</h2>
+                <div className="pt-1 px-1 flex items-center justify-start gap-x-2 flex-wrap whitespace-nowrap">
+                  {skl.skills_list?.map((item, index) => (
+                    <Fragment key={index}>
+                      {item !== "" && (
+                        <>
+                          <p className="t2_text">{item}</p>
+                          {skl.skills_list.length > 1 + index && (
+                            <p className="t2_text">|</p>
+                          )}
+                        </>
+                      )}
+                    </Fragment>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
 
       {/* PROJECTS ///////////////////////////////////////////// */}
-      <hr style={{ marginTop: margin }} />
-      <div className="t2_sec" style={{ marginTop: -margin }}>
-        <h2 className="t2_title uppercase">PROJECTS</h2>
-        <div className="pt-2 px-1">
-          <p className="t2_sub-title">Code Play Club</p>
-          <p className="t2_text">
-            A DGBL (Digital Game-Based Learning Platform) web platform to
-            provide knowledge on CSS Selector and JavaScript DOM in an
-            interactive way through gameplay. In the game, a user has to write
-            the correct code to complete the task and move to the next level.
-          </p>
-          <p className="t2_link">
-            https://manojrai.info.np/manoj-rai-resume.pdf
-          </p>
-        </div>
-        <div className="pt-2 px-1">
-          <p className="t2_sub-title">Code Play Club</p>
-          <p className="t2_text">
-            A DGBL (Digital Game-Based Learning Platform) web platform to
-            provide knowledge on CSS Selector and JavaScript DOM in an
-            interactive way through gameplay. In the game, a user has to write
-            the correct code to complete the task and move to the next level.
-          </p>
-          <p className="t2_link">
-            https://manojrai.info.np/manoj-rai-resume.pdf
-          </p>
-        </div>
-        <div className="pt-2 px-1">
-          <p className="t2_sub-title">Code Play Club</p>
-          <p className="t2_text">
-            A DGBL (Digital Game-Based Learning Platform) web platform to
-            provide knowledge on CSS Selector and JavaScript DOM in an
-            interactive way through gameplay. In the game, a user has to write
-            the correct code to complete the task and move to the next level.
-          </p>
-          <p className="t2_link">
-            https://manojrai.info.np/manoj-rai-resume.pdf
-          </p>
-        </div>
-        <div className="pt-2 px-1">
-          <p className="t2_sub-title">Code Play Club</p>
-          <p className="t2_text">
-            A DGBL (Digital Game-Based Learning Platform) web platform to
-            provide knowledge on CSS Selector and JavaScript DOM in an
-            interactive way through gameplay. In the game, a user has to write
-            the correct code to complete the task and move to the next level.
-          </p>
-          <p className="t2_link">
-            https://manojrai.info.np/manoj-rai-resume.pdf
-          </p>
-        </div>
-      </div>
+      {resumeData.projects.length >= 1 &&
+        resumeData.projects[0].project_title && (
+          <>
+            <hr style={{ marginTop: margin }} />
+            <div className="t2_sec" style={{ marginTop: -margin }}>
+              <h2 className="t2_title uppercase">PROJECTS</h2>
+              {resumeData.projects.map((project, index) => (
+                <div key={index} className="pt-2 px-1">
+                  <p className="t2_sub-title">{project.project_title}</p>
+                  <div
+                    className="t2_description pt-[2px]"
+                    dangerouslySetInnerHTML={{
+                      __html: project.summery,
+                    }}
+                  />
+                  <p className="t2_link">{project.project_link}</p>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
 
       {/* CERTIFICATION ///////////////////////////////////////////// */}
-      <hr style={{ marginTop: margin }} />
-      <div className="t2_sec" style={{ marginTop: -margin }}>
-        <h2 className="t2_title">CERTIFICATION</h2>
-        <div className="pt-2 px-1">
-          <h2 className="font-bold">Certificate Title</h2>
-          <div className="flex items-center justify-between">
-            <p className="t2_sub-title">Itahari International College</p>
-            <p className="t2_sub-title italic">2022 January</p>
-          </div>
-          <p className="t2_link">
-            https://manojrai.info.np/manoj-rai-resume.pdf
-          </p>
-        </div>
-        <div className="pt-2 px-1">
-          <h2 className="font-bold">Certificate Title</h2>
-          <div className="flex items-center justify-between">
-            <p className="t2_sub-title">Itahari International College</p>
-            <p className="t2_sub-title italic">2022 January</p>
-          </div>
-          <p className="t2_link">
-            https://manojrai.info.np/manoj-rai-resume.pdf
-          </p>
-        </div>
-        <div className="pt-2 px-1">
-          <h2 className="font-bold">Certificate Title</h2>
-          <div className="flex items-center justify-between">
-            <p className="t2_sub-title">Itahari International College</p>
-            <p className="t2_sub-title italic">2022 January</p>
-          </div>
-          <p className="t2_link">
-            https://manojrai.info.np/manoj-rai-resume.pdf
-          </p>
-        </div>
-      </div>
+      {resumeData.certifications.length >= 1 &&
+        resumeData.certifications[0].certificate_title && (
+          <>
+            <hr style={{ marginTop: margin }} />
+            <div className="t2_sec" style={{ marginTop: -margin }}>
+              <h2 className="t2_title">CERTIFICATION</h2>
+              {resumeData.certifications.map((certificate, index) => (
+                <div key={index} className="pt-2 px-1">
+                  <h2 className="font-bold">{certificate.certificate_title}</h2>
+                  <div className="flex items-center justify-between">
+                    <p className="t2_sub-title">{certificate.organization}</p>
+                    <p className="t2_sub-title italic">
+                      {certificate.certificate_date}
+                    </p>
+                  </div>
+                  <p className="t2_link">{certificate.certificate_link}</p>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
 
       {/* LANGUAGES ///////////////////////////////////////////// */}
-      <hr style={{ marginTop: margin }} />
-      <div className="t2_sec" style={{ marginTop: -margin }}>
-        <h2 className="t2_title">LANGUAGES</h2>
-        <div className="pt-2 px-1 flex items-center justify-start gap-x-2">
-          <p className="t2_text">Language 1</p>|
-          <p className="t2_text">Nepali 1</p>|
-          <p className="t2_text">Chinese 1</p>|
-        </div>
-      </div>
+      {resumeData.languages.length >= 1 && resumeData?.languages && (
+        <>
+          <hr style={{ marginTop: margin }} />
+          <div className="t2_sec" style={{ marginTop: -margin }}>
+            <h2 className="t2_title">LANGUAGES</h2>
+            <div className="pt-2 px-1 flex items-center justify-start gap-x-2">
+              {resumeData.languages.map((lang, index) => (
+                <Fragment key={index}>
+                  {lang !== "" && (
+                    <>
+                      {index > 0 && <p className="t2_text">|</p>}
+                      <p className="t2_text">{lang}</p>
+                    </>
+                  )}
+                </Fragment>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
 
       {/* REFERENCES ///////////////////////////////////////////// */}
-      <hr style={{ marginTop: margin }} />
-      <div className="t2_sec" style={{ marginTop: -margin }}>
-        <h2 className="t2_title">REFERENCES</h2>
-        <div className="pt-2 px-1">
-          <h2 className="font-bold">McKenzie Odom - Velit dolore ex sint</h2>
-          <p className="t2_sub-title">Bridges and Dale Co</p>
-          <p className="t2_text italic">nixadiv@mailinator.com</p>
-          <p className="t2_link">
-            https://manojrai.info.np/manoj-rai-resume.pdf
-          </p>
-        </div>
-        <div className="pt-2 px-1">
-          <h2 className="font-bold">McKenzie Odom - Velit dolore ex sint</h2>
-          <p className="t2_sub-title">Bridges and Dale Co</p>
-          <p className="t2_text italic">nixadiv@mailinator.com</p>
-          <p className="t2_link">
-            https://manojrai.info.np/manoj-rai-resume.pdf
-          </p>
-        </div>
-      </div>
+      {resumeData.references.length >= 1 &&
+        resumeData.references[0].full_name && (
+          <>
+            <hr style={{ marginTop: margin }} />
+            <div className="t2_sec" style={{ marginTop: -margin }}>
+              <h2 className="t2_title">REFERENCES</h2>
+              {resumeData.references.map((ref, index) => (
+                <div key={index} className="pt-2 px-1">
+                  <h2 className="font-bold">
+                    {ref.full_name}
+                    {ref.relationship && " - " + ref.relationship}
+                  </h2>
+                  <p className="t2_sub-title">{ref.organization}</p>
+                  <p className="t2_text italic">{ref.email}</p>
+                  <p className="t2_link">{ref.social_link}</p>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
     </>
   );
 };

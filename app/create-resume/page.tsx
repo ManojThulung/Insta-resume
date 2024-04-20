@@ -118,7 +118,7 @@ const CreateResume = () => {
     }
   };
 
-  const handleSelectTemplate = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSelectTemplate = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedTemplate(Number(e.target.value));
   };
 

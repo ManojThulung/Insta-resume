@@ -75,3 +75,10 @@ export interface ResumeDataProps {
   languages: string[];
   references: ReferenceProps[];
 }
+
+// Template Props Type
+export interface TemplateProps {
+  bioData: BioFormProps;
+  resumeData: ResumeDataProps;
+  margin: number;
+}
