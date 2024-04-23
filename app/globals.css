@@ -1,7 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@200;300;400;500;600;700&display=swap");
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -20,6 +20,7 @@
 *,
 html {
   scroll-behavior: smooth;
+  @apply font-sans text-primary;
 }
 
 ul,
@@ -28,11 +29,23 @@ ol {
 }
 
 body {
-  @apply bg-primary-light dark:bg-primary-dark dark:text-secondary-light;
+  @apply bg-light dark:bg-primary-dark dark:text-secondary-light;
+}
+
+.nav-list {
+  @apply flex justify-center sm:gap-8 list-none;
+}
+
+.nav-item {
+  @apply cursor-pointer hover:text-secondary duration-150 ease-in;
 }
 
 .maxWidth {
-  @apply max-w-[1280px] mx-auto px-2;
+  @apply max-w-[1280px] mx-auto px-2 xs:px-3;
+}
+
+.title {
+  @apply text-primary text-center font-bold text-[30px] leading-[1] py-6;
 }
 
 .form-input {

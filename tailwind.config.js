@@ -8,27 +8,32 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      screens: {
+        xs: "420px",
+      },
+      fontFamily: {
+        sans: ['"Poppins"', "sans-serif"],
+      },
       colors: {
         primary: {
-          DEFAULT: "#015048",
+          DEFAULT: "#30335F",
           dark: "#023535",
           light: "#D9FFDA",
           border: "#B2BABB",
         },
         secondary: {
+          DEFAULT: "#FD4552",
           dark: "#CDB06A",
-          light: "#F6FFF2",
+          light: "#F4E6EB",
         },
-      },
-      fontFamily: {
-        "noto-sans": ["Noto Sans", "sans-serif"],
+        light: "#F3F7FC",
       },
       textColor: {
         primary: {
-          light: "#C7FEEC",
+          DEFAULT: "#30335F",
         },
         secondary: {
-          light: "#C7FEEC",
+          DEFAULT: "#FD4552",
         },
       },
     },

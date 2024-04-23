@@ -8,6 +8,12 @@ import DribbleIcon from "@/assets/icons/dribbble.svg";
 import BehanceIcon from "@/assets/icons/behance.svg";
 import MediumIcon from "@/assets/icons/medium.svg";
 
+//icons
+import ArrowRight from "@/assets/icons/arrow-right.svg";
+
+//background Image
+import HeroResume from "@/assets/icons/hero-resume.svg";
+
 export {
   FbIcon,
   WebIcon,
@@ -18,4 +24,6 @@ export {
   DribbleIcon,
   BehanceIcon,
   MediumIcon,
+  ArrowRight,
+  HeroResume,
 };
