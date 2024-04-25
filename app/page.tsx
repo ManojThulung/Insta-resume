@@ -1,16 +1,19 @@
-// import { HeroResume } from "@/assets/icon";
-import { ArrowRight, BehanceIcon, HeroResume } from "@/assets/icon";
+import Link from "next/link";
+
+import { ArrowRight, HeroResume } from "@/assets/icon";
+
 import Button from "@/components/common/Button";
 import SubTitle from "@/components/common/SubTitle";
-import Title from "@/components/common/Title";
-import Image from "next/image";
-import Link from "next/link";
+import Features from "@/components/pages/homePage/Features";
+import Guide from "@/components/pages/homePage/Guide";
+import Template from "@/components/pages/templatePage/Template";
+import FAQ from "@/components/pages/homePage/FAQ";
 
 export default function Home() {
   return (
-    <main className="maxWidth text-[16px]">
+    <main className="maxWidth text-[16px] font-sans text-primary">
       {/* HERO SECTION ----------------- */}
-      <section className="min-h-[90vh] flex flex-col-reverse md:flex-row items-center justify-end md:justify-between gap-x-5">
+      <section className="min-h-[90vh] flex flex-col-reverse md:flex-row items-center justify-end md:justify-between gap-x-5 mb-12">
         <div className="flex justify-around flex-col items-center md:items-start text-center md:text-start">
           <SubTitle title={"WELCOME TO InstaResume"} />
           <h1 className="text-[30px] xs:text-[40px] leading-[1] font-bold max-w-[490px] py-6">
@@ -35,11 +38,42 @@ export default function Home() {
       </section>
 
       {/* FEATURES SECTION ----------------- */}
-      <section className="w-full">
+      <section className="py-16">
         <SubTitle title="FEATURES" />
-        <h1 className="title">
+        <h1 className="sec-title">
           WHY <span className="text-secondary">InstaResume</span> ROCKS!
         </h1>
+        <Features />
+      </section>
+
+      {/* Guide SECTION ----------------- */}
+      <section className="py-16">
+        <SubTitle title="A SIMPLE GUIDE" />
+        <h1 className="sec-title">
+          Create your Perfect Resume in{" "}
+          <span className="text-secondary">3 easy steps</span>
+        </h1>
+        <Guide />
+      </section>
+
+      {/* TEMPLATES SECTION ----------------- */}
+      <section className="py-16">
+        <SubTitle title="TOP RESUME TEMPLATES" />
+        <h1 className="sec-title">
+          Choose our <span className="text-secondary">popular templates</span>{" "}
+          to create a <span className="text-secondary">Standout Resume</span>
+        </h1>
+        <Template />
+      </section>
+
+      {/* FAQ SECTION ----------------- */}
+      <section className="py-16">
+        <SubTitle title="FAQ" />
+        <h1 className="sec-title">
+          Got Questions?{" "}
+          <span className="text-secondary">We’ve Got Answers!</span>
+        </h1>
+        <FAQ />
       </section>
     </main>
   );

@@ -6,7 +6,7 @@ import Button from "../common/Button";
 
 const Navbar = () => {
   return (
-    <nav className="bg-white py-2 text-primary w-full">
+    <nav className="bg-white py-2 text-primary w-full font-sans">
       <div className="maxWidth flex flex-wrap justify-between items-center text-[14px]">
         <div>
           <h1 className="cursor-pointer">

@@ -20,7 +20,6 @@
 *,
 html {
   scroll-behavior: smooth;
-  @apply font-sans text-primary;
 }
 
 ul,
@@ -44,8 +43,8 @@ body {
   @apply max-w-[1280px] mx-auto px-2 xs:px-3;
 }
 
-.title {
-  @apply text-primary text-center font-bold text-[30px] leading-[1] py-6;
+.sec-title {
+  @apply text-primary text-center font-bold text-[26px] sm:text-[30px] leading-[1.3] py-6;
 }
 
 .form-input {
