@@ -38,7 +38,7 @@ export default function Home() {
       </section>
 
       {/* FEATURES SECTION ----------------- */}
-      <section className="py-16">
+      <section className="py-16" id="features">
         <SubTitle title="FEATURES" />
         <h1 className="sec-title">
           WHY <span className="text-secondary">InstaResume</span> ROCKS!
@@ -47,7 +47,7 @@ export default function Home() {
       </section>
 
       {/* Guide SECTION ----------------- */}
-      <section className="py-16">
+      <section className="py-16" id="guide">
         <SubTitle title="A SIMPLE GUIDE" />
         <h1 className="sec-title">
           Create your Perfect Resume in{" "}
@@ -57,7 +57,7 @@ export default function Home() {
       </section>
 
       {/* TEMPLATES SECTION ----------------- */}
-      <section className="py-16">
+      <section className="py-16" id="template">
         <SubTitle title="TOP RESUME TEMPLATES" />
         <h1 className="sec-title">
           Choose our <span className="text-secondary">popular templates</span>{" "}
@@ -67,7 +67,7 @@ export default function Home() {
       </section>
 
       {/* FAQ SECTION ----------------- */}
-      <section className="py-16">
+      <section className="py-16" id="faq">
         <SubTitle title="FAQ" />
         <h1 className="sec-title">
           Got Questions?{" "}
