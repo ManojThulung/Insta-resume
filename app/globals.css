@@ -48,7 +48,7 @@ body {
 }
 
 .form-input {
-  @apply w-full rounded border-primary border-[1px] shadow-sm py-1.5 px-2;
+  @apply w-full focus:outline-secondary outline-none outline-[2px] duration-150 ease-in shadow-sm py-3 px-4 rounded-[10px] text-[12] xs:text-[14px];
 }
 
 .form-container-sec {

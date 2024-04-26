@@ -24,6 +24,7 @@ import HeroResume from "@/assets/icons/hero-resume.svg";
 import FaqGirl from "@/assets/icons/faq-girl.svg";
 import MissionMan from "@/assets/icons/mission-person.svg";
 import JourneyManDog from "@/assets/icons/journey-man-dog.svg";
+import ManWithLaptop from "@/assets/icons/man-with-laptop.svg";
 
 export {
   FbIcon,
@@ -48,4 +49,5 @@ export {
   ChevDown,
   MissionMan,
   JourneyManDog,
+  ManWithLaptop,
 };
