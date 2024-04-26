@@ -2,18 +2,10 @@
 
 import { useState } from "react";
 import { ChevDown } from "@/assets/icon";
-import { FaqListProps } from "@/types/contentDataTypes";
 import { faqList } from "@/utils/contentData";
-
-// interface FaqCardProps {
-//   faq: FaqListProps;
-//   index: number;
-// }
 
 const FaqCard = () => {
   const [showIndex, setShowIndex] = useState<null | number>(null);
-
-  console.log("showindex  ", showIndex);
 
   const handleDisplayAns = (index: number) => {
     showIndex === index ? setShowIndex(null) : setShowIndex(index);

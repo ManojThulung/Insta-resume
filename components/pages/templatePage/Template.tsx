@@ -8,7 +8,7 @@ const Template = () => {
         (template, index) =>
           template.featured && (
             <div key={index} className="flex items-center justify-center">
-              <TemplateCard />
+              <TemplateCard template={template} />
             </div>
           )
       )}
