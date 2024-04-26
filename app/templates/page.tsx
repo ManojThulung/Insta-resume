@@ -37,7 +37,7 @@ const Templates = () => {
       <section className="py-16" id="features">
         <SubTitle title="FEATURES" />
         <h1 className="sec-title">
-          WHY <span className="text-secondary">InstaResume</span> ROCKS!
+          Why use Our <span className="text-secondary">Free Templates?</span>{" "}
         </h1>
         <Features />
       </section>

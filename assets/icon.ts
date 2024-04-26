@@ -22,6 +22,8 @@ import ChevDown from "@/assets/icons/chev-down.svg";
 //background Image
 import HeroResume from "@/assets/icons/hero-resume.svg";
 import FaqGirl from "@/assets/icons/faq-girl.svg";
+import MissionMan from "@/assets/icons/mission-person.svg";
+import JourneyManDog from "@/assets/icons/journey-man-dog.svg";
 
 export {
   FbIcon,
@@ -44,4 +46,6 @@ export {
   FormFillIcon,
   Download2Icon,
   ChevDown,
+  MissionMan,
+  JourneyManDog,
 };
