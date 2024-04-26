@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export interface FeatureCardProps {
   icon: JSX.Element;
   title: string;
@@ -17,7 +19,7 @@ export interface TemplateListPops {
   featured: boolean;
   name: string;
   category: string;
-  sampleImg: string;
+  sampleImg: StaticImageData;
 }
 
 export interface FaqListProps {

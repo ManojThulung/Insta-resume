@@ -8,8 +8,11 @@ import Features from "@/components/pages/homePage/Features";
 import Guide from "@/components/pages/homePage/Guide";
 import Template from "@/components/pages/templatePage/Template";
 import FAQ from "@/components/pages/homePage/FAQ";
+import { TemplateList } from "@/utils/contentData";
 
 export default function Home() {
+  const featuredTemplates = TemplateList.filter((temp) => temp.featured);
+
   return (
     <main className="maxWidth text-[16px] font-sans text-primary">
       {/* HERO SECTION ----------------- */}
@@ -63,7 +66,7 @@ export default function Home() {
           Choose our <span className="text-secondary">popular templates</span>{" "}
           to create a <span className="text-secondary">Standout Resume</span>
         </h1>
-        <Template />
+        <Template templateList={featuredTemplates} featured={true} />
       </section>
 
       {/* FAQ SECTION ----------------- */}
