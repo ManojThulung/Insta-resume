@@ -18,6 +18,9 @@ import TemplateSelectIcon from "@/assets/icons/template-1-select.svg";
 import FormFillIcon from "@/assets/icons/fill-form.svg";
 import Download2Icon from "@/assets/icons/download-2.svg";
 import ChevDown from "@/assets/icons/chev-down.svg";
+import EditIcon from "@/assets/icons/edit.svg";
+import TrashBinIcon from "@/assets/icons/trash-bin.svg";
+import PlusIcon from "@/assets/icons/plus.svg";
 
 //background Image
 import HeroResume from "@/assets/icons/hero-resume.svg";
@@ -50,4 +53,7 @@ export {
   MissionMan,
   JourneyManDog,
   ManWithLaptop,
+  EditIcon,
+  TrashBinIcon,
+  PlusIcon,
 };

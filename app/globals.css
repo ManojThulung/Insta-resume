@@ -47,34 +47,6 @@ body {
   @apply text-primary text-center font-bold text-[26px] sm:text-[30px] leading-[1.3] py-6;
 }
 
-.form-input {
-  @apply w-full focus:outline-secondary outline-none outline-[2px] duration-150 ease-in shadow-sm py-3 px-4 rounded-[10px] text-[12] xs:text-[14px];
-}
-
-.form-container-sec {
-  @apply py-5 my-5;
-}
-
-.form-container-sec h2 {
-  @apply text-2xl font-semibold;
-}
-
-.form-card {
-  @apply border-primary-border border-[1px] rounded p-4 pt-3 my-2;
-}
-
-.skill-item {
-  @apply bg-orange-200 text-red-600 rounded-[4px] flex-shrink-0;
-}
-
-.skill-item__icon {
-  @apply cursor-pointer w-6 text-primary hover:text-red-600 duration-150 ease-in;
-}
-
-.skill-item__add-btn {
-  @apply absolute top-0 right-0 text-blue-600 bg-blue-100 h-full w-6 flex items-center justify-center rounded-r-[2px] border-primary border-l-0 border-[1px] cursor-pointer duration-150 hover:bg-blue-200 ease-in;
-}
-
 /*--- SCROLLBAR THIN -------------------------------------------------*/
 * {
   scrollbar-width: thin;
@@ -94,6 +66,48 @@ body {
 
 .scrollbar-hidden:hover::-webkit-scrollbar-thumb {
   @apply bg-[rgba(0,0,0,0.2)];
+}
+
+/*--- Create Resume Form styles ------------------------------------------------- */
+.form-input {
+  @apply w-full focus:outline-secondary outline-none outline-[2px] duration-150 ease-in shadow-sm py-3 px-4 rounded-[10px] text-[12] xs:text-[14px];
+}
+
+.form-container-sec {
+  @apply py-5 my-5 text-primary text-[14px];
+}
+
+.form-card {
+  @apply border-[30335F] border-[2px] rounded-[10px] p-4 pt-3 my-2;
+}
+
+.skill-item {
+  @apply bg-orange-200 text-red-600 rounded-[4px] flex-shrink-0;
+}
+
+.skill-item__icon {
+  @apply cursor-pointer w-6 text-primary hover:text-red-600 duration-150 ease-in;
+}
+
+.skill-item__add-btn {
+  @apply absolute top-0 right-0 text-blue-600 bg-blue-100 h-full w-6 flex items-center justify-center rounded-r-[2px] border-primary border-l-0 border-[1px] cursor-pointer duration-150 hover:bg-blue-200 ease-in;
+}
+
+.form-container-sec .form-header {
+  @apply text-[2px] sm:text-[28px] leading-[1] font-bold mb-1;
+}
+
+/*--- CK Editor styles  -----------------------------------------------------------*/
+.ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar,
+.ck.ck-editor__top .ck-sticky-panel .ck-toolbar.ck-rounded-corner {
+  @apply !rounded-t-[10px] !border-none;
+}
+
+editor[role="application"] .ck.ck-content,
+.ck.editor__editable[role="textbox"],
+.ck.ck-editor__editable[role="textbox"],
+.ck.editor[role="textbox"] {
+  @apply !overflow-y-auto !rounded-b-[10px] duration-150 ease-in border-none focus:!border-[2px] focus:!border-secondary !mt-1;
 }
 
 /*--- A4 SIZE CV PREVIEW CONTAINER ------------------------------------------------*/

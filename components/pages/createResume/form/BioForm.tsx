@@ -38,8 +38,10 @@ const BioForm = ({
 
   return (
     <section id="bio-form" className="form-container-sec">
-      <div>
-        <h2>Resume Heading</h2>
+      <div className="pb-4">
+        <h2 className="form-header">
+          Personal <span className="text-secondary">Details</span>
+        </h2>
         <p>How do you want employers to contact you</p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">

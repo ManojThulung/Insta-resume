@@ -1,9 +1,11 @@
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+"use client";
+
+import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import dynamic from "next/dynamic";
-import { ChevronDown, PlusCircle, Trash2 } from "lucide-react";
 import Button from "@/components/common/Button";
 import ToggleBtn from "@/components/common/ToggleBtn";
 import { ExperienceFormProps, ResumeDataProps } from "@/types";
+import { ChevDown, PlusIcon, TrashBinIcon } from "@/assets/icon";
 
 const CustomEditors = dynamic(
   () => {
@@ -19,8 +21,11 @@ const ExperienceForm = ({
   experiences: ExperienceFormProps[];
   setResumeData: Dispatch<SetStateAction<ResumeDataProps>>;
 }) => {
+  const [expandForm, setExpandForm] = useState<number | null>(0);
+
   //ADD new experience object
-  const addExperience = () => {
+  const addExperience = (index: number) => {
+    // Create New Experience form
     setResumeData((prev) => ({
       ...prev,
       experiences: [
@@ -36,6 +41,16 @@ const ExperienceForm = ({
         },
       ],
     }));
+
+    // Expands the newly added from.
+    if (expandForm) {
+      setExpandForm(index);
+    } else {
+      // to make visible expand animation on newly added form
+      setTimeout(() => {
+        setExpandForm(index);
+      }, 50);
+    }
   };
 
   // REMOVE experience object
@@ -61,139 +76,181 @@ const ExperienceForm = ({
     });
   };
 
+  // Collapse/Hide form field
+  const handleCollapse = (index: number) => {
+    if (expandForm === index) {
+      setExpandForm(null);
+    } else {
+      setExpandForm(index);
+    }
+  };
+
   return (
     <section id="experience-form" className="form-container-sec">
       <div>
-        <div>
-          <h2>Work Experiences</h2>
+        <div className="pb-4">
+          <h2 className="form-header">
+            Work <span className="text-secondary">Experiences</span>
+          </h2>
           <p>List your work experience, from the most recent to the oldest.</p>
         </div>
         {experiences.length >= 1 &&
           experiences.map((exp, index) => (
-            <div
-              key={index}
-              className="form-card grid grid-cols-1 lg:grid-cols-2 gap-5"
-            >
-              <div className="lg:col-span-2 flex items-center gap-2 -mb-2 justify-end text-primary-border">
-                <ChevronDown className="cursor-pointer" />
-                {experiences.length > 1 && (
-                  <Trash2
-                    onClick={() => removeExperience(index)}
-                    className="scale-75 cursor-pointer"
-                  />
-                )}
-              </div>
-              <div>
-                <label htmlFor="job_title">Job Title</label>
+            <div key={index} className="form-card">
+              <div className="flex flex-wrap  items-center justify-between mb-2 min-h-[35px]">
                 <div>
-                  <input
-                    type="text"
-                    name="job_title"
-                    id="job_title"
-                    value={exp.job_title}
-                    placeholder="Frontend Developer"
-                    className="form-input"
-                    onChange={(e) => handleChange(index, e)}
-                  />
+                  <h3 className="font-bold text-secondary">{exp?.job_title}</h3>
+                  <p className="text-secondary text-[12px]">
+                    {exp?.organization_name}
+                  </p>
                 </div>
-              </div>
-              <div>
-                <label htmlFor="organization-name">Organization Name</label>
-                <div>
-                  <input
-                    type="text"
-                    name="organization_name"
-                    id="organization-name"
-                    value={exp.organization_name}
-                    placeholder="ABC Company"
-                    className="form-input"
-                    onChange={(e) => handleChange(index, e)}
-                  />
-                </div>
-              </div>
-              <div className="lg:col-span-2">
-                <label htmlFor="location">Location</label>
-                <div>
-                  <input
-                    type="text"
-                    name="location"
-                    id="location"
-                    placeholder="Rothenburg, Nepal"
-                    value={exp.location}
-                    className="form-input"
-                    onChange={(e) => handleChange(index, e)}
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="start_date">Start Date</label>
-                <div>
-                  <input
-                    type="month"
-                    name="start_date"
-                    id="start_date"
-                    value={exp.start_date}
-                    className="form-input"
-                    onChange={(e) => handleChange(index, e)}
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="end_date">End Date</label>
-                <div>
-                  {!exp.currently_employed ? (
-                    <input
-                      type="month"
-                      name="end_date"
-                      id="end_date"
-                      value={exp.currently_employed ? "" : exp.end_date}
-                      className="form-input"
-                      disabled={exp.currently_employed}
-                      onChange={(e) => handleChange(index, e)}
-                    />
-                  ) : (
-                    <input
-                      type="string"
-                      disabled
-                      value="Present"
-                      className="form-input"
-                    />
+                <div className="flex items-center gap-2 -mb-2 justify-end text-primary-border">
+                  <Button
+                    variant="round"
+                    size="round"
+                    className="hover:brightness-95"
+                    onClick={() => handleCollapse(index)}
+                  >
+                    <ChevDown className="scale-75 " />
+                  </Button>
+                  {experiences.length > 1 && (
+                    <Button
+                      variant="round"
+                      size="round"
+                      className="hover:brightness-95"
+                      onClick={() => removeExperience(index)}
+                    >
+                      <TrashBinIcon />
+                    </Button>
                   )}
                 </div>
-
-                <div className="mt-2 flex items-center gap-2 flex-wrap justify-start">
-                  <ToggleBtn
-                    index={index}
-                    targetName="experiences"
-                    state={exp.currently_employed}
-                    setResumeData={setResumeData}
-                  />
-                  <label htmlFor="currently_employed">Currently Employed</label>
-                </div>
               </div>
-              <div className="lg:col-span-2">
-                <label>Work Description</label>
+
+              <div
+                className={`grid px-1 grid-cols-1 lg:grid-cols-2 gap-5 duration-300 transition-all ease-in ${
+                  expandForm === index
+                    ? "max-h-[600px] overflow-y-auto"
+                    : "max-h-0 overflow-y-hidden"
+                }`}
+              >
                 <div>
-                  <CustomEditors
-                    index={index}
-                    targetName="experiences"
-                    data={exp.work_description}
-                    setData={setResumeData}
-                  />
+                  <label htmlFor="job_title">Job Title</label>
+                  <div>
+                    <input
+                      type="text"
+                      name="job_title"
+                      id="job_title"
+                      value={exp.job_title}
+                      placeholder="Frontend Developer"
+                      className="form-input"
+                      onChange={(e) => handleChange(index, e)}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="organization-name">Organization Name</label>
+                  <div>
+                    <input
+                      type="text"
+                      name="organization_name"
+                      id="organization-name"
+                      value={exp.organization_name}
+                      placeholder="ABC Company"
+                      className="form-input"
+                      onChange={(e) => handleChange(index, e)}
+                    />
+                  </div>
+                </div>
+                <div className="lg:col-span-2">
+                  <label htmlFor="location">Location</label>
+                  <div>
+                    <input
+                      type="text"
+                      name="location"
+                      id="location"
+                      placeholder="Rothenburg, Nepal"
+                      value={exp.location}
+                      className="form-input"
+                      onChange={(e) => handleChange(index, e)}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="start_date">Start Date</label>
+                  <div>
+                    <input
+                      type="month"
+                      name="start_date"
+                      id="start_date"
+                      value={exp.start_date}
+                      className="form-input"
+                      onChange={(e) => handleChange(index, e)}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="end_date">End Date</label>
+                  <div>
+                    {!exp.currently_employed ? (
+                      <input
+                        type="month"
+                        name="end_date"
+                        id="end_date"
+                        value={exp.currently_employed ? "" : exp.end_date}
+                        className="form-input"
+                        disabled={exp.currently_employed}
+                        onChange={(e) => handleChange(index, e)}
+                      />
+                    ) : (
+                      <input
+                        type="string"
+                        disabled
+                        value="Present"
+                        className="form-input"
+                      />
+                    )}
+                  </div>
+
+                  <div className="mt-2 flex items-center gap-2 flex-wrap justify-start">
+                    <ToggleBtn
+                      index={index}
+                      targetName="experiences"
+                      state={exp.currently_employed}
+                      setResumeData={setResumeData}
+                    />
+                    <label htmlFor="currently_employed">
+                      Currently Employed
+                    </label>
+                  </div>
+                </div>
+                <div className="lg:col-span-2">
+                  <label>Work Description</label>
+                  <div>
+                    <CustomEditors
+                      index={index}
+                      targetName="experiences"
+                      data={exp.work_description}
+                      setData={setResumeData}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           ))}
         <div className="flex justify-end">
-          <Button
-            onClick={addExperience}
-            variant="blueGhost"
-            size="pLess"
-            className="mt-4"
+          <div
+            onClick={() => addExperience(experiences.length)}
+            className="flex items-center gap-x-1 duration-150 ease-in transition-all cursor-pointer hover:bg-secondary-light rounded-full group"
           >
-            <PlusCircle className="scale-75" />
+            <Button
+              variant="round"
+              size="round"
+              className="bg-primary text-white group-hover:bg-black"
+            >
+              <PlusIcon />
+            </Button>
             Add More Experience
-          </Button>
+          </div>
         </div>
       </div>
     </section>

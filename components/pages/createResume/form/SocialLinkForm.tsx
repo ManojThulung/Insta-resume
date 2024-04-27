@@ -2,8 +2,8 @@ import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { PlusCircle, Trash2 } from "lucide-react";
 
 import Button from "@/components/common/Button";
-// import CustomDropDown from "@/components/common/CustomDropDown";
 import { ResumeDataProps, SocialLinksProps } from "@/types";
+import { PlusIcon, TrashBinIcon } from "@/assets/icon";
 
 //social sites data
 const socialSiteList = [
@@ -54,28 +54,16 @@ const SocialLinkForm = ({
 
   return (
     <section id="social-link-form" className="form-container-sec">
-      <div>
-        <h2>Social Links</h2>
+      <div className="pb-4">
+        <h2 className="form-header">
+          Social <span className="text-secondary">Links</span>
+        </h2>
         <p>Select your social platform and add links</p>
       </div>
       <div>
         {socialLinks.length >= 1 &&
           socialLinks.map((link, index) => (
             <div key={index} className="form-card">
-              {/* <div className="flex items-center mb-1 justify-end text-primary-border">
-                <Trash2
-                  onClick={() => removeSocialLinks(index)}
-                  className="scale-75 cursor-pointer"
-                />
-              </div> */}
-              {/* <div className="items-center gap-0 mt-4 w-full">
-                <CustomDropDown
-                  socialSiteList={socialSiteList}
-                  socialLinks={socialLinks}
-                  setSocialLinks={setSocialLinks}
-                  index={index}
-                />
-              </div> */}
               <div className="flex items-center justify-between gap-1">
                 <input
                   type="text"
@@ -86,25 +74,35 @@ const SocialLinkForm = ({
                   placeholder="eg https://www.facebook.com/user"
                   onChange={(e) => handleChange(index, e)}
                 />
-                <Trash2
-                  onClick={() => removeSocialLinks(index)}
-                  className="scale-75 cursor-pointer text-primary-border"
-                />
+                {socialLinks.length > 1 && (
+                  <Button
+                    onClick={() => removeSocialLinks(index)}
+                    variant="round"
+                    size="round"
+                    className="hover:brightness-95"
+                  >
+                    <TrashBinIcon />
+                  </Button>
+                )}
               </div>
             </div>
           ))}
 
         <div className="flex justify-end">
           {socialLinks.length <= socialSiteList.length && ( //to allow to add social links not more than available social sites
-            <Button
+            <div
               onClick={addLinks}
-              variant="blueGhost"
-              size="pLess"
-              className="mt-4"
+              className="flex items-center gap-x-1 duration-150 ease-in transition-all cursor-pointer hover:bg-secondary-light rounded-full group"
             >
-              <PlusCircle className="scale-75" />
+              <Button
+                variant="round"
+                size="round"
+                className="bg-primary text-white group-hover:bg-black"
+              >
+                <PlusIcon />
+              </Button>
               Add {socialLinks.length === 0 ? "" : "more"} social link
-            </Button>
+            </div>
           )}
         </div>
       </div>

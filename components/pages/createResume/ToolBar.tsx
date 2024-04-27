@@ -17,8 +17,8 @@ const Categories = [
 
 const categoryBar = () => {
   return (
-    <div className="bg-secondary-light dark:bg-primary p-2 overflow-x-auto relative shadow">
-      <div className="flex whitespace-nowrap justify-start lg:justify-center items-center gap-1">
+    <div className="bg-white dark:bg-primary px-2 py-3 overflow-x-auto relative shadow">
+      <div className="flex whitespace-nowrap justify-start lg:justify-center items-center gap-2">
         {Categories.map((category) => (
           <div key={category.path}>
             <Link href={`#${category.path}`}>

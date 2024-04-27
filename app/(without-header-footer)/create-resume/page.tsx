@@ -123,11 +123,16 @@ const CreateResume = () => {
   };
 
   return (
-    <main>
+    <main className="font-sans">
       <ToolBar />
       <div className="grid grid-cols-12 gap-x-1 h-[95vh]">
-        <div className="col-span-12 sm:col-span-6 h-full overflow-y-scroll bg-secondary-light dark:bg-primary ">
+        <div className="col-span-12 sm:col-span-6 h-full overflow-y-scroll">
           <form className="shadow-sm px-6 py-4 max-w-[700px] mx-auto">
+            <div className="flex justify-end">
+              <Button type="button" variant="fill" className="hover:bg-black">
+                Clear Form
+              </Button>
+            </div>
             <BioForm setBioData={setBioData} />
             <br />
             <SocialLinkForm
@@ -172,7 +177,7 @@ const CreateResume = () => {
             <br />
           </form>
         </div>
-        <div className="col-span-12 sm:col-span-6 px-6 py-4 bg-[#525659]">
+        <div className="col-span-12 sm:col-span-6 px-6 py-4 bg-[#CDCCCD]">
           <div className="flex items-center justify-between gap-5 flex-wrap mb-2">
             <div>
               <select
@@ -184,9 +189,11 @@ const CreateResume = () => {
                 <option value={2}>Template 2</option>
               </select>
             </div>
-            <Button onClick={handleDownload}>Download</Button>
+            <Button onClick={handleDownload} className="bg-primary">
+              Download
+            </Button>
           </div>
-          <div className="relative bg-yellow-200">
+          <div className="relative ">
             <div className="pdf-preview-container">
               <PreviewPdf
                 bioData={bioData}
