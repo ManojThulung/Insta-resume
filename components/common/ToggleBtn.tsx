@@ -34,7 +34,7 @@ export default function ToggleBtn({
     <Switch
       checked={state}
       onChange={handleChange}
-      className={`${state ? "bg-yellow-500" : "bg-teal-700"}
+      className={`${state ? "bg-secondary" : "bg-primary"}
           relative inline-flex h-[17px] w-[32px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white/75`}
     >
       <span className="sr-only">Use setting</span>

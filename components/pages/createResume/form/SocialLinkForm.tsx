@@ -1,9 +1,10 @@
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import { PlusCircle, Trash2 } from "lucide-react";
 
 import Button from "@/components/common/Button";
 import { ResumeDataProps, SocialLinksProps } from "@/types";
 import { PlusIcon, TrashBinIcon } from "@/assets/icon";
+import DeleteModal from "./DeleteModal";
 
 //social sites data
 const socialSiteList = [
@@ -25,6 +26,9 @@ const SocialLinkForm = ({
   socialLinks: SocialLinksProps[];
   setResumeData: Dispatch<SetStateAction<ResumeDataProps>>;
 }) => {
+  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
   // ADD new object in socialLinkData array when add button is clicked
   const addLinks = () => {
     setResumeData((prev) => ({
@@ -40,6 +44,8 @@ const SocialLinkForm = ({
         socialLinks: prev.socialLinks.filter((_, i) => i !== index),
       }));
     }
+
+    closeModal(); //close delete modal when form deleted.
   };
 
   const handleChange = (index: number, e: ChangeEvent<HTMLInputElement>) => {
@@ -50,6 +56,12 @@ const SocialLinkForm = ({
 
       return updateData;
     });
+  };
+
+  // CLOSE delete Modal
+  const closeModal = () => {
+    setShowDeleteModal(false);
+    setSelectedIndex(null);
   };
 
   return (
@@ -76,10 +88,13 @@ const SocialLinkForm = ({
                 />
                 {socialLinks.length > 1 && (
                   <Button
-                    onClick={() => removeSocialLinks(index)}
                     variant="round"
                     size="round"
                     className="hover:brightness-95"
+                    onClick={() => {
+                      setShowDeleteModal(true);
+                      setSelectedIndex(index);
+                    }}
                   >
                     <TrashBinIcon />
                   </Button>
@@ -106,6 +121,14 @@ const SocialLinkForm = ({
           )}
         </div>
       </div>
+
+      <DeleteModal
+        isOpen={showDeleteModal}
+        handleClose={closeModal}
+        title={"Social Link"}
+        index={selectedIndex}
+        handleDelete={removeSocialLinks}
+      />
     </section>
   );
 };

@@ -2,10 +2,12 @@
 
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import dynamic from "next/dynamic";
+import { ExperienceFormProps, ResumeDataProps } from "@/types";
+import { ChevDown, EditIcon, PlusIcon, TrashBinIcon } from "@/assets/icon";
+
 import Button from "@/components/common/Button";
 import ToggleBtn from "@/components/common/ToggleBtn";
-import { ExperienceFormProps, ResumeDataProps } from "@/types";
-import { ChevDown, PlusIcon, TrashBinIcon } from "@/assets/icon";
+import DeleteModal from "./DeleteModal";
 
 const CustomEditors = dynamic(
   () => {
@@ -22,6 +24,8 @@ const ExperienceForm = ({
   setResumeData: Dispatch<SetStateAction<ResumeDataProps>>;
 }) => {
   const [expandForm, setExpandForm] = useState<number | null>(0);
+  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   //ADD new experience object
   const addExperience = (index: number) => {
@@ -61,6 +65,8 @@ const ExperienceForm = ({
         experiences: prev.experiences.filter((_, i) => i !== index),
       }));
     }
+
+    closeModal(); //close delete modal when form deleted.
   };
 
   const handleChange = (index: number, e: ChangeEvent<HTMLInputElement>) => {
@@ -83,6 +89,12 @@ const ExperienceForm = ({
     } else {
       setExpandForm(index);
     }
+  };
+
+  // CLOSE delete Modal
+  const closeModal = () => {
+    setShowDeleteModal(false);
+    setSelectedIndex(null);
   };
 
   return (
@@ -108,17 +120,24 @@ const ExperienceForm = ({
                   <Button
                     variant="round"
                     size="round"
-                    className="hover:brightness-95"
+                    className="hover:brightness-95 group"
                     onClick={() => handleCollapse(index)}
                   >
-                    <ChevDown className="scale-75 " />
+                    {expandForm === index ? (
+                      <ChevDown className="scale-75 " />
+                    ) : (
+                      <EditIcon className="fill-none stroke-secondary group-hover:stroke-primary" />
+                    )}
                   </Button>
                   {experiences.length > 1 && (
                     <Button
                       variant="round"
                       size="round"
                       className="hover:brightness-95"
-                      onClick={() => removeExperience(index)}
+                      onClick={() => {
+                        setShowDeleteModal(true);
+                        setSelectedIndex(index);
+                      }}
                     >
                       <TrashBinIcon />
                     </Button>
@@ -253,6 +272,14 @@ const ExperienceForm = ({
           </div>
         </div>
       </div>
+
+      <DeleteModal
+        isOpen={showDeleteModal}
+        handleClose={closeModal}
+        title={"Experience"}
+        index={selectedIndex}
+        handleDelete={removeExperience}
+      />
     </section>
   );
 };

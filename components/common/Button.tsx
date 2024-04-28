@@ -35,7 +35,8 @@ const buttonStyle = cva(
         blueGhost: ["text-blue-400"],
       },
       size: {
-        default: ["min-w-[160px]", "h-[40px]", "text-[16px]"],
+        default: ["min-w-[160px]", "h-[40px]", "text-[14px]"],
+        medium: ["min-w-[100px] h-[35px] text-[14px]"],
         small: ["py-[4px]", "px-4"],
         pLess: ["text-sm"],
         round: ["h-[30px] w-[30px]"],
