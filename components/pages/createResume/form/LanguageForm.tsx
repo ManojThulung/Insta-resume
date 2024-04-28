@@ -1,8 +1,12 @@
+"use client";
+
+import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import { PlusCircle, Trash2 } from "lucide-react";
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
 
 import Button from "@/components/common/Button";
 import { ResumeDataProps } from "@/types";
+import { PlusIcon, TrashBinIcon } from "@/assets/icon";
+import DeleteModal from "./DeleteModal";
 
 const LanguageForm = ({
   languages,
@@ -11,6 +15,9 @@ const LanguageForm = ({
   languages: string[];
   setResumeData: Dispatch<SetStateAction<ResumeDataProps>>;
 }) => {
+  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
   // ADD new language
   const addLanguage = () => {
     setResumeData((prev) => ({
@@ -28,6 +35,8 @@ const LanguageForm = ({
         languages: prev.languages.filter((_, i) => i !== index),
       }));
     }
+
+    closeModal(); //close delete modal when form deleted.
   };
 
   const handleChange = (index: number, e: ChangeEvent<HTMLInputElement>) => {
@@ -40,11 +49,17 @@ const LanguageForm = ({
     });
   };
 
+  // CLOSE delete Modal
+  const closeModal = () => {
+    setShowDeleteModal(false);
+    setSelectedIndex(null);
+  };
+
   return (
     <section id="language-form" className="form-container-sec">
       <div>
-        <div>
-          <h2>Languages</h2>
+        <div className="pb-4">
+          <h2 className="form-header">Languages</h2>
           <p>Display your language abilities.</p>
         </div>
         {languages.length >= 1 &&
@@ -61,26 +76,45 @@ const LanguageForm = ({
                   onChange={(e) => handleChange(index, e)}
                 />
                 {languages.length > 1 && (
-                  <Trash2
-                    onClick={() => removeLanguage(index)}
-                    className="scale-75 cursor-pointer text-primary-border"
-                  />
+                  <Button
+                    variant="round"
+                    size="round"
+                    className="hover:brightness-95"
+                    onClick={() => {
+                      setShowDeleteModal(true);
+                      setSelectedIndex(index);
+                    }}
+                  >
+                    <TrashBinIcon />
+                  </Button>
                 )}
               </div>
             </div>
           ))}
         <div className="flex justify-end">
-          <Button
+          <div
             onClick={addLanguage}
-            variant="blueGhost"
-            size="pLess"
-            className="mt-4"
+            className="flex items-center gap-x-1 duration-150 ease-in transition-all cursor-pointer hover:bg-secondary-light rounded-full group"
           >
-            <PlusCircle className="scale-75" />
-            Add More Skill Title
-          </Button>
+            <Button
+              variant="round"
+              size="round"
+              className="bg-primary text-white group-hover:bg-black"
+            >
+              <PlusIcon className="fill-white hover:fill-white" />
+            </Button>
+            Add More Language
+          </div>
         </div>
       </div>
+
+      <DeleteModal
+        isOpen={showDeleteModal}
+        handleClose={closeModal}
+        title={"Language"}
+        index={selectedIndex}
+        handleDelete={removeLanguage}
+      />
     </section>
   );
 };

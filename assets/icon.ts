@@ -21,6 +21,7 @@ import ChevDown from "@/assets/icons/chev-down.svg";
 import EditIcon from "@/assets/icons/edit.svg";
 import TrashBinIcon from "@/assets/icons/trash-bin.svg";
 import PlusIcon from "@/assets/icons/plus.svg";
+import XIcon from "@/assets/icons/x-icon.svg";
 
 //background Image
 import HeroResume from "@/assets/icons/hero-resume.svg";
@@ -56,4 +57,5 @@ export {
   EditIcon,
   TrashBinIcon,
   PlusIcon,
+  XIcon,
 };

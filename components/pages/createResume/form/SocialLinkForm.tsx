@@ -1,5 +1,4 @@
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
-import { PlusCircle, Trash2 } from "lucide-react";
 
 import Button from "@/components/common/Button";
 import { ResumeDataProps, SocialLinksProps } from "@/types";
@@ -114,7 +113,7 @@ const SocialLinkForm = ({
                 size="round"
                 className="bg-primary text-white group-hover:bg-black"
               >
-                <PlusIcon />
+                <PlusIcon className="fill-white hover:fill-white" />
               </Button>
               Add {socialLinks.length === 0 ? "" : "more"} social link
             </div>

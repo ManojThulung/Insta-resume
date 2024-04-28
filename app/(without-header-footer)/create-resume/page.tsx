@@ -3,6 +3,7 @@
 import { ChangeEvent, useRef, useState } from "react";
 import jsPDF from "jspdf";
 
+import { BioFormProps } from "@/types";
 import ToolBar from "@/components/pages/createResume/ToolBar";
 import PreviewPdf from "@/components/pages/createResume/preview/PreviewPdf";
 
@@ -16,8 +17,6 @@ import SocialLinkForm from "@/components/pages/createResume/form/SocialLinkForm"
 import CertificationForm from "@/components/pages/createResume/form/CertificationForm";
 import ReferenceForm from "@/components/pages/createResume/form/ReferenceForm";
 import Button from "@/components/common/Button";
-
-import { BioFormProps } from "@/types";
 import LanguageForm from "@/components/pages/createResume/form/LanguageForm";
 
 const CreateResume = () => {
@@ -54,7 +53,7 @@ const CreateResume = () => {
     skills: [
       {
         skill_title: "",
-        skills_list: ["Hardware", "Software"],
+        skills_list: ["ReactJS", "NextJS"],
       },
     ],
     certifications: [

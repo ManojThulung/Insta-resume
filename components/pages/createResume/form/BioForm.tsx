@@ -118,7 +118,7 @@ const BioForm = ({
               type="text"
               name="address"
               id="address"
-              placeholder="St. State, bt street"
+              placeholder="Mystic Valley, Nepal"
               onChange={(e) => handleBioChange(e)}
               className="form-input"
             />

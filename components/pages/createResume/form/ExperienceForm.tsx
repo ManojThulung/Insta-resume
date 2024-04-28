@@ -46,7 +46,7 @@ const ExperienceForm = ({
       ],
     }));
 
-    // Expands the newly added from.
+    // Expands the newly added form.
     if (expandForm) {
       setExpandForm(index);
     } else {
@@ -146,7 +146,7 @@ const ExperienceForm = ({
               </div>
 
               <div
-                className={`grid px-1 grid-cols-1 lg:grid-cols-2 gap-5 duration-300 transition-all ease-in ${
+                className={`grid px-1 pb-1 grid-cols-1 lg:grid-cols-2 gap-5 duration-300 transition-all ease-in ${
                   expandForm === index
                     ? "max-h-[600px] overflow-y-auto"
                     : "max-h-0 overflow-y-hidden"
@@ -266,7 +266,7 @@ const ExperienceForm = ({
               size="round"
               className="bg-primary text-white group-hover:bg-black"
             >
-              <PlusIcon />
+              <PlusIcon className="fill-white hover:fill-white" />
             </Button>
             Add More Experience
           </div>

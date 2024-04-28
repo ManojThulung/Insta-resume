@@ -1,9 +1,12 @@
-import { ChevronDown, PlusCircle, Trash2 } from "lucide-react";
+"use client";
+
+import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 
 import ToggleBtn from "@/components/common/ToggleBtn";
 import Button from "@/components/common/Button";
 import { EducationFormProps, ResumeDataProps } from "@/types";
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { ChevDown, EditIcon, PlusIcon, TrashBinIcon } from "@/assets/icon";
+import DeleteModal from "./DeleteModal";
 
 const EducationForm = ({
   educations,
@@ -12,8 +15,13 @@ const EducationForm = ({
   educations: EducationFormProps[];
   setResumeData: Dispatch<SetStateAction<ResumeDataProps>>;
 }) => {
+  const [expandForm, setExpandForm] = useState<number | null>(0);
+  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
   // ADD new Education object
-  const addEducation = () => {
+  const addEducation = (index: number) => {
+    // Create new Education form
     setResumeData((prev) => ({
       ...prev,
       educations: [
@@ -28,6 +36,16 @@ const EducationForm = ({
         },
       ],
     }));
+
+    // Expands the newly added form.
+    if (expandForm) {
+      setExpandForm(index);
+    } else {
+      // to make visible expand animation on newly added form
+      setTimeout(() => {
+        setExpandForm(index);
+      }, 50);
+    }
   };
 
   // REMOVE Education object
@@ -38,6 +56,8 @@ const EducationForm = ({
         educations: prev.educations.filter((_, i) => i !== index),
       }));
     }
+
+    closeModal(); //close delete modal when form deleted.
   };
 
   const handleEduChange = (index: number, e: ChangeEvent<HTMLInputElement>) => {
@@ -53,151 +73,197 @@ const EducationForm = ({
     });
   };
 
+  // Collapse/Hide form field
+  const handleCollapse = (index: number) => {
+    if (expandForm === index) {
+      setExpandForm(null);
+    } else {
+      setExpandForm(index);
+    }
+  };
+
+  // CLOSE delete Modal
+  const closeModal = () => {
+    setShowDeleteModal(false);
+    setSelectedIndex(null);
+  };
+
   return (
     <section id="education-form" className="form-container-sec">
       <div>
-        <div>
-          <h2>Education</h2>
+        <div className="pb-4">
+          <h2 className="form-header">Education</h2>
           <p>
             Add your educational details, including your current enrollments.
           </p>
         </div>
         {educations.length >= 1 &&
           educations.map((edu, index) => (
-            <div
-              key={index}
-              className="form-card grid grid-cols-1 lg:grid-cols-2 gap-5"
-            >
-              <div className="lg:col-span-2 flex items-center gap-2 -mb-2 justify-end text-primary-border">
-                <ChevronDown className="cursor-pointer" />
-                {educations.length > 1 && (
-                  <Trash2
-                    onClick={() => removeEducation(index)}
-                    className="scale-75 cursor-pointer"
-                  />
-                )}
-              </div>
-              <div className="lg:col-span-2">
-                <label htmlFor="school_name">School Name</label>
+            <div key={index} className="form-card">
+              <div className="flex flex-wrap  items-center justify-between mb-2 min-h-[35px]">
                 <div>
-                  <input
-                    type="text"
-                    name="school_name"
-                    id="school_name"
-                    value={edu.school_name}
-                    className="form-input"
-                    onChange={(e) => handleEduChange(index, e)}
-                  />
+                  <h3 className="font-bold text-secondary">
+                    {edu?.school_name}
+                  </h3>
+                  <p className="text-secondary text-[12px]">{edu?.course}</p>
+                </div>
+                <div className="flex items-center gap-2 -mb-2 justify-end text-primary-border">
+                  <Button
+                    variant="round"
+                    size="round"
+                    className="hover:brightness-95 group"
+                    onClick={() => handleCollapse(index)}
+                  >
+                    {expandForm === index ? (
+                      <ChevDown className="scale-75 " />
+                    ) : (
+                      <EditIcon className="fill-none stroke-secondary group-hover:stroke-primary" />
+                    )}
+                  </Button>
+                  {educations.length > 1 && (
+                    <Button
+                      variant="round"
+                      size="round"
+                      className="hover:brightness-95"
+                      onClick={() => {
+                        setShowDeleteModal(true);
+                        setSelectedIndex(index);
+                      }}
+                    >
+                      <TrashBinIcon />
+                    </Button>
+                  )}
                 </div>
               </div>
-              <div>
-                <label htmlFor="location">School Location</label>
-                <div>
-                  <input
-                    type="text"
-                    name="location"
-                    id="location"
-                    value={edu.location}
-                    className="form-input"
-                    onChange={(e) => handleEduChange(index, e)}
-                  />
+
+              <div
+                className={`grid px-1 grid-cols-1 lg:grid-cols-2 gap-5 duration-300 transition-all ease-in ${
+                  expandForm === index
+                    ? "max-h-[400px] overflow-y-auto"
+                    : "max-h-0 overflow-y-hidden"
+                }`}
+              >
+                <div className="lg:col-span-2">
+                  <label htmlFor="school_name">School Name</label>
+                  <div>
+                    <input
+                      type="text"
+                      name="school_name"
+                      id="school_name"
+                      value={edu.school_name}
+                      className="form-input"
+                      placeholder="Horizon University"
+                      onChange={(e) => handleEduChange(index, e)}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div>
-                <label htmlFor="course">Course/Degree</label>
                 <div>
-                  <input
-                    type="text"
-                    name="course"
-                    id="course"
-                    value={edu.course}
-                    className="form-input"
-                    onChange={(e) => handleEduChange(index, e)}
-                  />
+                  <label htmlFor="course">Course/Degree</label>
+                  <div>
+                    <input
+                      type="text"
+                      name="course"
+                      id="course"
+                      value={edu.course}
+                      className="form-input"
+                      placeholder="BSc (Hons) Computing"
+                      onChange={(e) => handleEduChange(index, e)}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div>
-                <label htmlFor="start_date">Start Year</label>
                 <div>
-                  {/* <input
-                    type="month"
-                    name="start_date"
-                    id="start_date"
-                    value={edu.start_date}
-                    className="form-input"
-                    onChange={(e) => handleEduChange(index, e)}
-                  /> */}
-                  <input
-                    type="number"
-                    id="start_date"
-                    name="start_date"
-                    value={edu.start_date}
-                    onChange={(e) => handleEduChange(index, e)}
-                    min="2000" // Change min and max according to your requirements
-                    max="2100"
-                    step="1"
-                    className="form-input"
-                  />
+                  <label htmlFor="location">School Location</label>
+                  <div>
+                    <input
+                      type="text"
+                      name="location"
+                      id="location"
+                      value={edu.location}
+                      className="form-input"
+                      placeholder="Emerald City, Nepal"
+                      onChange={(e) => handleEduChange(index, e)}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div>
-                <label htmlFor="end_date">End Year</label>
                 <div>
-                  {!edu.currently_study ? (
-                    // <input
-                    //   type="month"
-                    //   name="end_date"
-                    //   id="end_date"
-                    //   value={edu.end_date}
-                    //   className="form-input"
-                    //   onChange={(e) => handleEduChange(index, e)}
-                    // />
+                  <label htmlFor="start_date">Start Year</label>
+                  <div>
                     <input
                       type="number"
-                      id="end_date"
-                      name="end_date"
-                      value={edu.end_date}
+                      id="start_date"
+                      name="start_date"
+                      value={edu.start_date}
                       onChange={(e) => handleEduChange(index, e)}
-                      min="2000" // Change min and max according to your requirements
+                      min="2000"
                       max="2100"
                       step="1"
                       className="form-input"
                     />
-                  ) : (
-                    <input
-                      type="string"
-                      disabled
-                      value="Present"
-                      className="form-input"
-                    />
-                  )}
+                  </div>
                 </div>
-                <div className="mt-2 flex items-center gap-2 flex-wrap justify-start">
-                  <ToggleBtn
-                    index={index}
-                    targetName="educations"
-                    state={edu.currently_study}
-                    setResumeData={setResumeData}
-                  />
-                  <label htmlFor="currently_employed">
-                    Currently study here
-                  </label>
+                <div>
+                  <label htmlFor="end_date">End Year</label>
+                  <div>
+                    {!edu.currently_study ? (
+                      <input
+                        type="number"
+                        id="end_date"
+                        name="end_date"
+                        value={edu.end_date}
+                        onChange={(e) => handleEduChange(index, e)}
+                        min="2000"
+                        max="2100"
+                        step="1"
+                        className="form-input"
+                      />
+                    ) : (
+                      <input
+                        type="string"
+                        disabled
+                        value="Present"
+                        className="form-input"
+                      />
+                    )}
+                  </div>
+                  <div className="mt-2 flex items-center gap-2 flex-wrap justify-start">
+                    <ToggleBtn
+                      index={index}
+                      targetName="educations"
+                      state={edu.currently_study}
+                      setResumeData={setResumeData}
+                    />
+                    <label htmlFor="currently_employed">
+                      Currently study here
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
         <div className="flex justify-end">
-          <Button
-            onClick={addEducation}
-            variant="blueGhost"
-            size="pLess"
-            className="mt-4"
+          <div
+            onClick={() => addEducation(educations.length)}
+            className="flex items-center gap-x-1 duration-150 ease-in transition-all cursor-pointer hover:bg-secondary-light rounded-full group"
           >
-            <PlusCircle className="scale-75" />
+            <Button
+              variant="round"
+              size="round"
+              className="bg-primary text-white group-hover:bg-black"
+            >
+              <PlusIcon className="fill-white hover:fill-white" />
+            </Button>
             Add More Education
-          </Button>
+          </div>
         </div>
       </div>
+
+      <DeleteModal
+        isOpen={showDeleteModal}
+        handleClose={closeModal}
+        title={"Education"}
+        index={selectedIndex}
+        handleDelete={removeEducation}
+      />
     </section>
   );
 };
