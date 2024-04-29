@@ -22,7 +22,7 @@ module.exports = {
         },
         secondary: {
           DEFAULT: "#FD4552",
-          dark: "#CDB06A",
+          dark: "#D21E2B",
           light: "#F4E6EB",
         },
         light: "#F3F7FC",

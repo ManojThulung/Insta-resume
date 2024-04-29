@@ -36,9 +36,9 @@ const buttonStyle = cva(
       },
       size: {
         default: ["min-w-[160px]", "h-[40px]", "text-[14px]"],
-        medium: ["min-w-[100px] h-[35px] text-[14px]"],
+        medium: ["min-w-[100px] h-[36px] text-[14px]"],
+        square: ["h-[36px] w-[36px]"],
         small: ["py-[4px]", "px-4"],
-        pLess: ["text-sm"],
         round: ["h-[30px] w-[30px]"],
       },
     },

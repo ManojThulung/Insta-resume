@@ -82,3 +82,8 @@ export interface TemplateProps {
   resumeData: ResumeDataProps;
   margin: number;
 }
+
+export interface FontListType {
+  id: number;
+  name: string;
+}

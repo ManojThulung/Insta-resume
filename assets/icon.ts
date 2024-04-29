@@ -22,6 +22,8 @@ import EditIcon from "@/assets/icons/edit.svg";
 import TrashBinIcon from "@/assets/icons/trash-bin.svg";
 import PlusIcon from "@/assets/icons/plus.svg";
 import XIcon from "@/assets/icons/x-icon.svg";
+import TemplateBoxIcon from "@/assets/icons/templates-box.svg";
+import FontIcon from "@/assets/icons/font-icon.svg";
 
 //background Image
 import HeroResume from "@/assets/icons/hero-resume.svg";
@@ -58,4 +60,6 @@ export {
   TrashBinIcon,
   PlusIcon,
   XIcon,
+  TemplateBoxIcon,
+  FontIcon,
 };

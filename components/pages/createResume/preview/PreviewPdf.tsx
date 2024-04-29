@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 
-import { BioFormProps, ResumeDataProps } from "@/types";
+import { BioFormProps, ResumeDataProps, FontListType } from "@/types";
 import Template1 from "../templates/Template1";
 import Template2 from "../templates/Template2";
 
@@ -8,11 +8,21 @@ interface PreviewPdfProps {
   bioData: BioFormProps;
   resumeData: ResumeDataProps;
   selectedTemplate: number;
+  selectedFont: FontListType;
   margin: number;
 }
 
 const PreviewPdf = forwardRef<HTMLDivElement, PreviewPdfProps>(
-  ({ bioData, resumeData, selectedTemplate, margin }: PreviewPdfProps, ref) => {
+  (
+    {
+      bioData,
+      resumeData,
+      selectedTemplate,
+      selectedFont,
+      margin,
+    }: PreviewPdfProps,
+    ref
+  ) => {
     return (
       <div className="a4-container leading-[12px] text-[rgb(82,86,89)]">
         <div
@@ -20,7 +30,7 @@ const PreviewPdf = forwardRef<HTMLDivElement, PreviewPdfProps>(
           ref={ref}
           className="text-[9px] px-[30px]"
           style={{
-            fontFamily: '"Times New Roman", Times, serif',
+            fontFamily: selectedFont.name,
             fontSize: "9px",
           }}
         >

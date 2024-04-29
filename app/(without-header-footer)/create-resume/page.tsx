@@ -19,11 +19,21 @@ import ReferenceForm from "@/components/pages/createResume/form/ReferenceForm";
 import Button from "@/components/common/Button";
 import LanguageForm from "@/components/pages/createResume/form/LanguageForm";
 import ResetConfirmModal from "@/components/pages/createResume/ResetConfirmModal";
+import { FontIcon, TemplateBoxIcon } from "@/assets/icon";
+import FontsOption from "@/components/pages/createResume/FontsOption";
+import { FontListType } from "@/types/resumeDtataTypes";
+import TemplatesModal from "@/components/pages/createResume/TemplatesModal";
 
 const CreateResume = () => {
-  const [resetFormConfirmModal, setResetFormConfirmModal] = useState(false);
+  const [resetFormConfirmModal, setResetFormConfirmModal] =
+    useState<boolean>(false);
   const [selectedTemplate, setSelectedTemplate] = useState<number>(2);
+  const [isTemplateModal, setIsTemplateModal] = useState<boolean>(false);
   const [margin, setMargin] = useState<number>(0);
+  const [selectedFont, setSelectedFont] = useState<FontListType>({
+    id: 5,
+    name: "Times New Roman",
+  });
   const [resumeData, setResumeData] = useState({
     socialLinks: [{ url: "" }],
     experiences: [
@@ -106,6 +116,8 @@ const CreateResume = () => {
         .html(element, {
           callback: async function (resumeDoc) {
             // Save the PDF document
+            resumeDoc.setFont(selectedFont.name);
+
             await resumeDoc.save("Resume.pdf");
           },
           autoPaging: "text",
@@ -117,11 +129,6 @@ const CreateResume = () => {
           setMargin(0); //reset to original style.
         });
     }
-  };
-
-  // Change template
-  const handleSelectTemplate = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedTemplate(Number(e.target.value));
   };
 
   // reset form fields
@@ -200,6 +207,16 @@ const CreateResume = () => {
     setResetFormConfirmModal(false);
   };
 
+  // Change template
+  const handleSelectTemplate = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedTemplate(Number(e.target.value));
+  };
+
+  // Close Templates modal
+  const closeTemplateModal = () => {
+    setIsTemplateModal(false);
+  };
+
   return (
     <main className="font-sans">
       <ToolBar />
@@ -210,7 +227,8 @@ const CreateResume = () => {
               <Button
                 type="button"
                 variant="fill"
-                className="hover:bg-black"
+                size="medium"
+                className="w-[140px] hover:bg-black"
                 onClick={() => setResetFormConfirmModal(true)}
               >
                 Clear Form
@@ -260,28 +278,47 @@ const CreateResume = () => {
             <br />
           </form>
         </div>
-        <div className="col-span-12 sm:col-span-6 px-6 py-4 bg-[#CDCCCD]">
+        <div className="col-span-12 sm:col-span-6 px-6 py-4 bg-[#CDCCCD] min-h-[105vh]">
           <div className="flex items-center justify-between gap-5 flex-wrap mb-2">
-            <div>
-              <select
+            {/* <select
                 name="selectedTemplate"
                 value={selectedTemplate}
                 onChange={(e) => handleSelectTemplate(e)}
               >
                 <option value={1}>Template 1</option>
                 <option value={2}>Template 2</option>
-              </select>
+              </select> */}
+
+            <FontsOption
+              selectedFont={selectedFont}
+              setSelectedFont={setSelectedFont}
+            />
+            <div className="flex flex-wrap items-center gap-2">
+              <Button
+                variant="fill"
+                className="bg-secondary hover:bg-secondary-dark"
+                size="square"
+                onClick={() => setIsTemplateModal(true)}
+              >
+                <TemplateBoxIcon />
+              </Button>
+              <Button
+                onClick={handleDownload}
+                variant="fill"
+                className="bg-secondary hover:bg-secondary-dark w-[140px]"
+                size="medium"
+              >
+                Download
+              </Button>
             </div>
-            <Button onClick={handleDownload} className="bg-primary">
-              Download
-            </Button>
           </div>
-          <div className="relative ">
+          <div className="relative">
             <div className="pdf-preview-container">
               <PreviewPdf
                 bioData={bioData}
                 resumeData={resumeData}
                 selectedTemplate={selectedTemplate}
+                selectedFont={selectedFont}
                 margin={margin}
                 ref={previewRef}
               />
@@ -294,6 +331,11 @@ const CreateResume = () => {
         isOpen={resetFormConfirmModal}
         handleClose={closeResetFormModal}
         handleReset={handleResetForm}
+      />
+
+      <TemplatesModal
+        isOpen={isTemplateModal}
+        handleClose={closeTemplateModal}
       />
     </main>
   );
