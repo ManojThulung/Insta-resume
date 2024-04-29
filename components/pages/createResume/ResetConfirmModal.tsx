@@ -2,21 +2,17 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import Button from "@/components/common/Button";
 
-interface DeleteModalType {
+interface ResetConfirmModalType {
   isOpen: boolean;
   handleClose: () => void;
-  title: string;
-  index: number | null;
-  handleDelete: (index: number) => void;
+  handleReset: () => void;
 }
 
-const DeleteModal = ({
+const ResetConfirmModal = ({
   isOpen,
   handleClose,
-  title,
-  index,
-  handleDelete,
-}: DeleteModalType) => {
+  handleReset,
+}: ResetConfirmModalType) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={handleClose}>
@@ -43,13 +39,13 @@ const DeleteModal = ({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-[10px] bg-light p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-[10px] border-2 bg-light p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title as="h3" className="text-[20px] font-bold">
-                  Delete {title}
+                  Reset Form
                 </Dialog.Title>
                 <div className="mt-2">
                   <p className="text-sm text-gray-500">
-                    Are you sure you want to delete this {title}?
+                    Are you sure you want to clear all the fields?
                   </p>
                 </div>
 
@@ -57,7 +53,7 @@ const DeleteModal = ({
                   <Button
                     variant={"outline"}
                     size="medium"
-                    onClick={() => handleClose(false)}
+                    onClick={handleClose}
                   >
                     Cancel
                   </Button>
@@ -65,11 +61,9 @@ const DeleteModal = ({
                     variant={"fill"}
                     size="medium"
                     className="hover:bg-black"
-                    onClick={() => {
-                      index !== null && handleDelete(index);
-                    }}
+                    onClick={handleReset}
                   >
-                    Delete
+                    Clear
                   </Button>
                 </div>
               </Dialog.Panel>
@@ -81,4 +75,4 @@ const DeleteModal = ({
   );
 };
 
-export default DeleteModal;
+export default ResetConfirmModal;

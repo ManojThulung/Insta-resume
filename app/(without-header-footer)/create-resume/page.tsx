@@ -18,8 +18,12 @@ import CertificationForm from "@/components/pages/createResume/form/Certificatio
 import ReferenceForm from "@/components/pages/createResume/form/ReferenceForm";
 import Button from "@/components/common/Button";
 import LanguageForm from "@/components/pages/createResume/form/LanguageForm";
+import ResetConfirmModal from "@/components/pages/createResume/ResetConfirmModal";
 
 const CreateResume = () => {
+  const [resetFormConfirmModal, setResetFormConfirmModal] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState<number>(2);
+  const [margin, setMargin] = useState<number>(0);
   const [resumeData, setResumeData] = useState({
     socialLinks: [{ url: "" }],
     experiences: [
@@ -86,15 +90,13 @@ const CreateResume = () => {
     bio_summery: "",
   });
 
-  const [selectedTemplate, setSelectedTemplate] = useState<number>(2);
-  const [margin, setMargin] = useState<number>(0);
   const previewRef = useRef(null);
-
   const resumeDoc = new jsPDF({
     unit: "px",
     // compress: true,
   });
 
+  // Generate pdf
   const handleDownload = () => {
     setMargin(7); // to adjust the margin of resume when generating.
     const element = previewRef.current;
@@ -117,8 +119,85 @@ const CreateResume = () => {
     }
   };
 
+  // Change template
   const handleSelectTemplate = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedTemplate(Number(e.target.value));
+  };
+
+  // reset form fields
+  const handleResetForm = () => {
+    setBioData({
+      job_title: "",
+      first_name: "",
+      last_name: "",
+      email: "",
+      phone: "",
+      address: "",
+      bio_summery: "",
+    });
+
+    setResumeData({
+      socialLinks: [{ url: "" }],
+      experiences: [
+        {
+          job_title: "",
+          organization_name: "",
+          location: "",
+          start_date: "",
+          end_date: "",
+          currently_employed: false,
+          work_description: "",
+        },
+      ],
+      educations: [
+        {
+          school_name: "",
+          location: "",
+          course: "",
+          start_date: "",
+          end_date: "",
+          currently_study: false,
+        },
+      ],
+      projects: [
+        {
+          project_title: "",
+          summery: "",
+          project_link: "",
+        },
+      ],
+      skills: [
+        {
+          skill_title: "",
+          skills_list: ["ReactJS", "NextJS"],
+        },
+      ],
+      certifications: [
+        {
+          certificate_title: "",
+          organization: "",
+          certificate_date: "",
+          certificate_link: "",
+        },
+      ],
+      languages: [""],
+      references: [
+        {
+          full_name: "",
+          relationship: "",
+          organization: "",
+          email: "",
+          social_link: "",
+        },
+      ],
+    });
+
+    closeResetFormModal();
+  };
+
+  // Hide reset form confirm modal
+  const closeResetFormModal = () => {
+    setResetFormConfirmModal(false);
   };
 
   return (
@@ -128,11 +207,16 @@ const CreateResume = () => {
         <div className="col-span-12 sm:col-span-6 h-full overflow-y-scroll">
           <form className="shadow-sm px-6 py-4 max-w-[700px] mx-auto">
             <div className="flex justify-end">
-              <Button type="button" variant="fill" className="hover:bg-black">
+              <Button
+                type="button"
+                variant="fill"
+                className="hover:bg-black"
+                onClick={() => setResetFormConfirmModal(true)}
+              >
                 Clear Form
               </Button>
             </div>
-            <BioForm setBioData={setBioData} />
+            <BioForm bioData={bioData} setBioData={setBioData} />
             <br />
             <SocialLinkForm
               socialLinks={resumeData.socialLinks}
@@ -205,6 +289,12 @@ const CreateResume = () => {
           </div>
         </div>
       </div>
+
+      <ResetConfirmModal
+        isOpen={resetFormConfirmModal}
+        handleClose={closeResetFormModal}
+        handleReset={handleResetForm}
+      />
     </main>
   );
 };

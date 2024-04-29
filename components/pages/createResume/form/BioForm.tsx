@@ -13,8 +13,10 @@ import { BioFormProps } from "@/types";
 
 const BioForm = ({
   setBioData,
+  bioData,
 }: {
   setBioData: Dispatch<SetStateAction<BioFormProps>>;
+  bioData: BioFormProps;
 }) => {
   const [bioSummery, setBioSummery] = useState<string>("");
 
@@ -53,6 +55,7 @@ const BioForm = ({
               name="job_title"
               id="job-title"
               placeholder="Front-end Developer"
+              value={bioData?.job_title}
               onChange={(e) => handleBioChange(e)}
               className="form-input"
             />
@@ -66,6 +69,7 @@ const BioForm = ({
               name="first_name"
               id="fist-name"
               placeholder="Peter"
+              value={bioData?.first_name}
               onChange={(e) => handleBioChange(e)}
               className="form-input"
             />
@@ -79,6 +83,7 @@ const BioForm = ({
               name="last_name"
               id="last-name"
               placeholder="Parker"
+              value={bioData?.last_name}
               onChange={(e) => handleBioChange(e)}
               className="form-input"
             />
@@ -92,6 +97,7 @@ const BioForm = ({
               name="email"
               id="email"
               placeholder="peter33@gmail.com"
+              value={bioData?.email}
               onChange={(e) => handleBioChange(e)}
               className="form-input"
             />
@@ -105,6 +111,7 @@ const BioForm = ({
               name="phone"
               id="phone"
               placeholder="+977 9990009900"
+              value={bioData?.phone}
               onChange={(e) => handleBioChange(e)}
               className="form-input"
             />
@@ -119,6 +126,7 @@ const BioForm = ({
               name="address"
               id="address"
               placeholder="Mystic Valley, Nepal"
+              value={bioData?.address}
               onChange={(e) => handleBioChange(e)}
               className="form-input"
             />
