@@ -3,7 +3,6 @@
 import { ChangeEvent, useRef, useState } from "react";
 import jsPDF from "jspdf";
 
-import { BioFormProps } from "@/types";
 import ToolBar from "@/components/pages/createResume/ToolBar";
 import PreviewPdf from "@/components/pages/createResume/preview/PreviewPdf";
 
@@ -19,10 +18,12 @@ import ReferenceForm from "@/components/pages/createResume/form/ReferenceForm";
 import Button from "@/components/common/Button";
 import LanguageForm from "@/components/pages/createResume/form/LanguageForm";
 import ResetConfirmModal from "@/components/pages/createResume/ResetConfirmModal";
-import { FontIcon, TemplateBoxIcon } from "@/assets/icon";
 import FontsOption from "@/components/pages/createResume/FontsOption";
-import { FontListType } from "@/types/resumeDtataTypes";
 import TemplatesModal from "@/components/pages/createResume/TemplatesModal";
+
+import { BioFormProps } from "@/types";
+import { TemplateBoxIcon } from "@/assets/icon";
+import { FontListType } from "@/types";
 
 const CreateResume = () => {
   const [resetFormConfirmModal, setResetFormConfirmModal] =

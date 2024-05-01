@@ -1,8 +1,9 @@
 import { forwardRef } from "react";
-
-import { BioFormProps, ResumeDataProps, FontListType } from "@/types";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
 import Template1 from "../templates/Template1";
 import Template2 from "../templates/Template2";
+import { BioFormProps, ResumeDataProps, FontListType } from "@/types";
 
 interface PreviewPdfProps {
   bioData: BioFormProps;
@@ -23,6 +24,10 @@ const PreviewPdf = forwardRef<HTMLDivElement, PreviewPdfProps>(
     }: PreviewPdfProps,
     ref
   ) => {
+    const template = useSelector(
+      (state: RootState) => state.resume.template_id
+    );
+
     return (
       <div className="a4-container leading-[12px] text-[rgb(82,86,89)]">
         <div
@@ -34,14 +39,14 @@ const PreviewPdf = forwardRef<HTMLDivElement, PreviewPdfProps>(
             fontSize: "9px",
           }}
         >
-          {selectedTemplate === 1 && (
+          {template === 1 && (
             <Template1
               bioData={bioData}
               resumeData={resumeData}
               margin={margin}
             />
           )}
-          {selectedTemplate === 2 && (
+          {template === 2 && (
             <Template2
               bioData={bioData}
               resumeData={resumeData}

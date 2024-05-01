@@ -1,10 +1,11 @@
+import Image from "next/image";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { UseDispatch, useDispatch } from "react-redux";
 import { TemplateList } from "@/utils/contentData";
 import { XIcon } from "@/assets/icon";
 import Button from "@/components/common/Button";
-import Image from "next/image";
-// import Template from "../templatePage/Template";
+import { setTemplate } from "@/redux/slice/resumeSlice";
 
 interface TemplatesModalType {
   isOpen: boolean;
@@ -12,6 +13,13 @@ interface TemplatesModalType {
 }
 
 const TemplatesModal = ({ isOpen, handleClose }: TemplatesModalType) => {
+  const dispatch = useDispatch();
+
+  const handleSelect = (templateId: number) => {
+    dispatch(setTemplate(templateId));
+    handleClose();
+  };
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={handleClose}>
@@ -59,7 +67,7 @@ const TemplatesModal = ({ isOpen, handleClose }: TemplatesModalType) => {
                     <div
                       key={index}
                       className="group hover:scale-105 duration-150"
-                      onClick={handleClose}
+                      onClick={() => handleSelect(template.id)}
                     >
                       <h1 className="text-center mb-1 text-[12px] xs:text-[14px]">
                         {template.name}
