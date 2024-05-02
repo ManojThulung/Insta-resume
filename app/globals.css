@@ -47,6 +47,32 @@ body {
   @apply text-primary text-center font-bold text-[26px] sm:text-[30px] leading-[1.3] py-6;
 }
 
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 15px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  animation: l5 1s infinite linear alternate;
+}
+@keyframes l5 {
+  0% {
+    box-shadow: 20px 0 #ffffff, -20px 0 rgba(255, 255, 255, 0.133);
+    background: #ffffff;
+  }
+  33% {
+    box-shadow: 20px 0 #ffffff, -20px 0 rgba(255, 255, 255, 0.133);
+    background: rgba(255, 255, 255, 0.133);
+  }
+  66% {
+    box-shadow: 20px 0 rgba(255, 255, 255, 0.133), -20px 0 #ffffff;
+    background: rgba(255, 255, 255, 0.133);
+  }
+  100% {
+    box-shadow: 20px 0 rgba(255, 255, 255, 0.133), -20px 0 #ffffff;
+    background: #ffffff;
+  }
+}
+
 /*--- SCROLLBAR THIN -------------------------------------------------*/
 * {
   scrollbar-width: thin;

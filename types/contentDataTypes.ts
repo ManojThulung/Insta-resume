@@ -26,3 +26,9 @@ export interface FaqListProps {
   question: string;
   ans: string;
 }
+
+export interface FormDataProps {
+  full_name: string;
+  email: string;
+  message: string;
+}

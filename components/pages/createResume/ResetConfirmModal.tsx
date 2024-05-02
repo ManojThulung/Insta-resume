@@ -39,7 +39,7 @@ const ResetConfirmModal = ({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-[10px] border-2 bg-light p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full font-sans max-w-md transform overflow-hidden rounded-[10px] border-2 bg-light p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title as="h3" className="text-[20px] font-bold">
                   Reset Form
                 </Dialog.Title>
