@@ -24,6 +24,8 @@ import PlusIcon from "@/assets/icons/plus.svg";
 import XIcon from "@/assets/icons/x-icon.svg";
 import TemplateBoxIcon from "@/assets/icons/templates-box.svg";
 import FontIcon from "@/assets/icons/font-icon.svg";
+import EyeShowIcon from "@/assets/icons/eye-show.svg";
+import EyeHideIcon from "@/assets/icons/eye-hide.svg";
 
 //background Image
 import HeroResume from "@/assets/icons/hero-resume.svg";
@@ -62,4 +64,6 @@ export {
   XIcon,
   TemplateBoxIcon,
   FontIcon,
+  EyeShowIcon,
+  EyeHideIcon,
 };

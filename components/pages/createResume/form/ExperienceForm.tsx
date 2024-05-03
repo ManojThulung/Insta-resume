@@ -109,7 +109,7 @@ const ExperienceForm = ({
         {experiences.length >= 1 &&
           experiences.map((exp, index) => (
             <div key={index} className="form-card">
-              <div className="flex flex-wrap  items-center justify-between mb-2 min-h-[35px]">
+              <div className="flex flex-wrap items-center justify-between mb-2 min-h-[35px]">
                 <div>
                   <h3 className="font-bold text-secondary">{exp?.job_title}</h3>
                   <p className="text-secondary text-[12px]">
@@ -148,7 +148,7 @@ const ExperienceForm = ({
               <div
                 className={`grid px-1 pb-1 grid-cols-1 lg:grid-cols-2 gap-5 duration-300 transition-all ease-in ${
                   expandForm === index
-                    ? "max-h-[600px] overflow-y-auto"
+                    ? "max-h-[800px] overflow-y-auto"
                     : "max-h-0 overflow-y-hidden"
                 }`}
               >

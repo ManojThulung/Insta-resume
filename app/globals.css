@@ -47,7 +47,7 @@ body {
   @apply text-primary text-center font-bold text-[26px] sm:text-[30px] leading-[1.3] py-6;
 }
 
-/* HTML: <div class="loader"></div> */
+/* loader css style ---------------- */
 .loader {
   width: 15px;
   aspect-ratio: 1;
@@ -124,7 +124,7 @@ body {
 }
 
 .form-container-sec .form-header {
-  @apply text-[2px] sm:text-[28px] leading-[1] font-bold mb-1;
+  @apply text-[24px] md:text-[28px] leading-[1] font-bold mb-1;
 }
 
 /*--- CK Editor styles  -----------------------------------------------------------*/
@@ -142,7 +142,7 @@ editor[role="application"] .ck.ck-content,
 
 /*--- A4 SIZE CV PREVIEW CONTAINER ------------------------------------------------*/
 .pdf-preview-container {
-  @apply aspect-[1/1.41] absolute w-[480px] top-0 sm:-top-10 lg:top-0 left-[50%] translate-x-[-50%] scale-[0.6] sm:scale-[0.65] md:scale-[0.79] lg:scale-[1];
+  @apply aspect-[1/1.41] absolute w-[480px] -top-20 sm:-top-10 lg:top-0 left-[50%] translate-x-[-50%] scale-[0.6] sm:scale-[0.65] md:scale-[0.79] lg:scale-[1];
 }
 
 .a4-container {

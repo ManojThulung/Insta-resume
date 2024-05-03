@@ -22,7 +22,7 @@ import FontsOption from "@/components/pages/createResume/FontsOption";
 import TemplatesModal from "@/components/pages/createResume/TemplatesModal";
 
 import { BioFormProps } from "@/types";
-import { TemplateBoxIcon } from "@/assets/icon";
+import { EyeHideIcon, EyeShowIcon, TemplateBoxIcon } from "@/assets/icon";
 import { FontListType } from "@/types";
 
 const CreateResume = () => {
@@ -30,6 +30,7 @@ const CreateResume = () => {
     useState<boolean>(false);
   const [selectedTemplate, setSelectedTemplate] = useState<number>(2);
   const [isTemplateModal, setIsTemplateModal] = useState<boolean>(false);
+  const [visiblePreview, setVisiblePreview] = useState<boolean>(false);
   const [margin, setMargin] = useState<number>(0);
   const [selectedFont, setSelectedFont] = useState<FontListType>({
     id: 5,
@@ -221,8 +222,26 @@ const CreateResume = () => {
   return (
     <main className="font-sans">
       <ToolBar />
-      <div className="grid grid-cols-12 gap-x-1 h-[95vh]">
-        <div className="col-span-12 sm:col-span-6 h-full overflow-y-scroll">
+
+      {/* Floating button for mobile version */}
+      <Button
+        variant="float"
+        size="float"
+        className="fixed bottom-2 right-2 z-20"
+        onClick={() => setVisiblePreview((prev) => !prev)}
+      >
+        {!visiblePreview ? (
+          <EyeShowIcon className="scale-125" />
+        ) : (
+          <EyeHideIcon className="scale-125" />
+        )}
+      </Button>
+      <div className="grid grid-cols-12 gap-x-1 sm:h-[95vh]">
+        <div
+          className={`col-span-12 sm:col-span-6 h-full overflow-y-auto ${
+            !visiblePreview ? "block" : "hidden"
+          }`}
+        >
           <form className="shadow-sm px-6 py-4 max-w-[700px] mx-auto">
             <div className="flex justify-end">
               <Button
@@ -279,17 +298,12 @@ const CreateResume = () => {
             <br />
           </form>
         </div>
-        <div className="col-span-12 sm:col-span-6 px-6 py-4 bg-[#CDCCCD] min-h-[105vh]">
+        <div
+          className={`col-span-12 sm:col-span-6 px-6 py-4 bg-[#CDCCCD] min-h-[105vh] ${
+            visiblePreview ? "block" : "hidden"
+          }`}
+        >
           <div className="flex items-center justify-between gap-5 flex-wrap mb-2">
-            {/* <select
-                name="selectedTemplate"
-                value={selectedTemplate}
-                onChange={(e) => handleSelectTemplate(e)}
-              >
-                <option value={1}>Template 1</option>
-                <option value={2}>Template 2</option>
-              </select> */}
-
             <FontsOption
               selectedFont={selectedFont}
               setSelectedFont={setSelectedFont}

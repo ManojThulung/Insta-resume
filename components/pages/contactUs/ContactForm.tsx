@@ -44,10 +44,6 @@ const ContactForm = () => {
       return;
     }
 
-    console.log("servie ", serviceId);
-    console.log("template ", templateId);
-    console.log("public ", publicKey);
-
     if (serviceId && templateId && publicKey) {
       emailjs
         .send(

@@ -179,7 +179,7 @@ const SkillForm = ({
               <div
                 className={`px-1 duration-300 transition-all ease-in ${
                   expandForm === index
-                    ? "max-h-[500px] overflow-y-auto"
+                    ? "max-h-[600px] overflow-y-auto"
                     : "max-h-0 overflow-y-hidden"
                 }`}
               >

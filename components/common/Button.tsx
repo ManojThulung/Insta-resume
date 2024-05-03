@@ -31,8 +31,9 @@ const buttonStyle = cva(
         round: [
           "bg-secondary-light rounded-full fill-secondary hover:fill-primary",
         ],
-        activeGhost: ["bg-[rgab(0,0,0,0.15)]"],
-        blueGhost: ["text-blue-400"],
+        float: [
+          "bg-white rounded-full shadow-md fill-white hover:fill-secondary bg-secondary hover:bg-white",
+        ],
       },
       size: {
         default: ["min-w-[160px]", "h-[40px]", "text-[14px]"],
@@ -40,6 +41,7 @@ const buttonStyle = cva(
         square: ["h-[36px] w-[36px]"],
         small: ["py-[4px]", "px-4"],
         round: ["h-[30px] w-[30px]"],
+        float: ["h-[36px] w-[36px] p-2"],
       },
     },
     defaultVariants: {

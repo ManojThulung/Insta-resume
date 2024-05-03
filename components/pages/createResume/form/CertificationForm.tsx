@@ -134,7 +134,7 @@ const CertificationForm = ({
               <div
                 className={`grid px-1 pb-1 grid-cols-1 lg:grid-cols-2 gap-5 duration-300 transition-all ease-in ${
                   expandForm === index
-                    ? "max-h-[600px] overflow-y-auto"
+                    ? "max-h-[700px] overflow-y-auto"
                     : "max-h-0 overflow-y-hidden"
                 }`}
               >
