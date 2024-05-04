@@ -227,7 +227,7 @@ const CreateResume = () => {
       <Button
         variant="float"
         size="float"
-        className="fixed bottom-2 right-2 z-20"
+        className="fixed sm:hidden bottom-2 right-2 z-20"
         onClick={() => setVisiblePreview((prev) => !prev)}
       >
         {!visiblePreview ? (
@@ -239,7 +239,7 @@ const CreateResume = () => {
       <div className="grid grid-cols-12 gap-x-1 sm:h-[95vh]">
         <div
           className={`col-span-12 sm:col-span-6 h-full overflow-y-auto ${
-            !visiblePreview ? "block" : "hidden"
+            !visiblePreview ? "block" : "hidden sm:block"
           }`}
         >
           <form className="shadow-sm px-6 py-4 max-w-[700px] mx-auto">
@@ -300,7 +300,7 @@ const CreateResume = () => {
         </div>
         <div
           className={`col-span-12 sm:col-span-6 px-6 py-4 bg-[#CDCCCD] min-h-[105vh] ${
-            visiblePreview ? "block" : "hidden"
+            visiblePreview ? "block" : "hidden sm:block"
           }`}
         >
           <div className="flex items-center justify-between gap-5 flex-wrap mb-2">

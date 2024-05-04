@@ -33,6 +33,7 @@ import FaqGirl from "@/assets/icons/faq-girl.svg";
 import MissionMan from "@/assets/icons/mission-person.svg";
 import JourneyManDog from "@/assets/icons/journey-man-dog.svg";
 import ManWithLaptop from "@/assets/icons/man-with-laptop.svg";
+import PageNotFoundImg from "@/assets/icons/page-not-found.svg";
 
 export {
   FbIcon,
@@ -66,4 +67,5 @@ export {
   FontIcon,
   EyeShowIcon,
   EyeHideIcon,
+  PageNotFoundImg,
 };
