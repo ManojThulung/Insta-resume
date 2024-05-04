@@ -1,4 +1,6 @@
 import Logo from "@/assets/images/InstaResume.png";
-import Template1Img from "@/assets/images/Template1.png";
+import TemplateSampleImg from "@/assets/images/TemplateSample.png";
+import Template1Img from "@/assets/images/template1.jpg";
+import Template2Img from "@/assets/images/template2.jpg";
 
-export { Logo, Template1Img };
+export { Logo, TemplateSampleImg, Template1Img, Template2Img };

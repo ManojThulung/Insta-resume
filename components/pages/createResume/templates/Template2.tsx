@@ -7,7 +7,7 @@ import { Fragment } from "react";
 const Template2 = ({ bioData, resumeData, margin }: TemplateProps) => {
   return (
     <>
-      <div className="t2_header">
+      <div className="t2_header" style={{ marginTop: -margin }}>
         <h1>
           {bioData.first_name} {bioData.last_name}
         </h1>
@@ -103,7 +103,7 @@ const Template2 = ({ bioData, resumeData, margin }: TemplateProps) => {
                   <div className="flex items-center justify-between">
                     <p className="t2_sub-title">
                       {edu?.school_name}{" "}
-                      {edu?.location && " | " + edu?.school_name}
+                      {edu?.location && " | " + edu?.location}
                     </p>
                     <p className="t2_sub-title italic">
                       {edu.start_date}{" "}

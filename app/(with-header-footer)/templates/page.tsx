@@ -3,7 +3,7 @@ import Button from "@/components/common/Button";
 import SubTitle from "@/components/common/SubTitle";
 import Features from "@/components/pages/homePage/Features";
 import Template from "@/components/pages/templatePage/Template";
-import { TemplateList } from "@/utils/contentData";
+import { TemplateList } from "@/utils/resumeData";
 
 const Templates = () => {
   return (

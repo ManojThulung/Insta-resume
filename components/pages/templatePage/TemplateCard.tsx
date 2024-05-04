@@ -26,7 +26,7 @@ const TemplateCard = ({ template }: { template: TemplateListPops }) => {
           <Image
             src={template.sampleImg}
             alt={template.name}
-            className="group-hover:opacity-60 duration-150 ease-in"
+            className="group-hover:opacity-60 duration-150 ease-in max-w-[340px] rounded"
           />
         </div>
       </Link>

@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { UseDispatch, useDispatch } from "react-redux";
-import { TemplateList } from "@/utils/contentData";
+import { useDispatch, useSelector } from "react-redux";
+import { TemplateList } from "@/utils/resumeData";
 import { XIcon } from "@/assets/icon";
 import Button from "@/components/common/Button";
 import { setTemplate } from "@/redux/slice/resumeSlice";
+import { RootState } from "@/redux/store/store";
 
 interface TemplatesModalType {
   isOpen: boolean;
@@ -19,6 +20,10 @@ const TemplatesModal = ({ isOpen, handleClose }: TemplatesModalType) => {
     dispatch(setTemplate(templateId));
     handleClose();
   };
+
+  const selectedTemplate = useSelector(
+    (state: RootState) => state.resume.template_id
+  );
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -72,11 +77,15 @@ const TemplatesModal = ({ isOpen, handleClose }: TemplatesModalType) => {
                       <h1 className="text-center mb-1 text-[12px] xs:text-[14px]">
                         {template.name}
                       </h1>
-                      <div className="relative">
+                      <div className={`relative flex items-center flex-col`}>
                         <Image
                           src={template.sampleImg}
                           alt={template.name}
-                          className="group-hover:opacity-60 duration-150 ease-in border-none cursor-pointer"
+                          className={`group-hover:opacity-60 shadow rounded-md duration-150 ease-in cursor-pointer ${
+                            selectedTemplate === template.id
+                              ? "border-[6px] border-secondary"
+                              : "border-[1px] border-primary"
+                          }`}
                         />
                       </div>
                     </div>

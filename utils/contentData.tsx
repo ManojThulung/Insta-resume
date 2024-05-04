@@ -7,7 +7,6 @@ import {
   PdfDoc,
   TemplateSelectIcon,
 } from "@/assets/icon";
-import { Template1Img } from "@/assets/img";
 
 export const FeaturesList = [
   {
@@ -60,51 +59,6 @@ export const guideList = [
     bgColor: "#DCF2FF",
     description:
       "Preview your resume, make any necessary edits, and then download it in PDF format with a single click.",
-  },
-];
-
-export const TemplateList = [
-  {
-    id: 1,
-    featured: true,
-    name: "Template 1",
-    category: "Modern Template",
-    sampleImg: Template1Img,
-  },
-  {
-    id: 2,
-    featured: true,
-    name: "Template 2",
-    category: "Modern Template 2",
-    sampleImg: Template1Img,
-  },
-  {
-    id: 3,
-    featured: false,
-    name: "Template 3",
-    category: "classic Template",
-    sampleImg: Template1Img,
-  },
-  {
-    id: 4,
-    featured: false,
-    name: "Template 4",
-    category: "Creative Template",
-    sampleImg: Template1Img,
-  },
-  {
-    id: 5,
-    featured: false,
-    name: "Template 5",
-    category: "Creative Template",
-    sampleImg: Template1Img,
-  },
-  {
-    id: 6,
-    featured: true,
-    name: "Template 6",
-    category: "Classic Template",
-    sampleImg: Template1Img,
   },
 ];
 
