@@ -1,0 +1,73 @@
+.t3_header-sec {
+  @apply flex justify-between;
+}
+
+.t3_header h1 {
+  @apply font-bold text-[24px] text-[#000000] mb-[2px];
+}
+
+.t3_header h2 {
+  @apply text-sm py-1;
+}
+
+.t3_border-outer {
+  @apply h-[2px] bg-[#DADADA] mt-2;
+}
+
+.t3_border-inner {
+  @apply h-full bg-[#525659] w-10;
+}
+
+.t3_sec {
+  @apply py-[8px] flex gap-2;
+}
+
+.t3_title {
+  @apply text-black uppercase font-bold text-[10.5px];
+}
+
+.t3_sub-title {
+  @apply text-[9px] text-[#000000] text-justify;
+}
+
+.t3_text {
+  @apply text-[9px] text-[rgb(82,86,89)] text-justify;
+}
+
+.t3_link {
+  @apply text-[rgb(33,94,158)] leading-[14px] cursor-pointer text-[9px] underline;
+}
+
+.t3_social-links .t3_link::before {
+  content: "• ";
+  @apply text-[rgb(82,86,89)] pr-1;
+}
+
+.t3_description {
+  @apply pr-0 text-justify text-[rgb(82,86,89)];
+}
+
+.t3_description ol {
+  @apply pl-0 pr-0 text-justify list-decimal;
+}
+
+.t3_description ul {
+  @apply pl-0 pr-0 text-justify list-disc;
+}
+
+.t3_description ul li {
+  @apply flex items-start gap-x-1 justify-start;
+}
+
+.t3_description ul > li::before {
+  content: "• ";
+  @apply text-[rgb(82,86,89)];
+}
+
+.t3_description p {
+  @apply text-[9px] text-[rgb(82,86,89)];
+}
+
+.t3_description li {
+  @apply text-[9px] text-[rgb(82,86,89)];
+}

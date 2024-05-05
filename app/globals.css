@@ -54,6 +54,7 @@ body {
   border-radius: 50%;
   animation: l5 1s infinite linear alternate;
 }
+
 @keyframes l5 {
   0% {
     box-shadow: 20px 0 #ffffff, -20px 0 rgba(255, 255, 255, 0.133);
@@ -70,6 +71,27 @@ body {
   100% {
     box-shadow: 20px 0 rgba(255, 255, 255, 0.133), -20px 0 #ffffff;
     background: #ffffff;
+  }
+}
+
+.loader-2 {
+  width: 24px;
+  padding: 4px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #ffffff;
+  --_m: conic-gradient(#ffffff00 10%, #ffffff),
+    linear-gradient(#ffffff 0 0) content-box;
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+
+@keyframes l3 {
+  to {
+    transform: rotate(1turn);
   }
 }
 

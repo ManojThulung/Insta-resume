@@ -4,6 +4,7 @@ import { RootState } from "@/redux/store/store";
 import Template1 from "../templates/Template1";
 import Template2 from "../templates/Template2";
 import { BioFormProps, ResumeDataProps, FontListType } from "@/types";
+import Template3 from "../templates/Template3";
 
 interface PreviewPdfProps {
   bioData: BioFormProps;
@@ -48,6 +49,13 @@ const PreviewPdf = forwardRef<HTMLDivElement, PreviewPdfProps>(
           )}
           {template === 2 && (
             <Template2
+              bioData={bioData}
+              resumeData={resumeData}
+              margin={margin}
+            />
+          )}
+          {template === 3 && (
+            <Template3
               bioData={bioData}
               resumeData={resumeData}
               margin={margin}

@@ -29,6 +29,7 @@ const CreateResume = () => {
   const [resetFormConfirmModal, setResetFormConfirmModal] =
     useState<boolean>(false);
   const [selectedTemplate, setSelectedTemplate] = useState<number>(2);
+  const [loading, setLoading] = useState<boolean>(false);
   const [isTemplateModal, setIsTemplateModal] = useState<boolean>(false);
   const [visiblePreview, setVisiblePreview] = useState<boolean>(false);
   const [margin, setMargin] = useState<number>(0);
@@ -111,6 +112,7 @@ const CreateResume = () => {
   // Generate pdf
   const handleDownload = () => {
     setMargin(7); // to adjust the margin of resume when generating.
+    // setLoading(true);
     const element = previewRef.current;
 
     if (element) {
@@ -118,6 +120,7 @@ const CreateResume = () => {
         .html(element, {
           callback: async function (resumeDoc) {
             // Save the PDF document
+            // console.log(resumeDoc.getFontList());
             resumeDoc.setFont(selectedFont.name);
 
             await resumeDoc.save("Resume.pdf");
@@ -129,7 +132,9 @@ const CreateResume = () => {
         })
         .then(() => {
           setMargin(0); //reset to original style.
+          // setLoading(false);
         });
+      // .finally(() => setLoading(false));
     }
   };
 
@@ -323,7 +328,7 @@ const CreateResume = () => {
                 className="bg-secondary hover:bg-secondary-dark w-[140px]"
                 size="medium"
               >
-                Download
+                {loading ? <span className="loader-2" /> : "Download"}
               </Button>
             </div>
           </div>

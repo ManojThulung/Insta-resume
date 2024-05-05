@@ -6,7 +6,7 @@ export interface ResumeState {
 }
 
 const initialState: ResumeState = {
-  template_id: 1,
+  template_id: 3,
   font: "Times New Roman",
 };
 

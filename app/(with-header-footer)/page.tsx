@@ -8,7 +8,7 @@ import Features from "@/components/pages/homePage/Features";
 import Guide from "@/components/pages/homePage/Guide";
 import Template from "@/components/pages/templatePage/Template";
 import FAQ from "@/components/pages/homePage/FAQ";
-import { TemplateList } from "@/utils/contentData";
+import { TemplateList } from "@/utils/resumeData";
 
 export default function Home() {
   const featuredTemplates = TemplateList.filter((temp) => temp.featured);

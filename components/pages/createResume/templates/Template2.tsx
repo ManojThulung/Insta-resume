@@ -193,7 +193,7 @@ const Template2 = ({ bioData, resumeData, margin }: TemplateProps) => {
         )}
 
       {/* LANGUAGES ///////////////////////////////////////////// */}
-      {resumeData.languages.length >= 1 && resumeData?.languages && (
+      {resumeData.languages.length >= 1 && resumeData?.languages[0] && (
         <>
           <hr style={{ marginTop: margin }} />
           <div className="t2_sec" style={{ marginTop: -margin }}>
