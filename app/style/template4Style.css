@@ -1,0 +1,69 @@
+.t4_header h1 {
+  @apply font-bold text-[24px] text-[#000000] mb-[2px] text-center;
+}
+
+.t4_header h2 {
+  @apply text-sm py-1 text-center;
+}
+
+.t4_text {
+  @apply text-[9px] text-[rgb(82,86,89)] text-justify;
+}
+
+.t4_sec {
+  @apply py-[8px];
+}
+
+.t4_link {
+  @apply text-[rgb(33,94,158)] leading-[14px] cursor-pointer text-[9px] underline;
+}
+
+.t4_title {
+  @apply text-black uppercase font-bold text-[10.5px];
+}
+
+.t4_underline {
+  @apply w-[50px] h-[1px] bg-[rgb(152,152,152)] mb-2 mt-[1px];
+}
+
+.t4_line_hr {
+  @apply h-[1px] bg-[rgb(152,152,152)] w-full;
+}
+
+.t4_line_vr {
+  @apply ml-1 bg-[rgb(152,152,152)] w-[1px];
+}
+
+.t4_description {
+  @apply pr-0 text-justify text-[rgb(82,86,89)];
+}
+
+.t4_description ol {
+  @apply pl-0 pr-0 text-justify list-decimal;
+}
+
+.t4_description ul {
+  @apply pl-0 pr-0 text-justify list-disc;
+}
+
+.t4_description ul li {
+  @apply flex items-start gap-x-1 justify-start;
+}
+
+.t4_description ul > li::before {
+  content: "• ";
+  @apply text-[rgb(82,86,89)];
+}
+
+.t4_description p {
+  @apply text-[9px] text-[rgb(82,86,89)];
+}
+
+.t4_description li {
+  @apply text-[9px] text-[rgb(82,86,89)];
+}
+
+.t4_social-links .t4_link::before {
+  content: "• ";
+  @apply text-[rgb(82,86,89)] pr-1;
+}

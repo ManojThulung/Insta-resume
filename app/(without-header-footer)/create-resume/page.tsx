@@ -128,7 +128,7 @@ const CreateResume = () => {
           autoPaging: "text",
           width: 445,
           windowWidth: 480,
-          margin: [30, 0, 30, 0],
+          margin: [20, 0, 30, 0],
         })
         .then(() => {
           setMargin(0); //reset to original style.
