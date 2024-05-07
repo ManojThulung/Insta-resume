@@ -8,6 +8,7 @@ import Template2 from "../templates/Template2";
 import Template3 from "../templates/Template3";
 import Template4 from "../templates/Template4";
 import Template5 from "../templates/Template5";
+import Template6 from "../templates/Template6";
 
 interface PreviewPdfProps {
   bioData: BioFormProps;
@@ -73,6 +74,13 @@ const PreviewPdf = forwardRef<HTMLDivElement, PreviewPdfProps>(
           )}
           {template === 5 && (
             <Template5
+              bioData={bioData}
+              resumeData={resumeData}
+              margin={margin}
+            />
+          )}
+          {template === 6 && (
+            <Template6
               bioData={bioData}
               resumeData={resumeData}
               margin={margin}
