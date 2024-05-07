@@ -50,7 +50,7 @@ const Template6 = ({ bioData, resumeData, margin }: TemplateProps) => {
             <div className="grid grid-cols-3 gap-3">
               <div className="pb-2">
                 <h3 className="t6_text italic">2017 - 2021</h3>
-                <h2 className="font-bold text-black">
+                <h2 className="font-bold text-[#4D453F]">
                   Bachelor in Computer Science
                 </h2>
                 <p className="t6_text">Himalayan College</p>
@@ -58,7 +58,9 @@ const Template6 = ({ bioData, resumeData, margin }: TemplateProps) => {
               </div>
               <div>
                 <h3 className="t6_text italic">2016 - 2018</h3>
-                <h2 className="font-bold text-black">Hight School Diploma</h2>
+                <h2 className="font-bold text-[#4D453F]">
+                  Hight School Diploma
+                </h2>
                 <p className="t6_text">Everest College</p>
                 <p className="t6_text">Kathmandu, Nepal</p>
               </div>
@@ -71,7 +73,7 @@ const Template6 = ({ bioData, resumeData, margin }: TemplateProps) => {
         <div className="t6_sec">
           <h1 className="t6_title">SKILLS</h1>
           <div className="pb-2">
-            <h2 className="font-bold text-black">Programming Skills</h2>
+            <h2 className="font-bold text-[#4D453F]">Programming Skills</h2>
             <div className="grid grid-cols-4">
               <p className="t6_text t6_list">ReactJS</p>
               <p className="t6_text t6_list">Github</p>
@@ -82,7 +84,7 @@ const Template6 = ({ bioData, resumeData, margin }: TemplateProps) => {
             </div>
           </div>
           <div>
-            <h2 className="font-bold text-black">Soft Skills</h2>
+            <h2 className="font-bold text-[#4D453F]">Soft Skills</h2>
             <div className="grid grid-cols-4">
               <p className="t6_text t6_list">Project management</p>
               <p className="t6_text t6_list">Communication</p>
@@ -100,9 +102,11 @@ const Template6 = ({ bioData, resumeData, margin }: TemplateProps) => {
           <div className="t6_sec">
             <h2 className="t6_title">WORK EXPERIENCES</h2>
             <div className="mb-[10px]">
-              <h2 className="font-bold text-black">Senior Software Engineer</h2>
+              <h2 className="font-bold text-[#4D453F]">
+                Senior Software Engineer
+              </h2>
               <div className="flex flex-wrap justify-between">
-                <h3 className="text-black">
+                <h3 className="text-[#4D453F]">
                   Tech Innovations Ltd. / Silicon Valley, USA
                 </h3>
                 <h3 className="t6_text italic">2022 January - Present</h3>
@@ -119,11 +123,11 @@ const Template6 = ({ bioData, resumeData, margin }: TemplateProps) => {
               </div>
             </div>
             <div className="mb-[10px]">
-              <h2 className="font-bold text-black">
+              <h2 className="font-bold text-[#4D453F]">
                 Software Development Engineer
               </h2>
               <div className="flex flex-wrap justify-between">
-                <h3 className="text-black">
+                <h3 className="text-[#4D453F]">
                   Global Tech Solution Icn. | Kathmandu, Nepal
                 </h3>
                 <h3 className="t6_text italic">2018 June - 2022 October</h3>
@@ -146,7 +150,7 @@ const Template6 = ({ bioData, resumeData, margin }: TemplateProps) => {
           <div className="grid grid-cols-3 gap-[6px]">
             <div>
               <h3 className="t6_text italic">2018 March</h3>
-              <h2 className="font-bold text-black">
+              <h2 className="font-bold text-[#4D453F]">
                 Master In Diploma Computer
               </h2>
               <p className="t6_text">Organization Pvt. Ltd.</p>
@@ -154,7 +158,7 @@ const Template6 = ({ bioData, resumeData, margin }: TemplateProps) => {
             </div>
             <div className="">
               <h3 className="t6_text italic">2016 March</h3>
-              <h2 className="font-bold text-black">Code winner</h2>
+              <h2 className="font-bold text-[#4D453F]">Code winner</h2>
               <p className="t6_text">Organization Pvt. Ltd.</p>
               <p className="t6_link">https://certifiacte.url.com</p>
             </div>
@@ -170,7 +174,7 @@ const Template6 = ({ bioData, resumeData, margin }: TemplateProps) => {
           <div className="t6_sec">
             <h2 className="t6_title">PROJECTS</h2>
             <div className="pb-[10px]">
-              <h2 className="font-bold text-black">
+              <h2 className="font-bold text-[#4D453F]">
                 Interactive Virtual Museum Experience
               </h2>
               <div className="t2_description pt-[2px]">
@@ -187,7 +191,7 @@ const Template6 = ({ bioData, resumeData, margin }: TemplateProps) => {
             </div>
 
             <div className="pb-[10px]">
-              <h2 className="font-bold text-black">
+              <h2 className="font-bold text-[#4D453F]">
                 Interactive Virtual Museum Experience
               </h2>
               <div className="t2_description pt-[2px]">
@@ -203,11 +207,11 @@ const Template6 = ({ bioData, resumeData, margin }: TemplateProps) => {
               <p className="t6_link">https://project.link.com.np</p>
             </div>
             <div className="">
-              <h2 className="font-bold text-black">
+              <h2 className="font-bold text-[#4D453F]">
                 Software Development Engineer
               </h2>
               <h3 className="t6_text italic">2018 June - 2022 October</h3>
-              <h3 className="text-black">
+              <h3 className="text-[#4D453F]">
                 Global Tech Solution Icn. | Kathmandu, Nepal
               </h3>
               <div className="t2_description pt-[2px]">
@@ -244,14 +248,14 @@ const Template6 = ({ bioData, resumeData, margin }: TemplateProps) => {
           <div className="grid grid-cols-3 gap-[6px]">
             <div>
               <h3 className="t6_text italic">Fornt-end developer</h3>
-              <h2 className="font-bold text-black">Eleson Burgerg</h2>
+              <h2 className="font-bold text-[#4D453F]">Eleson Burgerg</h2>
               <p className="t6_text">Organization Pvt. Ltd.</p>
               <p className="t6_text">elson@gmail.com</p>
               <p className="t6_text">https://certifiacte.url.com</p>
             </div>
             <div>
               <h3 className="t6_text italic">Fornt-end developer</h3>
-              <h2 className="font-bold text-black">Eleson Burgerg</h2>
+              <h2 className="font-bold text-[#4D453F]">Eleson Burgerg</h2>
               <p className="t6_text">Organization Pvt. Ltd.</p>
               <p className="t6_text">elson@gmail.com</p>
               <p className="t6_text">https://certifiacte.url.com</p>

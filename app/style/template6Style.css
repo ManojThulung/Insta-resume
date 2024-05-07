@@ -1,5 +1,5 @@
 .t6_header h1 {
-  @apply font-bold text-[24px] text-[#000000] mb-[2px] text-center;
+  @apply font-bold text-[24px] text-[#4D453F] mb-[2px] text-center;
 }
 
 .t6_header h2 {
@@ -7,7 +7,7 @@
 }
 
 .t6_text {
-  @apply text-[9px] text-[rgb(82,86,89)] text-justify;
+  @apply text-[9px] text-[#82817F] text-justify;
 }
 
 .t6_sec {
@@ -23,19 +23,19 @@
 }
 
 .t6_underline {
-  @apply w-full h-[1px] bg-[rgb(152,152,152)] mb-2 mt-[1px];
+  @apply w-full h-[1px] bg-[#82817F] mb-2 mt-[1px];
 }
 
 .t6_line_hr {
-  @apply h-[1px] bg-[rgb(152,152,152)] w-full;
+  @apply h-[1px] bg-[#82817F] w-full;
 }
 
 .t6_line_vr {
-  @apply ml-1 bg-[rgb(152,152,152)] w-[1px];
+  @apply ml-1 bg-[#82817F] w-[1px];
 }
 
 .t6_description {
-  @apply pr-0 text-justify text-[rgb(82,86,89)];
+  @apply pr-0 text-justify text-[#82817F];
 }
 
 .t6_description ol {
@@ -53,7 +53,7 @@
 .t6_list::before,
 .t6_description ul > li::before {
   content: "• ";
-  @apply text-[rgb(82,86,89)] pr-[2px];
+  @apply text-[#82817F] pr-[2px];
 }
 
 .t6_description p {
@@ -66,5 +66,5 @@
 
 .t6_social-links .t6_link::before {
   content: "• ";
-  @apply text-[rgb(82,86,89)] pr-1;
+  @apply text-[#82817F] pr-1;
 }
