@@ -15,9 +15,9 @@ const Template3 = ({ bioData, resumeData, margin }: TemplateProps) => {
           <h2 style={{ marginTop: -margin }}>{bioData.job_title}</h2>
         </div>
         <div>
-          {bioData.address && <p className="t3_text">Kathmandu, Nepal</p>}
-          {bioData.phone && <p className="t3_text">(9824) 09234923</p>}
-          {bioData.email && <p className="t3_text">jessie.smith@gmail.com</p>}
+          {bioData.address && <p className="t3_text">{bioData.address}</p>}
+          {bioData.phone && <p className="t3_text">{bioData.phone}</p>}
+          {bioData.email && <p className="t3_text">{bioData.email}</p>}
         </div>
       </div>
 
@@ -228,7 +228,11 @@ const Template3 = ({ bioData, resumeData, margin }: TemplateProps) => {
                     <h2 className="font-bold text-black">
                       {certificate.certificate_title}
                     </h2>
-                    <p className="t3_text"> {certificate.certificate_date}</p>
+                    {certificate?.certificate_date && (
+                      <p className="t3_text">
+                        {convertToMonthName(certificate?.certificate_date)}
+                      </p>
+                    )}
                     <p className="t3_text !text-black">
                       {certificate.organization}
                     </p>

@@ -8,247 +8,261 @@ const Template5 = ({ bioData, resumeData, margin }: TemplateProps) => {
   return (
     <>
       <div className="t5_header" style={{ marginTop: -margin }}>
-        <h1 style={{ marginTop: -margin }}>Jessie Smith</h1>
-        <h2 style={{ marginTop: -margin }}>Software Developer</h2>
+        <h1 style={{ marginTop: -margin }}>
+          {bioData.first_name} {bioData.last_name}
+        </h1>
+        <h2 style={{ marginTop: -margin }}>{bioData.job_title}</h2>
         <div className="pb-[10px]">
           <p className="t5_text !text-center" style={{ marginTop: margin - 2 }}>
-            jessie.smith@gmail.com | (555) 123-5667 | Himalayan Road, Kathmandu,
-            Nepal
+            {bioData.email} &nbsp;
+            {bioData.phone.trim() && " | "}&nbsp;
+            {bioData.phone} &nbsp;
+            {bioData.address.trim() && " | "} &nbsp;
+            {bioData.address}
           </p>
         </div>
       </div>
 
       <div style={{ marginTop: -margin }}>
         {/* PROFILE & CAREER OBJECTIVE ////////////////////////////////////// */}
-        <div className="t5_sec">
-          <h2 className="t5_title">SUMMARY</h2>
-          <div className="t5_underline" style={{ marginTop: margin }} />
-          <div className="px-1 t5_description" style={{ marginTop: -margin }}>
-            <p>
-              Vestibulum id nulla sit amet nunc malesuada lacinia. Integer in
-              ante vel justo consequat condimentum. Praesent quis nisi auctor,
-              vehicula mi eu, congue justo. Duis auctor neque ut lorem
-              fermentum.
-            </p>
-            <p>
-              Praesent vel eleifend ipsum laoreet quis nisi auctor, vehicula mi
-              eu, congue justo. Duis auctor neque ut lorem fermentum, vel
-              eleifend ipsum laoreet
-            </p>
+        {bioData.bio_summery && (
+          <div className="t5_sec">
+            <h2 className="t5_title">SUMMARY</h2>
+            <div className="t5_underline" style={{ marginTop: margin }} />
+            <div
+              className="px-1 t5_description"
+              style={{ marginTop: -margin }}
+              dangerouslySetInnerHTML={{ __html: bioData.bio_summery }}
+            />
           </div>
-        </div>
+        )}
 
         {/* EXPERIENCES ////////////////////////////////////// */}
-        <div className="t5_sec">
-          <h2 className="t5_title">EXPERIENCES</h2>
-          <div className="t5_underline" style={{ marginTop: margin }} />
-          <div className="pb-[10px]" style={{ marginTop: -margin }}>
-            <h2 className="font-bold text-black">Senior Software Engineer</h2>
-            <div className="flex flex-wrap justify-between">
-              <h3 className="text-black">
-                Tech Innovations Ltd. / Silicon Valley, USA
-              </h3>
-              <h3 className="t5_text italic">2022 January - Present</h3>
-            </div>
-            <div className="t2_description pt-[2px]">
-              <p>
-                During my tenure at Tech Innovations Ltd., I led a team of
-                developers in the design and implementation of cutting-edge
-                software solutions for our clients in the tech industry. I
-                played a key role in developing scalable and efficient
-                algorithms to improve product performance and enhance user
-                experience.
-              </p>
-            </div>
+        {(resumeData.experiences[0]?.job_title ||
+          resumeData.experiences[0]?.organization_name) && (
+          <div className="t5_sec">
+            <h2 className="t5_title">EXPERIENCES</h2>
+            <div className="t5_underline" style={{ marginTop: margin }} />
+            {resumeData.experiences.map((exp, index) => (
+              <div
+                key={index}
+                className={
+                  resumeData.experiences.length <= index + 1 ? "" : "pb-[10px]"
+                }
+                style={{ marginTop: -margin }}
+              >
+                <h2 className="font-bold text-black">{exp?.job_title}</h2>
+                <div className="flex flex-wrap justify-between">
+                  <h3 className="text-black">
+                    {exp?.organization_name}
+                    {exp?.location && " / " + exp?.location}
+                  </h3>
+                  <h3 className="t5_text italic">
+                    {exp?.start_date && convertToMonthName(exp?.start_date)}
+                    {!exp?.currently_employed
+                      ? exp?.end_date &&
+                        " - " + convertToMonthName(exp?.end_date)
+                      : " - Present"}
+                  </h3>
+                </div>
+                <div
+                  className="t5_description pt-[2px]"
+                  dangerouslySetInnerHTML={{
+                    __html: exp?.work_description,
+                  }}
+                />
+              </div>
+            ))}
           </div>
-          <div className="">
-            <h2 className="font-bold text-black">
-              Software Development Engineer
-            </h2>
-            <div className="flex flex-wrap justify-between">
-              <h3 className="text-black">
-                Global Tech Solution Icn. | Kathmandu, Nepal
-              </h3>
-              <h3 className="t5_text italic">2018 June - 2022 October</h3>
-            </div>
-            <div className="t2_description pt-[2px]">
-              <p>
-                At GlobalTech Solutions Inc., I was responsible for the full
-                software development lifecycle, from requirements gathering to
-                deployment. I actively participated in architectural discussions
-                and provided valuable.
-              </p>
-            </div>
-          </div>
-        </div>
+        )}
 
         {/* EDUCATION ////////////////////////////////////// */}
-        <div className="t5_sec">
-          <h1 className="t5_title">EDUCATION</h1>
-          <div className="t5_underline" style={{ marginTop: margin }} />
-          <div className="pb-2" style={{ marginTop: -margin }}>
-            <h2 className="font-bold text-black">
-              Bachelor in Computer Science
-            </h2>
-            <div className="flex flex-wrap justify-between">
-              <p className="t5_text">Himalayan College / Pokhara, Nepal </p>
-              <h3 className="t5_text italic">2017 - 2021</h3>
+        {resumeData.educations.length >= 1 &&
+          resumeData.educations[0]?.school_name && (
+            <div className="t5_sec">
+              <h1 className="t5_title">EDUCATION</h1>
+              <div className="t5_underline" style={{ marginTop: margin }} />
+              {resumeData.educations.map((edu, index) => (
+                <div
+                  key={index}
+                  className={
+                    resumeData.educations.length <= index + 1 ? "" : "pb-[10px]"
+                  }
+                  style={{ marginTop: -margin }}
+                >
+                  <h2 className="font-bold text-black">{edu?.course}</h2>
+                  <div className="flex flex-wrap justify-between">
+                    <p className="t5_text">
+                      {edu?.school_name}{" "}
+                      {edu?.location && " / " + edu?.location}
+                    </p>
+                    <h3 className="t5_text italic">
+                      {edu.start_date}{" "}
+                      {edu.currently_study
+                        ? " - Present"
+                        : edu.end_date && " - " + edu.end_date}
+                    </h3>
+                  </div>
+                </div>
+              ))}
             </div>
-          </div>
-          <div>
-            <h2 className="font-bold text-black">Hight School Diploma</h2>
-            <div className="flex flex-wrap justify-between">
-              <p className="t5_text">Everest College / Kathmandu, Nepal</p>
-              <h3 className="t5_text italic">2016 - 2018</h3>
-            </div>
-          </div>
-        </div>
+          )}
 
         {/* SKILLS ////////////////////////////////////// */}
-        <div className="t5_sec">
-          <h1 className="t5_title">SKILLS</h1>
-          <div className="t5_underline" style={{ marginTop: margin }} />
-          <div className="pb-2" style={{ marginTop: -margin }}>
-            <h2 className="font-bold text-black">Programming Skills</h2>
-            <p className="t5_text">
-              ReactJS / NextJS / Github / NodeJS / MySQL / VueJS / Firebase
-            </p>
+        {resumeData.skills.length >= 1 && resumeData.skills[0].skill_title && (
+          <div className="t5_sec">
+            <h1 className="t5_title">SKILLS</h1>
+            <div className="t5_underline" style={{ marginTop: margin }} />
+            {resumeData.skills.map((skl, index) => (
+              <div
+                key={index}
+                className={
+                  resumeData.skills.length <= index + 1 ? "" : "pb-[10px]"
+                }
+                style={{ marginTop: -margin }}
+              >
+                <h2 className="font-bold text-black">{skl?.skill_title}</h2>
+                <div
+                  className={`flex items-center justify-start gap-x-2 flex-wrap whitespace-nowrap`}
+                >
+                  {skl &&
+                    skl.skills_list?.map((item, index) => (
+                      <Fragment key={index}>
+                        {item !== "" && (
+                          <>
+                            <p className="t2_text">{item}</p>
+                            {skl.skills_list.length > 1 + index && (
+                              <p className="t2_text">/</p>
+                            )}
+                          </>
+                        )}
+                      </Fragment>
+                    ))}
+                </div>
+              </div>
+            ))}
           </div>
-          <div>
-            <h2 className="font-bold text-black">Soft Skills</h2>
-            <p className="t5_text">
-              Communication / Team work / Project management / Time management /
-              Multi-tasking
-            </p>
-          </div>
-        </div>
+        )}
 
         {/* CERTIFICATIONS ////////////////////////////////////// */}
-        <div className="t5_sec">
-          <h1 className="t5_title">CERTIFICATIONS</h1>
-          <div className="t5_underline" style={{ marginTop: margin }} />
-          <div
-            className="grid grid-cols-3 gap-[6px]"
-            style={{ marginTop: -margin }}
-          >
-            <div>
-              <h3 className="t5_text italic">2018 March</h3>
-              <h2 className="font-bold text-black">
-                Master In Diploma Computer
-              </h2>
-              <p className="t5_text">Organization Pvt. Ltd.</p>
-              <p className="t5_link">https://certifiacte.url.com</p>
+        {resumeData.certifications.length >= 1 &&
+          resumeData.certifications[0].certificate_title && (
+            <div className="t5_sec">
+              <h1 className="t5_title">CERTIFICATIONS</h1>
+              <div className="t5_underline" style={{ marginTop: margin }} />
+              <div
+                className="grid grid-cols-3 gap-[6px]"
+                style={{ marginTop: -margin }}
+              >
+                {resumeData.certifications.map((certificate, index) => (
+                  <div key={index}>
+                    {certificate?.certificate_date && (
+                      <h3 className="t5_text italic">
+                        {convertToMonthName(certificate?.certificate_date)}
+                      </h3>
+                    )}
+                    <h2 className="font-bold text-black">
+                      {certificate.certificate_title}
+                    </h2>
+                    <p className="t5_text"> {certificate.organization}</p>
+                    <p className="t5_link"> {certificate.certificate_link}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="">
-              <h3 className="t5_text italic">2016 March</h3>
-              <h2 className="font-bold text-black">Code winner</h2>
-              <p className="t5_text">Organization Pvt. Ltd.</p>
-              <p className="t5_link">https://certifiacte.url.com</p>
-            </div>
-          </div>
-        </div>
+          )}
 
         {/* PROJECTS ////////////////////////////////////// */}
-        <div className="t5_sec">
-          <h2 className="t5_title">PROJECTS</h2>
-          <div className="t5_underline" style={{ marginTop: margin }} />
-          <div className="pb-[10px]" style={{ marginTop: -margin }}>
-            <h2 className="font-bold text-black">
-              Interactive Virtual Museum Experience
-            </h2>
-            <div className="t2_description pt-[2px]">
-              <p>
-                During my tenure at Tech Innovations Ltd., I led a team of
-                developers in the design and implementation of cutting-edge
-                software solutions for our clients in the tech industry. I
-                played a key role in developing scalable and efficient
-                algorithms to improve product performance and enhance user
-                experience.
-              </p>
+        {resumeData.projects.length >= 1 &&
+          resumeData.projects[0].project_title && (
+            <div className="t5_sec">
+              <h2 className="t5_title">PROJECTS</h2>
+              <div className="t5_underline" style={{ marginTop: margin }} />
+              {resumeData.projects.map((project, index) => (
+                <div
+                  key={index}
+                  className={
+                    resumeData.projects.length <= index + 1 ? "" : "pb-[10px]"
+                  }
+                  style={{ marginTop: -margin }}
+                >
+                  <h2 className="font-bold text-black">
+                    {project.project_title}
+                  </h2>
+                  <div
+                    className="t5_description pt-[2px]"
+                    dangerouslySetInnerHTML={{
+                      __html: project.summery,
+                    }}
+                  />
+                  <p className="t5_link">{project.project_link}</p>
+                </div>
+              ))}
             </div>
-            <p className="t5_link">https://project.link.com.np</p>
-          </div>
-
-          <div className="pb-[10px]">
-            <h2 className="font-bold text-black">
-              Interactive Virtual Museum Experience
-            </h2>
-            <div className="t2_description pt-[2px]">
-              <p>
-                During my tenure at Tech Innovations Ltd., I led a team of
-                developers in the design and implementation of cutting-edge
-                software solutions for our clients in the tech industry. I
-                played a key role in developing scalable and efficient
-                algorithms to improve product performance and enhance user
-                experience.
-              </p>
-            </div>
-            <p className="t5_link">https://project.link.com.np</p>
-          </div>
-          <div className="">
-            <h2 className="font-bold text-black">
-              Software Development Engineer
-            </h2>
-            <h3 className="t5_text italic">2018 June - 2022 October</h3>
-            <h3 className="text-black">
-              Global Tech Solution Icn. | Kathmandu, Nepal
-            </h3>
-            <div className="t2_description pt-[2px]">
-              <p>
-                At GlobalTech Solutions Inc., I was responsible for the full
-                software development lifecycle, from requirements gathering to
-                deployment. I actively participated in architectural discussions
-                and provided valuable.
-              </p>
-            </div>
-            <p className="t5_link">https://project.link.com.np</p>
-          </div>
-        </div>
+          )}
 
         {/* SOCIAL LINKS ////////////////////////////////////// */}
-        <div className="t5_sec">
-          <h2 className="t5_title">SOCIAL LINKS</h2>
-          <div className="t5_underline" style={{ marginTop: margin }} />
-          <div className="t5_social-links" style={{ marginTop: -margin }}>
-            <p className="t5_link">https://projetctlink.com.sr</p>
-            <p className="t5_link">https://medium.com.sr</p>
-            <p className="t5_link">https://portofiol.com.sr</p>
+        {resumeData.socialLinks[0]?.url && (
+          <div className="t5_sec">
+            <h2 className="t5_title">SOCIAL LINKS</h2>
+            <div className="t5_underline" style={{ marginTop: margin }} />
+            <div className="t5_social-links">
+              {resumeData?.socialLinks.map((link, index) => (
+                <p key={index} className="t5_link">
+                  {link.url}
+                </p>
+              ))}
+            </div>
           </div>
-        </div>
-      </div>
+        )}
 
-      {/* REFERENCES ////////////////////////////////////// */}
-      <div className="t5_sec">
-        <h1 className="t5_title">REFERENCES</h1>
-        <div className="t5_underline" style={{ marginTop: margin }} />
-        <div
-          className="grid grid-cols-3 gap-[6px]"
-          style={{ marginTop: -margin }}
-        >
-          <div>
-            <h3 className="t5_text italic">Fornt-end developer</h3>
-            <h2 className="font-bold text-black">Eleson Burgerg</h2>
-            <p className="t5_text">Organization Pvt. Ltd.</p>
-            <p className="t5_text">elson@gmail.com</p>
-            <p className="t5_text">https://certifiacte.url.com</p>
-          </div>
-          <div>
-            <h3 className="t5_text italic">Fornt-end developer</h3>
-            <h2 className="font-bold text-black">Eleson Burgerg</h2>
-            <p className="t5_text">Organization Pvt. Ltd.</p>
-            <p className="t5_text">elson@gmail.com</p>
-            <p className="t5_text">https://certifiacte.url.com</p>
-          </div>
-        </div>
-      </div>
+        {/* REFERENCES ////////////////////////////////////// */}
+        {resumeData.references.length >= 1 &&
+          resumeData.references[0].full_name && (
+            <div className="t5_sec">
+              <h1 className="t5_title">REFERENCES</h1>
+              <div className="t5_underline" style={{ marginTop: margin }} />
+              <div
+                className="grid grid-cols-3 gap-[6px]"
+                style={{ marginTop: -margin }}
+              >
+                {resumeData.references.map((ref, index) => (
+                  <div key={index}>
+                    <h3 className="t5_text italic">{ref.relationship}</h3>
+                    <h2 className="font-bold text-black">{ref.relationship}</h2>
+                    <p className="t5_text">{ref.organization}</p>
+                    <p className="t5_text">{ref.email}</p>
+                    <p className="t5_text">{ref.social_link}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
-      {/* LANGUAGE ////////////////////////////////////// */}
-      <div className="t5_sec">
-        <h1 className="t5_title">LANGUAGES</h1>
-        <div className="t5_underline" style={{ marginTop: margin }} />
-        <div className="langua" style={{ marginTop: -margin }}>
-          <p className="t5_text !text-center">Nepali / English / hindi</p>
-        </div>
+        {/* LANGUAGE ////////////////////////////////////// */}
+        {resumeData.languages.length >= 1 && resumeData?.languages[0] && (
+          <div className="t5_sec">
+            <h1 className="t5_title">LANGUAGES</h1>
+            <div className="t5_underline" style={{ marginTop: margin }} />
+            <div
+              className={`flex items-center justify-center gap-x-2 flex-wrap whitespace-nowrap`}
+              style={{ marginTop: -margin }}
+            >
+              {resumeData.languages?.map((lang, index) => (
+                <Fragment key={index}>
+                  {lang !== "" && (
+                    <>
+                      <p className="t2_text">{lang}</p>
+                      {resumeData.languages.length > 1 + index && (
+                        <p className="t2_text">/</p>
+                      )}
+                    </>
+                  )}
+                </Fragment>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

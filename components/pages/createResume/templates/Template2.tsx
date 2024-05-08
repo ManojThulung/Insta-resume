@@ -46,9 +46,9 @@ const Template2 = ({ bioData, resumeData, margin }: TemplateProps) => {
             <h2 className="t2_title">CONTACT</h2>
             <div className="pt-2 px-1">
               {resumeData?.socialLinks.map((link, index) => (
-                <Link key={index} href={link.url} target="__blank">
-                  <p className="t2_link">{link.url}</p>
-                </Link>
+                <p key={index} className="t2_link">
+                  {link.url}
+                </p>
               ))}
             </div>
           </div>
@@ -181,9 +181,11 @@ const Template2 = ({ bioData, resumeData, margin }: TemplateProps) => {
                   <h2 className="font-bold">{certificate.certificate_title}</h2>
                   <div className="flex items-center justify-between">
                     <p className="t2_sub-title">{certificate.organization}</p>
-                    <p className="t2_sub-title italic">
-                      {certificate.certificate_date}
-                    </p>
+                    {certificate?.certificate_date && (
+                      <p className="t2_sub-title italic">
+                        {convertToMonthName(certificate?.certificate_date)}
+                      </p>
+                    )}
                   </div>
                   <p className="t2_link">{certificate.certificate_link}</p>
                 </div>
