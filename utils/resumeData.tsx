@@ -1,4 +1,12 @@
-import { Template1Img, Template2Img, TemplateSampleImg } from "@/assets/img";
+import {
+  Template1Img,
+  Template2Img,
+  Template3Img,
+  Template4Img,
+  Template5Img,
+  Template6Img,
+  TemplateSampleImg,
+} from "@/assets/img";
 
 export const fontList = [
   { id: 1, name: "Arial" },
@@ -28,27 +36,27 @@ export const TemplateList = [
     featured: false,
     name: "Template 3",
     category: "classic Template",
-    sampleImg: TemplateSampleImg,
+    sampleImg: Template3Img,
   },
   {
     id: 4,
     featured: false,
     name: "Template 4",
     category: "Creative Template",
-    sampleImg: TemplateSampleImg,
+    sampleImg: Template4Img,
   },
   {
     id: 5,
     featured: false,
     name: "Template 5",
     category: "Creative Template",
-    sampleImg: TemplateSampleImg,
+    sampleImg: Template5Img,
   },
   {
     id: 6,
     featured: true,
     name: "Template 6",
     category: "Classic Template",
-    sampleImg: TemplateSampleImg,
+    sampleImg: Template6Img,
   },
 ];

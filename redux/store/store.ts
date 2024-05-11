@@ -1,7 +1,8 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import resumeReducer from "../slice/resumeSlice";
-import storage from "redux-persist/lib/storage";
+import storage from "./storage";
 import { persistReducer } from "redux-persist";
+// import storage from "redux-persist/lib/storage";
 // import { combineReducers } from "@reduxjs/toolkit";
 
 const persistConfig = {

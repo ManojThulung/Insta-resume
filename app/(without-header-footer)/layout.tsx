@@ -1,9 +1,4 @@
-import { Inter } from "next/font/google";
-// import "../globals.css";
-// import "../ckeditor.css";
 import Providers from "@/redux/Providers";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "InstaResume",
@@ -15,11 +10,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div>
-      <body className={inter.className}>
-        <Providers>{children}</Providers>
-      </body>
-    </div>
-  );
+  return <Providers>{children}</Providers>;
 }
