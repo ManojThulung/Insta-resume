@@ -27,9 +27,11 @@ const Navbar = () => {
           </li>
         </ul>
         <div>
-          <Button variant="outline" size="default">
-            Get Started
-          </Button>
+          <Link href="/create-resume">
+            <Button variant="outline" size="default">
+              Get Started
+            </Button>
+          </Link>
         </div>
       </div>
     </nav>

@@ -1,13 +1,14 @@
+import { FontListType } from "@/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface ResumeState {
   template_id: number;
-  font: string;
+  font: FontListType;
 }
 
 const initialState: ResumeState = {
   template_id: 3,
-  font: "Times New Roman",
+  font: { id: "Times", name: "Times New Roman" },
 };
 
 export const resumeSlice = createSlice({
@@ -17,7 +18,7 @@ export const resumeSlice = createSlice({
     setTemplate: (state, action: PayloadAction<number>) => {
       state.template_id = action.payload;
     },
-    setFont: (state, action: PayloadAction<string>) => {
+    setFont: (state, action: PayloadAction<FontListType>) => {
       state.font = action.payload;
     },
   },

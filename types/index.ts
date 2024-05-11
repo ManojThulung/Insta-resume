@@ -84,6 +84,6 @@ export interface TemplateProps {
 }
 
 export interface FontListType {
-  id: number;
+  id: string;
   name: string;
 }

@@ -7,17 +7,16 @@ import { fontList } from "@/utils/resumeData";
 import { FontListType } from "@/types";
 import Button from "@/components/common/Button";
 
-interface FontsOptionProps {
-  selectedFont: FontListType;
-  setSelectedFont: Dispatch<SetStateAction<FontListType>>;
-}
+import { useDispatch } from "react-redux";
+import { setFont } from "@/redux/slice/resumeSlice";
 
 export default function FontsOption({
   selectedFont,
-  setSelectedFont,
-}: FontsOptionProps) {
-  //   const [selected, setSelected] = useState(fontList[0]);
+}: {
+  selectedFont: FontListType;
+}) {
   const [query, setQuery] = useState("");
+  const dispatch = useDispatch();
 
   const filterFonts =
     query === ""
@@ -29,6 +28,10 @@ export default function FontsOption({
             .includes(query.toLowerCase().replace(/\s+/g, ""))
         );
 
+  const handleChangeFont = (font: FontListType) => {
+    dispatch(setFont(font));
+  };
+
   return (
     <div className="flex 0tems-center justify-start gap-2">
       <Button variant="fill" className="bg-white hover:bg-light" size="square">
@@ -36,7 +39,7 @@ export default function FontsOption({
       </Button>
       <Combobox
         value={selectedFont}
-        onChange={(value: FontListType) => setSelectedFont(value)}
+        onChange={(value: FontListType) => handleChangeFont(value)}
       >
         <div className="relative">
           <div className="relative">

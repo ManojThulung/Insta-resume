@@ -23,7 +23,10 @@ import TemplatesModal from "@/components/pages/createResume/TemplatesModal";
 
 import { BioFormProps } from "@/types";
 import { EyeHideIcon, EyeShowIcon, TemplateBoxIcon } from "@/assets/icon";
-import { FontListType } from "@/types";
+
+// Reduxt
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
 
 const CreateResume = () => {
   const [resetFormConfirmModal, setResetFormConfirmModal] =
@@ -33,10 +36,9 @@ const CreateResume = () => {
   const [isTemplateModal, setIsTemplateModal] = useState<boolean>(false);
   const [visiblePreview, setVisiblePreview] = useState<boolean>(false);
   const [margin, setMargin] = useState<number>(0);
-  const [selectedFont, setSelectedFont] = useState<FontListType>({
-    id: 5,
-    name: "Times New Roman",
-  });
+
+  const selectedFont = useSelector((state: RootState) => state.resume.font);
+
   const [resumeData, setResumeData] = useState({
     socialLinks: [{ url: "" }],
     experiences: [
@@ -112,7 +114,6 @@ const CreateResume = () => {
   // Generate pdf
   const handleDownload = () => {
     setMargin(7); // to adjust the margin of resume when generating.
-    // setLoading(true);
     const element = previewRef.current;
 
     if (element) {
@@ -120,8 +121,7 @@ const CreateResume = () => {
         .html(element, {
           callback: async function (resumeDoc) {
             // Save the PDF document
-            // console.log(resumeDoc.getFontList());
-            resumeDoc.setFont(selectedFont.name);
+            resumeDoc.setFont(selectedFont.id);
 
             await resumeDoc.save("Resume.pdf");
           },
@@ -309,10 +309,7 @@ const CreateResume = () => {
           }`}
         >
           <div className="flex items-center justify-between gap-5 flex-wrap mb-2">
-            <FontsOption
-              selectedFont={selectedFont}
-              setSelectedFont={setSelectedFont}
-            />
+            <FontsOption selectedFont={selectedFont} />
             <div className="flex flex-wrap items-center gap-2">
               <Button
                 variant="fill"

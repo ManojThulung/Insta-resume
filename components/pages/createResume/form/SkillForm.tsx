@@ -103,7 +103,6 @@ const SkillForm = ({
 
   // REMOVE skill list
   const removeSkillList = (index: number, data: string) => {
-    // console.log("selected data ", data);
     setResumeData((prev) => {
       const updateData = { ...prev };
 
