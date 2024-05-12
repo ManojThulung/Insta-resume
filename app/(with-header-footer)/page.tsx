@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Metadata } from "next";
 
 import { ArrowRight, HeroResume } from "@/assets/icon";
 
@@ -9,6 +10,12 @@ import Guide from "@/components/pages/homePage/Guide";
 import Template from "@/components/pages/templatePage/Template";
 import FAQ from "@/components/pages/homePage/FAQ";
 import { TemplateList } from "@/utils/resumeData";
+
+export const metadata: Metadata = {
+  title: "InstaResume",
+  description:
+    "InstaResume. Your go-to platform for creating polished resumes in minutes. Explore multiple templates, customize effortlessly, and download your professional resume as a PDF.",
+};
 
 export default function Home() {
   const featuredTemplates = TemplateList.filter((temp) => temp.featured);

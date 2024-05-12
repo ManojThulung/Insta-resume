@@ -4,6 +4,13 @@ import SubTitle from "@/components/common/SubTitle";
 import Features from "@/components/pages/homePage/Features";
 import Template from "@/components/pages/templatePage/Template";
 import { TemplateList } from "@/utils/resumeData";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "InstaResume | Templates",
+  description:
+    "Browse through a variety of sleek and modern resume templates on InstaResume. Find the perfect design to showcase your skills and experience to potential employers.",
+};
 
 const Templates = () => {
   return (

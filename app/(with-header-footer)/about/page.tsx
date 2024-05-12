@@ -1,6 +1,13 @@
 import { JourneyManDog, MissionMan } from "@/assets/icon";
 import SubTitle from "@/components/common/SubTitle";
 import Features from "@/components/pages/homePage/Features";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "InstaResume | About",
+  description:
+    "Learn more about InstaResume - the fast and intuitive web app that simplifies the resume-building process. Discover our mission, vision, and the team behind the scenes.",
+};
 
 const About = () => {
   return (

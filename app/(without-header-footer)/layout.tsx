@@ -1,8 +1,9 @@
 import Providers from "@/redux/Providers";
 
 export const metadata = {
-  title: "InstaResume",
-  description: "Generate your perfect resume in an instant.",
+  title: "Create Resume",
+  description:
+    "Ready to create your professional resume? With InstaResume's user-friendly interface, crafting a standout CV is quick, easy, and hassle-free. Start building your career today.",
 };
 
 export default function RootLayout({

@@ -1,8 +1,15 @@
 import { ManWithLaptop } from "@/assets/icon";
-import Button from "@/components/common/Button";
 import SubTitle from "@/components/common/SubTitle";
 import ContactForm from "@/components/pages/contactUs/ContactForm";
 import Link from "next/link";
+
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "InstaResume | Contact",
+  description:
+    "Have questions or feedback? Get in touch with the InstaResume team easily through the contact page. InstaResume here to assist you in crafting your perfect resume.",
+};
 
 const Contact = () => {
   return (
