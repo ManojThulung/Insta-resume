@@ -57,7 +57,7 @@ const DeleteModal = ({
                   <Button
                     variant={"outline"}
                     size="medium"
-                    onClick={() => handleClose(false)}
+                    onClick={() => handleClose()}
                   >
                     Cancel
                   </Button>
