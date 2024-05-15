@@ -32,8 +32,11 @@ note: node version should be >= 18.17
 ## Contributing & Feedback
 
 🚀 **Active Development:** Project's evolving! Share ideas for improvements.
+
 🛠 **New Features:** Got a great idea? Let's hear it!
+
 🔄 **Pull Requests:** Contributions welcome! Bug fixes, features - all appreciated.
+
 💬 **Feedback:** Your input matters! Report issues, suggest improvements.
 
 Let's make this project awesome together! 🌟
