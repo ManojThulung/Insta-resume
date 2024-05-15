@@ -2,7 +2,7 @@
 
 ## Project URL
 
-[Resume Generator App](https://instaresume.vercel.app)
+(https://instaresume.vercel.app)
 
 ## Overview
 
