@@ -1,6 +1,5 @@
 import { BioFormProps, ResumeDataProps } from "@/types";
 import { convertToMonthName } from "@/utils/helper";
-import Link from "next/link";
 
 import "@/app/style/template1Style.css";
 
@@ -50,9 +49,9 @@ const Template1 = ({
                 <h2 className="title">CONTACT</h2>
                 <div className="py-[2px] px-[6px]">
                   {resumeData?.socialLinks.map((link, index) => (
-                    <Link key={index} href={link.url} target="__blank">
+                    <div key={index}>
                       <p className="link">{link.url}</p>
-                    </Link>
+                    </div>
                   ))}
                 </div>
               </div>

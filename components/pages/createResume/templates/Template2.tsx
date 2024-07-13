@@ -1,7 +1,6 @@
 import "@/app/style/template2Style.css";
 import { TemplateProps } from "@/types";
 import { convertToMonthName } from "@/utils/helper";
-import Link from "next/link";
 import { Fragment } from "react";
 
 const Template2 = ({ bioData, resumeData, margin }: TemplateProps) => {
